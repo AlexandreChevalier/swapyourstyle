@@ -1,7 +1,8 @@
 <body>
-  <div class="container">
-    <header>
-      <h1>Todo List ({{incompleteCount}})</h1>
+  <div class="main-page">
+    <header>{{> header}}</header>
+<!--     <header>
+      <h1>Swap My Style</h1>
 
       <label class="hide-completed">
         <input type="checkbox" />
@@ -15,12 +16,14 @@
           <input type="text" name="text" placeholder="Type to add new tasks" />
         </form>
       {{/if}}
-    </header>
+    </header> -->
 
     <ul>
       {{#each tasks}}
         {{> task}}
       {{/each}}
     </ul>
+
+    <footer>{{> footer}}</footer>
   </div>
 </body>
