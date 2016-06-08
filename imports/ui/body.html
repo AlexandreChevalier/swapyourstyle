@@ -1,13 +1,23 @@
 <body>
-  <div class="main-page">
-    <header>{{> header}}</header>
-
+  <!-- Always shows a header, even in smaller screens. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    {{> header}}
     <main class="mdl-layout__content">
-      <div class="page-content"><!-- Your content goes here -->
-        <!-- Wide card with share menu button -->
-        {{> card}}
+      <div class="mdl-layout__tab-panel is-active" id="overview">
+        <div class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <div class="page-content">
+            {{> card}}
+            {{> card}}
+            {{> card}}
+          </div>
+        </div>
       </div>
     </main>
+    {{> footer}}
+  </div>
+</body>
+
+
 <!--     <header>
       <h1>Swap My Style</h1>
 
@@ -16,21 +26,18 @@
         Hide Completed Tasks
       </label>
 
-      {{> loginButtons}}
+      
 
       {{#if currentUser}}
         <form class="new-task">
           <input type="text" name="text" placeholder="Type to add new tasks" />
         </form>
       {{/if}}
-    </header> -->
 
     <ul>
-      {{#each tasks}}
-        {{> task}}
-      {{/each}}
-    </ul>
+    {{#each tasks}}
+      {{> task}}
+    {{/each}}
+  </ul>
 
-    <footer>{{> footer}}</footer>
-  </div>
-</body>
+    </header> -->

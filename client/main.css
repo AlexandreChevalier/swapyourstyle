@@ -1,11 +1,15 @@
-.demo-card-wide.mdl-card {
-  width: 512px;
+.demo-card-square.mdl-card {
+	width: 320px;
+	height: 320px;
 }
-.demo-card-wide > .mdl-card__title {
-  color: #fff;
-  height: 176px;
-  background: url('../public/sky.jpg') center / cover;
+
+.demo-card-square > .mdl-card__title {
+	color: #fff;
+	background:
+		url('images/sky.jpg') no-repeat #46B6AC;
+	background-size: cover;
 }
-.demo-card-wide > .mdl-card__menu {
-  color: #fff;
+
+.mdl-card {
+	margin: 20px;
 }
