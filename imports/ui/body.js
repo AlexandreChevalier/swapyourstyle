@@ -9,6 +9,8 @@ import './body.html';
 // Importing blocks
 import './blocks/header.js';
 import './blocks/footer.js';
+
+import './blocks/presentation.js';
 import './blocks/card.js';
 
 Template.body.onCreated(function bodyOnCreated() {

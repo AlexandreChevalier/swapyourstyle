@@ -1,3 +1,25 @@
+.page-content {
+	width: 100%;
+}
+
+.presentation {
+	height: 400px;
+	background-color: #46B6AC;
+  display: flex;
+}
+
+.presentation form {
+	display: flex;
+	margin: auto;
+	font-family:;
+  font-size: 78px;
+  color: #fff;
+}
+
+.presentation button {
+	margin: auto;
+}
+
 .demo-card-square.mdl-card {
 	width: 320px;
 	height: 320px;
@@ -8,8 +30,4 @@
 	background:
 		url('images/sky.jpg') no-repeat #46B6AC;
 	background-size: cover;
-}
-
-.mdl-card {
-	margin: 20px;
 }
