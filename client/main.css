@@ -1,33 +1,10 @@
-.page-content {
-	width: 100%;
+@font-face {
+    font-family: Banana Yeti; 
+    src:
+    url("/fonts/BananaYeti-Extrabold Trial.ttf")
 }
 
-.presentation {
-	height: 400px;
-	background-color: #46B6AC;
-  display: flex;
-}
-
-.presentation form {
-	display: flex;
-	margin: auto;
-	font-family:;
-  font-size: 78px;
-  color: #fff;
-}
-
-.presentation button {
-	margin: auto;
-}
-
-.demo-card-square.mdl-card {
-	width: 320px;
-	height: 320px;
-}
-
-.demo-card-square > .mdl-card__title {
-	color: #fff;
-	background:
-		url('images/sky.jpg') no-repeat #46B6AC;
-	background-size: cover;
+.brand-logo {
+	font-family: 'Banana Yeti';
+	font-size: 40px;
 }
