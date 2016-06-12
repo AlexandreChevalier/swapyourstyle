@@ -4,7 +4,19 @@
     url("/fonts/BananaYeti-Extrabold Trial.ttf")
 }
 
+.nav-wrapper {
+	padding-left: 20px;
+}
+
 .brand-logo {
 	font-family: 'Banana Yeti';
 	font-size: 40px;
+}
+
+.row.center h5 {
+	color: white;
+}
+
+.parallax-container {
+	height: 400px;
 }
