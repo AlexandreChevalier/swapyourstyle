@@ -1,7 +1,7 @@
 import './header.html';
 
 Template.header.onRendered(function(){
-	this.$(".dropdown-button").dropdown({
+	$(".dropdown-button").dropdown({
     	hover:false
 	});
 });
