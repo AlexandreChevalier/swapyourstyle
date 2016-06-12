@@ -1,6 +1,6 @@
 <body>
   <!-- Always shows a header, even in smaller screens. -->
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <div class="mdl-layout mdl-js-layout">
     {{> header}}
     <main class="mdl-layout__content">
       <div class="mdl-layout__tab-panel is-active" id="overview">
@@ -8,9 +8,7 @@
         <div class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
           <div class="page-content">
             {{> presentation}}
-            {{> card}}
-            {{> card}}
-            {{> card}}
+
           </div>
         </div>
       </div>

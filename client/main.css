@@ -1,19 +1,28 @@
+@font-face {
+    font-family: Little; 
+    src:
+    url("fonts/Little Days Alt.ttf");
+}
+
+.mdl-layout-title {
+		font-family: "Little", Georgia, Serif;
+		font-size: 28px;
+}
 .page-content {
 	width: 100%;
 }
 
 .presentation {
 	height: 400px;
-	background-color: #46B6AC;
-  display: flex;
+	background-color: white;
+	display: flex;
 }
 
 .presentation form {
 	display: flex;
 	margin: auto;
-	font-family:;
-  font-size: 78px;
-  color: #fff;
+	font-size: 78px;
+	color: #fff;
 }
 
 .presentation button {
