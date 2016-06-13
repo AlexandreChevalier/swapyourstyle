@@ -10,6 +10,7 @@ Geolocation :
 http://meteorcapture.com/reactive-geolocation-with-google-maps/
 https://atmospherejs.com/mdg/geolocation
 https://atmospherejs.com/dburles/google-maps
+https://github.com/jshimko/meteor-geocomplete/
 
 Auto-complete on places form : 
 
