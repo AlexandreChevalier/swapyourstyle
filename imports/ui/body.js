@@ -6,9 +6,11 @@ import { Tasks } from '../api/tasks.js';
 
 import './task.js';
 import './body.html';
+
 // Importing blocks
 import './blocks/header.js';
 import './blocks/footer.js';
+import './blocks/location.js';
 
 import './blocks/presentation.js';
 import './blocks/card.js';
@@ -39,6 +41,10 @@ Template.body.helpers({
   incompleteCount() {
     return Tasks.find({ checked: { $ne: true } }).count();
   },
+  getLocation() {
+    var pos = Geolocation.latLng();
+    console.log(pos.lat, pos.lng);
+  }
 });
 
 Template.body.events({
