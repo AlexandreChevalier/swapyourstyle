@@ -1,6 +1,7 @@
 # README #
 
 Swap Your Suit base app :
+
 * Home page
 * Currently WIP : location search bar
 
