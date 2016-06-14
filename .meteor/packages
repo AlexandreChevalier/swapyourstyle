@@ -25,3 +25,4 @@ materialize:materialize
 dburles:google-maps
 mdg:geolocation
 jeremy:geocomplete
+jaymc:google-reverse-geocode

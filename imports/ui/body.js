@@ -10,7 +10,7 @@ import './body.html';
 // Importing blocks
 import './blocks/header.js';
 import './blocks/footer.js';
-import './blocks/location.js';
+import './location/location.js';
 
 import './blocks/presentation.js';
 import './blocks/card.js';
