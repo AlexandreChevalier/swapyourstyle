@@ -20,3 +20,11 @@
 .parallax-container {
 	height: 400px;
 }
+
+.row .col.s12 .card-image {
+	max-height: 120px;
+}
+
+.info-block {
+	margin-bottom: 0;
+}

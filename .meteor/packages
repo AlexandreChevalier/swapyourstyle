@@ -31,3 +31,4 @@ iron:router
 aldeed:autoform
 aldeed:collection2
 check
+aldeed:geocoder

@@ -13,7 +13,8 @@ import './blocks/footer.js';
 import './location/location.js';
 
 import './blocks/presentation.js';
-import './blocks/card.js';
+import './blocks/infoBlock.js';
+import './blocks/themeBlock.js';
 
 Template.body.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
