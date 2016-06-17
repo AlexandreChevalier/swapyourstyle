@@ -1,1 +1,40 @@
 import '../imports/api/tasks.js';
+/*
+* swapmysuitnoreply@gmail.com
+* Swap2016suit
+*/
+Meteor.startup(function () {
+    process.env.MAIL_URL = 'smtp://swapmysuitnoreply%40gmail.com:Swap2016suit@smtp.gmail.com:587';
+    SimpleSchema.debug = true;
+});
+Meteor.users.allow({
+    update: function() {
+    	return false;
+    },
+    insert: function() {
+    	return false;
+    }
+});
+Accounts.onCreateUser(function(options, user) {
+	Dressing.insert({
+		userId: user._id
+	}, function(error, result) {
+	  if(error){
+	  	console.log(error.invalidKeys);
+	  }
+	  else {
+		console.log("Dressing Created");
+	  }
+	});
+	userProfile.insert({
+		userId: user._id
+	}, function(error, result) {
+	  if(error){
+	  	console.log(error.invalidKeys);
+	  }
+	  else {
+		console.log("userProfile Created");
+	  }
+	});
+	return user;
+});

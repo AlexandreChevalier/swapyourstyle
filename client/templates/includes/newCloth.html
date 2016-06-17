@@ -1,0 +1,22 @@
+<!--Created by Marc on 29/04/2016.-->
+<template name="newCloth">
+	{{#if currentUser}}
+        {{# autoForm collection="Clothes" doc=this id="newClothForm" type="insert"}}
+        <fieldset>
+            <legend>{{ getUpdateLegend }}</legend>
+            {{> afQuickField name='clothName'}}
+            {{> afQuickField name='clothType'}}
+            {{> afQuickField name='clothCategory'}}
+            {{> afQuickField name='clothColor'}}
+            {{> afFormGroup name='clothGender'}}
+            {{> afQuickField name='clothBrand'}}
+            {{> afQuickField name='clothSize'}}
+            {{> afQuickField name='clothDescr' rows=6}}
+            <button type="submit" class="btn btn-primary">{{ getSubmit }}</button>
+            <button type="reset" class="btn btn-default">{{ getReset }}</button>
+        </fieldset>
+        {{/autoForm}}
+    {{else}}
+        {{> accueil}}
+    {{/if}}
+</template>

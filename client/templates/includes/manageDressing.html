@@ -1,0 +1,16 @@
+<!--Created by Marc on 27/04/2016.-->
+<template name="manageDressing">
+	{{#if currentUser}}
+		<h1>{{dressing.dressingName}}</h1>
+		Mes vêtements :
+		<ul>
+			{{#each cloth}} 
+				<li><a href="{{pathFor 'updateCloth.show'}}">{{clothName}}</a> {{clothDescr}}</li>
+			{{/each}}
+		</ul>
+		<button type="button" class="btn btn-primary" id="addClothButton">{{getTradNewCloth}}</button>
+		<button type="button" class="btn btn-primary" id="showDressingForm">{{getTradDressing}}</button>
+    {{else}}
+        {{> accueil}}
+    {{/if}}
+</template>
