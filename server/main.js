@@ -1,4 +1,7 @@
 import '../imports/api/tasks.js';
+//import '../imports/api/lists/user.js';
+import { userProfile } from '../imports/api/userProfile.js';
+import { Dressing } from '../imports/api/dressing.js';
 /*
 * swapmysuitnoreply@gmail.com
 * Swap2016suit

@@ -27,8 +27,12 @@ mdg:geolocation
 jeremy:geocomplete
 jaymc:google-reverse-geocode
 softwarerero:accounts-t9n
-iron:router
 aldeed:autoform
 aldeed:collection2
 check
 aldeed:geocoder
+msavin:mongol
+aldeed:simple-schema
+session
+kadira:flow-router
+kadira:blaze-layout

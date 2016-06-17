@@ -1,5 +1,5 @@
 import './location.html';
-
+/*
 Template.location.helpers({
 	position : function() {
 		var pos = Geolocation.latLng();
@@ -12,4 +12,4 @@ Template.location.helpers({
 		var pos = Geolocation.latLng();
 		return reverseGeocode.getLocation(pos.lat, pos.lng);
 	}
-});
+});*/
