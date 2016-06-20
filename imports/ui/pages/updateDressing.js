@@ -23,11 +23,6 @@ import './updateDressing.html';
     }
 });
 var updateDressingHooks = {
-    before: {
-        update: function(doc){
-            return doc;
-        }
-    },
     onSuccess: function (doc) {
         FlowRouter.go('/dressing');
     }

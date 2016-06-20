@@ -10,10 +10,8 @@ Template.userData.helpers({
             return true;
         }
     },
-    user: function () {
-    	return Meteor.user();
-    },
 	userMail: function(){
+		//fonction pour récupérer les mails de l'utilisateur et de les renvoyer en une seule chaine de charactères
 		var resultEmail = "";
 		if(Meteor.user().emails){
 			var emailsLength = Meteor.user().emails.length;

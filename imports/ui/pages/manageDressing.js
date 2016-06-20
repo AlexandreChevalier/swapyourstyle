@@ -17,6 +17,7 @@ Template.manageDressing.helpers({
         return T9n.get("Customize Dressing");
     },
 	cloth: function(){
+		//renvoie tous les vetements de l'utilisateur
 		var userDressing = Dressing.findOne({userId:  Meteor.user()._id});
 		var allClothes = Clothes.find({dressingId: userDressing._id});
 		return allClothes;

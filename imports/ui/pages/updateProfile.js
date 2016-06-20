@@ -24,11 +24,6 @@ Template.updateProfile.helpers({
 });
 
 var userProfileHooks = {
-    before: {
-        update: function(doc){
-            return doc;
-        }
-    },
     onSuccess: function (doc) {
         FlowRouter.go('/');
     }

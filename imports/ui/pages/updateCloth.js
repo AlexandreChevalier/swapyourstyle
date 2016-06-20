@@ -26,11 +26,6 @@ import './updateCloth.html';
     }
 });
 var updateClothHooks = {
-    before: {
-        update: function(doc){
-            return doc;
-        }
-    },
     onSuccess: function (doc) {
         FlowRouter.go('/dressing');
     }

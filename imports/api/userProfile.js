@@ -94,6 +94,7 @@ userProfile.attachSchema(new SimpleSchema({
 }));
 
 userProfile.allow({
+    //on vérifie que l'utilisateur a bien le droit de modifier l'objet
     update: function(userId, doc){
         return doc && (userId === doc.userId);
     }

@@ -24,6 +24,7 @@ import './newCloth.html';
 });
 var newClothHooks = {
     before: {
+        //A l'ajout d'un nouveau vetement, on le lie a son propriétaire et son dressing
         insert: function(doc){
             var userDressing = Dressing.findOne({userId:  Meteor.userId()});
             doc.dressingId = userDressing._id;

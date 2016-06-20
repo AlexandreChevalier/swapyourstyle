@@ -83,10 +83,11 @@ Clothes.attachSchema(new SimpleSchema({
 }));
 
 Clothes.allow({
+    //on vérifie que l'utilisateur a bien le droit de modifier l'objet
 	insert: function(userId, doc) {
-        return !! doc;
+        return doc && (userId === doc.userId);
     },
     update: function(userId, doc) {
-        return true;
+        return doc && (userId === doc.userId);
     }
 });
