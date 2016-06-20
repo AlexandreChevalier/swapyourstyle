@@ -1,0 +1,14 @@
+<template name="login">
+    <form>
+        <input type="email" name="loginEmail" />
+        <input type="password" name="loginPassword" />
+        <input type="submit" value="Se connecter" />
+        <div class="alert-container">
+            {{#if errorMessage}}
+                <div class="alert">
+                    <span><i class="icon-sign"></i>{{errorMessage}}</span>
+                </div>
+            {{/if}}
+        </div>
+    </form>
+</template>

@@ -20,13 +20,11 @@ Meteor.users.allow({
 });
 Accounts.onCreateUser(function(options, user) {
 	Dressing.insert({
-		userId: user._id
+		userId: user._id,
+		dressingName: "Dressing de " + user.username
 	}, function(error, result) {
 	  if(error){
 	  	console.log(error.invalidKeys);
-	  }
-	  else {
-		console.log("Dressing Created");
 	  }
 	});
 	userProfile.insert({
@@ -34,9 +32,6 @@ Accounts.onCreateUser(function(options, user) {
 	}, function(error, result) {
 	  if(error){
 	  	console.log(error.invalidKeys);
-	  }
-	  else {
-		console.log("userProfile Created");
 	  }
 	});
 	return user;
