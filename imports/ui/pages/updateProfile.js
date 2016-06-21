@@ -4,6 +4,14 @@
 import { userProfile } from '../../api/userProfile.js';
 import './updateProfile.html';
 
+
+Template.updateProfile.onRendered(function() {
+    //needed so the select displays 
+    $( document ).ready(function(){
+        $('select').material_select();
+    });
+});
+
 Template.updateProfile.helpers({
     selfProf: function(){
         var item = userProfile.findOne({userId: Meteor.userId()});

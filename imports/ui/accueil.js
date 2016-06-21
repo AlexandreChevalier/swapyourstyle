@@ -30,11 +30,6 @@ Template.accueil.onCreated(function accueilOnCreated() {
 
 Template.accueil.onRendered(function() {
   $( document ).ready(function(){
-    $(".button-collapse").sideNav({
-      menuWidth: 300, // Default is 240
-      edge: 'right', // Choose the horizontal origin
-      closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-    });
     $(".parallax").parallax();
   });
 });

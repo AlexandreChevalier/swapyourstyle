@@ -56,7 +56,10 @@ userProfile.attachSchema(new SimpleSchema({
     birthdate: {
         type: Date,
         optional: true,
-        label: T9n.get("Birthdate")
+        label: T9n.get("Birthdate"),
+        autoform: {
+          type:"pickadate"
+        }
     },
     gender: {
         type: String,

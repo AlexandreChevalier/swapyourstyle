@@ -4,6 +4,13 @@
 import { Clothes } from '../../api/cloth.js';
 import './updateCloth.html';
 
+Template.updateCloth.onRendered(function() {
+    //needed so the select displays 
+    $( document ).ready(function(){
+        $('select').material_select();
+    });
+});
+
  Template.updateCloth.helpers({
     Clothes: function(){
         return Clothes;

@@ -16,17 +16,14 @@ Template.viewCloth.helpers({
 	getTradType: function(){
 		return T9n.get("Cloth Type");
 	},
-	getTradCategory: function(){
-		return T9n.get("Cloth Category");
+	getTradTheme: function(){
+		return T9n.get("Cloth Theme");
 	},
 	getTradColor: function(){
 		return T9n.get("Cloth Color");
 	},
 	getTradGender: function(){
 		return T9n.get("Cloth Gender");
-	},
-	getTradBrand: function(){
-		return T9n.get("Cloth Brand");
 	},
 	getTradSize: function(){
 		return T9n.get("Cloth Size");

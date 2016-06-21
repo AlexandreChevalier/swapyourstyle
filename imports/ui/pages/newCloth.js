@@ -5,7 +5,15 @@ import { Dressing } from '../../api/dressing.js';
 import { Clothes } from '../../api/cloth.js';
 import './newCloth.html';
 
- Template.newCloth.helpers({
+
+Template.newCloth.onRendered(function() {
+    //needed so the select displays 
+    $( document ).ready(function(){
+        $('select').material_select();
+    });
+});
+
+Template.newCloth.helpers({
     Clothes: function(){
         return Clothes;
     },
