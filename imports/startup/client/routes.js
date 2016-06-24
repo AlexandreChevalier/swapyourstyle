@@ -12,7 +12,6 @@ import '../../ui/pages/newCloth.js';
 import '../../ui/pages/updateProfile.js';
 import '../../ui/pages/updateCloth.js';
 import '../../ui/pages/updateDressing.js';
-import '../../ui/pages/register.js';
 import '../../ui/pages/search.js';
 import '../../ui/pages/viewCloth.js';
 import '../../ui/pages/404.html';
@@ -22,11 +21,6 @@ import '../../ui/layouts/mainLayout.html';
 FlowRouter.route('/', {
   action: function() {
     BlazeLayout.render("mainLayout", {content: "accueil"});
-  }
-});
-FlowRouter.route('/register', {
-  action: function() {
-    BlazeLayout.render("mainLayout", {content: "register"});
   }
 });
 FlowRouter.route('/resetPassword', {

@@ -1,7 +1,7 @@
 <!--Created by Marc on 12/06/2016.-->
 <template name="updateDressing">
 	{{#if currentUser}}
-        {{# autoForm collection=Dressing doc=selfDressing id="updateDressingForm" type="update"}}
+        {{# autoForm collection=userProfile doc=selfProfile id="updateDressingForm" type="update"}}
         <fieldset>
             <legend>{{ getUpdateLegend }}</legend>
             {{> afQuickField name='dressingName'}}

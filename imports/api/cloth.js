@@ -22,9 +22,6 @@ Clothes.attachSchema(new SimpleSchema({
     userId: {
         type: String
     },
-	dressingId: {
-		type: String		
-	},
     clothName: {
         type: String,
         optional: true,
@@ -102,8 +99,8 @@ Clothes.attachSchema(new SimpleSchema({
         optional: true,
         label: T9n.get("Cloth Size")
     },
-    clothImages: {
-        type: [String],
+    clothImage: {
+        type: String,
         optional: true,
         label: T9n.get("Cloth Images")
     },

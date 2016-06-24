@@ -1,7 +1,7 @@
 /**
  * Created by Marc on 27/04/2016.
  */
-import { Dressing } from '../../api/dressing.js';
+import { userProfile } from '../../api/userProfile.js';
 import { Clothes } from '../../api/cloth.js';
 import './newCloth.html';
 
@@ -34,8 +34,8 @@ var newClothHooks = {
     before: {
         //A l'ajout d'un nouveau vetement, on le lie a son propriétaire et son dressing
         insert: function(doc){
-            var userDressing = Dressing.findOne({userId:  Meteor.userId()});
-            doc.dressingId = userDressing._id;
+            var profile = userProfile.findOne({userId:  Meteor.userId()});
+            doc.profileId = profile._id;
             doc.userId = Meteor.userId();
             return doc;
         }

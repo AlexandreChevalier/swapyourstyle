@@ -2,6 +2,7 @@
 created by Marc G
 29/05/2016
 */
+import { Clothes } from './cloth.js';
 
 export const userProfile = new Mongo.Collection("userProfile");
 
@@ -93,6 +94,11 @@ userProfile.attachSchema(new SimpleSchema({
         type: addressSchema,
         optional: true,
         label: T9n.get("Address")
+    },
+    dressingName: {
+        type:String,
+        optional: true,
+        label: T9n.get("Dressing Name")
     }
 }));
 

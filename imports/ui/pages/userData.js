@@ -31,6 +31,11 @@ Template.userData.helpers({
 	userProfile: function(){
     	var item = userProfile.findOne({userId:  Meteor.user()._id});
 		return item;
+	},
+	getBirthdate: function(){
+    	var item = userProfile.findOne({userId:  Meteor.user()._id});
+    	var birthdate = item.birthdate;
+		return birthdate.toLocaleString();
 	}
 });
 

@@ -1,14 +1,14 @@
 /**
  * Created by Marc on 27/04/2016.
  */
-import { Dressing } from '../../api/dressing.js';
+import { userProfile } from '../../api/userProfile.js';
 import { Clothes } from '../../api/cloth.js';
 import './manageDressing.html';
 
 Template.manageDressing.helpers({
-	dressing: function() {
-		var userDressing = Dressing.findOne({userId:  Meteor.user()._id});
-		return userDressing;
+	userProfile: function() {
+		var profile = userProfile.findOne({userId:  Meteor.user()._id});
+		return profile;
 	},
     getTradNewCloth: function(){
         return T9n.get("New Cloth");
@@ -18,8 +18,7 @@ Template.manageDressing.helpers({
     },
 	cloth: function(){
 		//renvoie tous les vetements de l'utilisateur
-		var userDressing = Dressing.findOne({userId:  Meteor.user()._id});
-		var allClothes = Clothes.find({dressingId: userDressing._id});
+		var allClothes = Clothes.find({userId: Meteor.user()._id});
 		return allClothes;
 	}
 });
