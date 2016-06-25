@@ -100,7 +100,7 @@ Clothes.attachSchema(new SimpleSchema({
         label: T9n.get("Cloth Size")
     },
     clothImage: {
-        type: String,
+        type: [String],
         optional: true,
         label: T9n.get("Cloth Images")
     },

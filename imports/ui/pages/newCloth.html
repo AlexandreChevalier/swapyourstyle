@@ -11,6 +11,22 @@
             {{> afQuickField name='clothGender'}}
             {{> afQuickField name='clothSize'}}
             {{> afQuickField name='clothDescr' rows=6}}
+            {{#if currentUpload}}
+                {{#with currentUpload}}
+                    <div class="file-field input-field">
+                        Uploading <b>{{file.name}}</b> : 
+                        <span id="progress">{{progress}} %</span>
+                    </div>
+                {{/with}}
+            {{else}}
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span id="progress">Upload</span>
+                            <input id="fileInput" type="file" /><br/>
+                        </div>
+                    </div>
+                    <br/><br/><br/>
+            {{/if}}
             <button type="submit" class="btn btn-primary">{{ getSubmit }}</button>
             <button type="reset" class="btn btn-default">{{ getReset }}</button>
         </fieldset>
@@ -19,5 +35,3 @@
         {{> accueil}}
     {{/if}}
 </template>
-
- <!-- meteormethod="imageMethod" -->

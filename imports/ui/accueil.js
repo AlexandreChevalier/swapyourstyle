@@ -4,6 +4,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 
 import { userProfile } from '../api/userProfile.js';
 import { Clothes } from '../api/cloth.js';
+import { Images } from '../api/image.js';
 
 import './accueil.html';
 
@@ -21,6 +22,7 @@ Template.accueil.onCreated(function accueilOnCreated() {
   this.state = new ReactiveDict();
   Meteor.subscribe('userProfile');
   Meteor.subscribe('clothes');
+  Meteor.subscribe('files.images.all');
 });
 
 Template.accueil.onRendered(function() {
