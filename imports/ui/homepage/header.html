@@ -1,0 +1,49 @@
+<template name="Header">
+  <nav class="grey darken-3">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">{{title}}</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        {{> links}}
+        <!-- {{> login_button}} -->
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <!-- {{> login_button}} -->
+        {{> links}}
+      </ul>
+    </div>
+  </nav>
+</template>
+
+<template name="links">
+<!--   <li><a href="{{pathFor 'signin'}}">Sign In</a></li>
+  <li><a href="{{pathFor 'join'}}">Join</a></li> -->
+  <li><a href="/women">Femme</a></li>
+  <li><a href="/men">Homme</a></li>
+  <li><a href="/dressing">Créer mon dressing</a></li>
+  <li><a href="/blog">Blog</a></li>
+  {{#if currentUser}}
+    <li><a href="/profile">
+      {{currentUser.emails.[0].address}}
+    </a></li>
+  {{else}}
+    <li><a href="/signin">Connexion</a></li>
+    <li><a href="/join">Inscription</a></li>
+  {{/if}}
+</template>
+
+<template name="login_button">
+  <li>
+      <!-- TODO : move this logic to routes.js groups check-in -->
+      <a href="{{#if currentUser}}/profile{{else}}/login{{/if}}">
+      <div class="chip">
+        <img src="/images/test.jpg" alt="Anonymous user">
+        {{#if currentUser}}
+          {{currentUser.username}}
+        {{else}}
+          Anonyme
+        {{/if}}
+      </div>
+    </a>
+  </li>
+</template>

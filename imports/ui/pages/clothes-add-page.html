@@ -1,0 +1,27 @@
+<!-- Created by Marc on 29/04/2016. -->
+<template name="Clothes_add_page">
+  <!-- FIXME : denying access should be handled in routes -->
+  {{#if currentUser}}
+    <br>
+    <div class="container">
+      <div class="card">
+      {{# autoForm collection=Clothes id="insertClothForm" type="insert"}}
+        <fieldset>
+          <h3>Ajouter un vêtement</h3>
+          {{> afQuickField name='clothesName'   label='Nom du vêtement'}}
+          {{> afQuickField name='clothesType'   label='Type du vêtement'}}
+          {{> afQuickField name='clothesTheme'  label='Thème'}}
+          {{> afQuickField name='clothesColor'  label='Couleur'}}
+          {{> afQuickField name='clothesGender' label='Genre'}}
+          {{> afQuickField name='clothesSize'   label='Taille'}}
+          {{> afQuickField name='clothesDescription' label='Description' rows=6}}
+          <button type="submit" class="btn btn-primary">Ajouter</button>
+          <button type="reset" class="btn btn-default">Recommencer</button>
+        </fieldset>
+      {{/autoForm}}
+      </div>
+    </div>
+  {{else}}
+    {{> Home_page}}
+  {{/if}}
+</template>
