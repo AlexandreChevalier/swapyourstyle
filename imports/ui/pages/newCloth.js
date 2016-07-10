@@ -3,6 +3,7 @@
  */
 import { Clothes } from '../../api/cloth.js';
 import { Images } from '../../api/image.js';
+import { ReactiveVar } from 'meteor/reactive-var';
 import './newCloth.html';
 //import './upload.js';
 

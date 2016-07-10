@@ -2,14 +2,12 @@
 created by Marc G
 11/06/2016
 */
-console.log(FilesCollection);
-
 export const Images = new FilesCollection({
-  storagePath: 'assets/app/uploads/Images',
-  downloadRoute: '/uploads',
+  /*storagePath: 'assets/app/uploads/Images',
+  downloadRoute: '/uploads',*/
   collectionName: 'Images',
-  allowClientCode: true, // Disallow remove files from Client
-  public: true,
+  allowClientCode: false, // Disallow remove files from Client
+  //public: true,
   debug: true,
   onBeforeUpload: function (file) {
     // Allow upload files under 10MB, and only in png/jpg/jpeg formats
