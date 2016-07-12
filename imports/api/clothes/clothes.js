@@ -19,23 +19,96 @@ Clothes.deny({
 
 // TODO : better schema
 Clothes.schema = new SimpleSchema({
-  name: { 
-    type: String,
-    label: "Name"
+  userId: {
+    type: String
   },
-  type: { 
+  clothName: {
     type: String,
-    label: "Type"
+    optional: true,
+    label: T9n.get("Cloth Name")
   },
-  size: { 
+  clothType: {
     type: String,
-    label: "Size"
+    autoform: {
+      type: "select",
+      options: function () {
+        return [
+          {label: T9n.get("Top"), value: "Top"},
+          {label: T9n.get("Bottom"), value: "Bottom"},
+          {label: T9n.get("Shoes"), value: "Shoes"}
+        ];
+      }
+    },
+    optional: true,
+    label: T9n.get("Cloth Type")
   },
-  description: { 
+  clothTheme: {
     type: String,
-    optional : true,
-    max: 300
+    autoform: {
+      type: "select",
+      options: function () {
+        return [
+          {label: T9n.get("Wedding"), value: "Wedding"},
+          {label: T9n.get("Party"), value: "Party"},
+          {label: T9n.get("Casual"), value: "Casual"}
+        ];
+      }
+    },
+    optional: true,
+    label: T9n.get("Cloth Theme")
   },
+  clothColor: {
+    type: String,
+    autoform: {
+      type: "select",
+      options: function () {
+        return [
+          {label: T9n.get("Blue"), value: "Blue"},
+          {label: T9n.get("Red"), value: "Red"},
+          {label: T9n.get("Green"), value: "Green"},
+          {label: T9n.get("White"), value: "White"},
+          {label: T9n.get("Black"), value: "Black"},
+          {label: T9n.get("Brown"), value: "Brown"},
+          {label: T9n.get("Yellow"), value: "Yellow"},
+          {label: T9n.get("Purple"), value: "Purple"},
+          {label: T9n.get("Pink"), value: "Pink"},
+          {label: T9n.get("Gray"), value: "Gray"}
+        ];
+      }
+    },
+    optional: true,
+    label: T9n.get("Cloth Color")
+  },
+  clothGender: {
+    type: String,
+    autoform: {
+      type: "select",
+      options: function () {
+        return [
+          {label: T9n.get("Male"), value: "Male"},
+          {label: T9n.get("Female"), value: "Female"},
+          {label: T9n.get("Unisex"), value: "Unisex"}
+        ];
+      }
+    },
+    optional: true,
+    label: T9n.get("Cloth Gender")
+  },
+  clothSize: {
+    type: String,
+    optional: true,
+    label: T9n.get("Cloth Size")
+  },
+  clothImage: {
+    type: [String],
+    optional: true,
+    label: T9n.get("Cloth Images")
+  },
+  clothDescr: {
+    type: String,
+    optional: true,
+    label: T9n.get("Cloth Description")
+  }
 });
 
 Clothes.attachSchema(Clothes.schema);
@@ -55,6 +128,16 @@ Clothes.publicFields = {
   name: 1,
   userId: 1,
 };
+
+Clothes.allow({
+    //on vérifie que l'utilisateur a bien le droit de modifier l'objet
+  insert: function(userId, doc) {
+        return doc && (userId === doc.userId);
+    },
+    update: function(userId, doc) {
+        return doc && (userId === doc.userId);
+    }
+});
 
 // TODO refactor helpers :
 // Define appropriate or needed ones

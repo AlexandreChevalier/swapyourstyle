@@ -3,8 +3,8 @@
  * 
  * Created by Marc on 27/04/2016.
  */
-import { UserInfos } from '../../api/user/userInfos.js';
 import { Clothes } from '../../api/clothes/clothes.js';
+import { Images } from '../../api/images/image.js';
 import './clothes-add-page.html';
 
 import { Template } from 'meteor/templating';
@@ -12,11 +12,9 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 
 // Components used inside the template
 // import './app-not-found.js';
-Template.Clothes_add_page.onRendered(function clothesShowPageOnCreated() {
-  //this.getListId = () => FlowRouter.getParam('_id');
-});
 
 Template.Clothes_add_page.onRendered(function clothesShowPageOnRendered() {
+  //this.getListId = () => FlowRouter.getParam('_id');
   $( document ).ready(function(){
     // Loading material selects
     $('select').material_select();
@@ -41,13 +39,44 @@ Template.Clothes_add_page.helpers({
     return T9n.get("Reset");
   }
 });
-/*var Clothes_add_pageHooks = {
+
+Template.Clothes_add_page.events({
+  'change #fileInput': function (e, template) {
+    if (e.currentTarget.files && e.currentTarget.files[0]) {
+      // We upload only one file, in case 
+      // multiple files were selected
+      var upload = Images.insert({
+        file: e.currentTarget.files[0],
+        streams: 'dynamic',
+        //transport: 'http',
+        chunkSize: 'dynamic'
+      }, false);
+
+      upload.on('start', function () {
+        template.currentUpload.set(this);
+      });
+
+      upload.on('uploaded', function (error, fileObj) {
+        if (!error) {
+          sweetAlert('File "' + fileObj.name + '" successfully uploaded');
+        }
+      });
+
+      upload.on('error', function (error, fileObj) {
+        sweetAlert("Error !", 'Error during upload', "error");
+        console.log(error);
+      });
+
+      upload.start();
+    }
+  }
+});
+
+var Clothes_add_pageHooks = {
   before: {
     // A l'ajout d'un nouveau vetement, 
     // on le lie a son propriétaire et son dressing
     insert: function(doc){
-      var profile = userInfos.findOne({userId:  Meteor.userId()});
-      doc.profileId = profile._id;
       doc.userId = Meteor.userId();
       return doc;
     }
@@ -56,4 +85,4 @@ Template.Clothes_add_page.helpers({
     FlowRouter.go('/dressing');
   }
 }
-AutoForm.addHooks('insertClothForm', Clothes_add_pageHooks);*/
+AutoForm.addHooks('insertClothForm', Clothes_add_pageHooks);

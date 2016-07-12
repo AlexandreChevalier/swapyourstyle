@@ -24,13 +24,86 @@ if (Meteor.isServer) {
 
 addressSchema = new SimpleSchema({
   //TODO final formatted date
+  street: {
+    type: String,
+    label: T9n.get("Street")
+  },
+  postalCode: {
+    type: String,
+    max: 5,
+    regEx:/^\d+$/,
+    label: T9n.get("Postal Code")
+  },
+  city: {
+    type: String,
+    label: T9n.get("City")
+  },
+  country: {
+    type: String,
+    label: T9n.get("Country")
+  }
 });
 
 UserInfos.schema = new SimpleSchema({
-  firstname: { type: String },
-  lastname: { type: String },
-  gender: { type: String },
-  address: { type: String }
+  userId: {
+    type: String
+  },
+  firstName: {
+    type: String,
+    optional: true,
+    label: T9n.get("Firstname")
+  },
+  lastName: {
+    type: String,
+    optional: true,
+    label: T9n.get("Lastname")
+  },
+  birthdate: {
+    type: Date,
+    optional: true,
+    label: T9n.get("Birthdate"),
+    autoform: {
+      type:"pickadate"
+    }
+  },
+  gender: {
+      type: String,
+    autoform: {
+      type: "select",
+      label: T9n.get("Gender"),
+      options: function () {
+        return [
+          {label: T9n.get("Male"), value: "Male"},
+          {label: T9n.get("Female"), value: "Female"},
+          {label: T9n.get("Other"), value: "Other"}
+        ];
+      }
+    },
+    optional: true
+  },
+  phoneNumber : {
+    type: String,
+    max: 10,
+    regEx: /^\d+$/,
+    label: T9n.get("Phone Number"),
+    optional: true
+  },
+  bio: {
+    type: String,
+    max: 500,
+    optional: true,
+    label: T9n.get("Bio")
+  },
+  address: {
+    type: addressSchema,
+    optional: true,
+    label: T9n.get("Address")
+  },
+  dressingName: {
+    type:String,
+    optional: true,
+    label: T9n.get("Dressing Name")
+  }
 })
 
 UserInfos.attachSchema(UserInfos.schema);

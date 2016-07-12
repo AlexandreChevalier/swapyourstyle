@@ -7,16 +7,32 @@
       <div class="card">
       {{# autoForm collection=Clothes id="insertClothForm" type="insert"}}
         <fieldset>
-          <h3>Ajouter un vêtement</h3>
-          {{> afQuickField name='clothesName'   label='Nom du vêtement'}}
-          {{> afQuickField name='clothesType'   label='Type du vêtement'}}
-          {{> afQuickField name='clothesTheme'  label='Thème'}}
-          {{> afQuickField name='clothesColor'  label='Couleur'}}
-          {{> afQuickField name='clothesGender' label='Genre'}}
-          {{> afQuickField name='clothesSize'   label='Taille'}}
-          {{> afQuickField name='clothesDescription' label='Description' rows=6}}
-          <button type="submit" class="btn btn-primary">Ajouter</button>
-          <button type="reset" class="btn btn-default">Recommencer</button>
+          <legend>{{ getUpdateLegend }}</legend>
+          {{> afQuickField name='clothName'}}
+          {{> afQuickField name='clothType'}}
+          {{> afQuickField name='clothTheme'}}
+          {{> afQuickField name='clothColor'}}
+          {{> afQuickField name='clothGender'}}
+          {{> afQuickField name='clothSize'}}
+          {{> afQuickField name='clothDescr' rows=6}}
+          {{#if currentUpload}}
+            {{#with currentUpload}}
+              <div class="file-field input-field">
+                Uploading <b>{{file.name}}</b> : 
+                <span id="progress">{{progress}} %</span>
+              </div>
+            {{/with}}
+          {{else}}
+            <div class="file-field input-field">
+              <div class="btn">
+                <span id="progress">Upload</span>
+                <input id="fileInput" type="file" /><br/>
+              </div>
+            </div>
+            <br/><br/><br/>
+          {{/if}}
+          <button type="submit" class="btn btn-primary">{{ getSubmit }}</button>
+          <button type="reset" class="btn btn-default">{{ getReset }}</button>
         </fieldset>
       {{/autoForm}}
       </div>
