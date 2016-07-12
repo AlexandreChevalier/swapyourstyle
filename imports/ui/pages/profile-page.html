@@ -1,7 +1,9 @@
 <template name="Profile_page">
 	<div class="container">
-		<h3>Profil de {{currentUser.emails.[0].address}}</h3>
+		<h3>Profil de {{currentUser.username}}</h3>
 		<br>
-		Nom : {{currentUser.username}}
+		Email : {{currentUser.emails.[0].address}}
+		<br>
+		<button class="btn red darken-4 logout">Déconnexion</button>
 	</div>
 </template>

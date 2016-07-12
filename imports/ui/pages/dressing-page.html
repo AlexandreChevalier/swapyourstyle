@@ -2,7 +2,7 @@
   <!-- FIXME : denying access should be handled in routes -->
   {{#if currentUser}}	
 	<div class="container">
-		<h3>Dressing de {{currentUser.emails.[0].address}}</h3>
+		<h3>Dressing de {{currentUser.username}}</h3>
 		<br>
 		<a class="btn btn-primary" href="/new">Nouveau vêtement</a>
 		<!-- TODO : add templates for clothes and items generation logic -->
