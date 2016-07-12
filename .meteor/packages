@@ -37,3 +37,6 @@ accounts-twitter
 ostrio:files
 service-configuration
 msavin:mongol
+mdg:geolocation
+aldeed:geocoder
+session
