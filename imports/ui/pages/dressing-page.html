@@ -1,13 +1,15 @@
 <template name="Dressing_page">
-  <!-- FIXME : denying access should be handled in routes -->
-  {{#if currentUser}}	
 	<div class="container">
-		<h3>Dressing de {{currentUser.username}}</h3>
+		<h3>{{userProfile.dressingName}}</h3>
+		Mes vêtements :
+		<ul>
+			{{#each cloth}} 
+				<li><a href="">{{clothName}}</a> {{clothDescr}}</li>
+			{{/each}}
+		</ul>
 		<br>
 		<a class="btn btn-primary" href="/new">Nouveau vêtement</a>
+		<a class="btn btn-primary" href="/updateDressing">Modifier le Dressing</a>
 		<!-- TODO : add templates for clothes and items generation logic -->
 	</div>
-  {{else}}
-    {{> Home_page}}
-  {{/if}}
 </template>

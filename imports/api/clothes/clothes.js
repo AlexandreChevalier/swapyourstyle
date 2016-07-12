@@ -8,11 +8,11 @@ export const Clothes = new Mongo.Collection('clothes');
 
 // Deny all client-side updates since we will be 
 // using methods to manage this collection
-Clothes.deny({
+/*Clothes.deny({
   insert() { return true; },
   update() { return true; },
   remove() { return true; },
-});
+});*/
 
 // TODO : better schema
 Clothes.schema = new SimpleSchema({
@@ -110,30 +110,20 @@ Clothes.schema = new SimpleSchema({
 
 Clothes.attachSchema(Clothes.schema);
 
-/*// TODO : is this useful with Methods ?
-Clothes.allow({
-  // Checking user can add/update his clothes
-  insert: function(userId, doc) {
-    return doc && (userId === doc.userId);
-  },
-  update: function(userId, doc) {
-    return doc && (userId === doc.userId);
-  }
-});*/
-
 Clothes.publicFields = {
   name: 1,
   userId: 1,
 };
 
+// TODO : is this useful with Methods ?
 Clothes.allow({
-    //on vérifie que l'utilisateur a bien le droit de modifier l'objet
+  //on vérifie que l'utilisateur a bien le droit de modifier l'objet
   insert: function(userId, doc) {
-        return doc && (userId === doc.userId);
+    return doc && (userId === doc.userId);
     },
-    update: function(userId, doc) {
-        return doc && (userId === doc.userId);
-    }
+  update: function(userId, doc) {
+    return doc && (userId === doc.userId);
+  }
 });
 
 // TODO refactor helpers :

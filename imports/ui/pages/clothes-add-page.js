@@ -4,7 +4,7 @@
  * Created by Marc on 27/04/2016.
  */
 import { Clothes } from '../../api/clothes/clothes.js';
-import { Images } from '../../api/images/image.js';
+//import { Images } from '../../api/images/image.js';
 import './clothes-add-page.html';
 
 import { Template } from 'meteor/templating';
@@ -40,7 +40,7 @@ Template.Clothes_add_page.helpers({
   }
 });
 
-Template.Clothes_add_page.events({
+/*Template.Clothes_add_page.events({
   'change #fileInput': function (e, template) {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
       // We upload only one file, in case 
@@ -70,7 +70,7 @@ Template.Clothes_add_page.events({
       upload.start();
     }
   }
-});
+});*/
 
 var Clothes_add_pageHooks = {
   before: {

@@ -64,6 +64,7 @@ mdg:validation-error@0.5.1
 meteor@1.1.16
 meteor-base@1.0.4
 meteorspark:util@0.2.0
+meteortoys:toykit@3.0.4
 minifier-css@1.1.13
 minifier-js@1.1.13
 minimongo@1.0.17
@@ -74,6 +75,7 @@ modules-runtime@0.6.5
 momentjs:moment@2.14.1
 mongo@1.1.9_1
 mongo-id@1.0.5
+msavin:mongol@2.0.1
 npm-bcrypt@0.8.6_2
 npm-mongo@1.4.45
 oauth@1.1.11

@@ -15,7 +15,7 @@
           {{> afQuickField name='clothGender'}}
           {{> afQuickField name='clothSize'}}
           {{> afQuickField name='clothDescr' rows=6}}
-          {{#if currentUpload}}
+          <!-- {{#if currentUpload}}
             {{#with currentUpload}}
               <div class="file-field input-field">
                 Uploading <b>{{file.name}}</b> : 
@@ -30,7 +30,7 @@
               </div>
             </div>
             <br/><br/><br/>
-          {{/if}}
+          {{/if}} -->
           <button type="submit" class="btn btn-primary">{{ getSubmit }}</button>
           <button type="reset" class="btn btn-default">{{ getReset }}</button>
         </fieldset>

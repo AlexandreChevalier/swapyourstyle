@@ -2,9 +2,9 @@
 created by Marc G
 11/06/2016
 */
-export const Images = new FilesCollection({
-  /*storagePath: 'assets/app/uploads/Images',
-  downloadRoute: '/uploads',*/
+/*export const Images = new FilesCollection({
+  //storagePath: 'assets/app/uploads/Images',
+  //downloadRoute: '/uploads',
   collectionName: 'Images',
   allowClientCode: false, // Disallow remove files from Client
   //public: true,
@@ -20,12 +20,8 @@ export const Images = new FilesCollection({
 });
 
 Images.collection.attachSchema(new SimpleSchema(Images.schema));
-console.log(FilesCollection);
-console.log(Images);
-console.log(Images._methodNames);
 
 if (Meteor.isServer) {
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!");
   Meteor.publish('images', function imagesPublication() {
     return Images.find({
       $or: [
@@ -46,4 +42,4 @@ Images.collection.allow({
   remove: function() {
     return true;
   }
-});
+});*/
