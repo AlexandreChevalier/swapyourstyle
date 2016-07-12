@@ -3,18 +3,15 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 /**
  * Clothes collection (dressing) handler
- * 
- * @author Marc Gilbert
- * @author Alexandre Chevalier
  */
 export const Clothes = new Mongo.Collection('clothes');
 
 // Deny all client-side updates since we will be 
 // using methods to manage this collection
 Clothes.deny({
-  // insert() { return true; },
-  // update() { return true; },
-  // remove() { return true; },
+  insert() { return true; },
+  update() { return true; },
+  remove() { return true; },
 });
 
 // TODO : better schema

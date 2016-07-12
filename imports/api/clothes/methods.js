@@ -2,8 +2,6 @@
  * Methods for Clothes collection
  *  insert : for creating clothes
  *  remove : for deleting clothes
- *
- * @author Alexandre Chevalier
  */
 import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';

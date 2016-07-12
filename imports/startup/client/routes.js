@@ -11,9 +11,9 @@ import '../../ui/pages/home-page.js';
 
 import '../../ui/pages/signup-page.html';
 import '../../ui/pages/login-page.html';
-import '../../ui/pages/profile-page.html';
 import '../../ui/pages/dressing-page.html';
 
+import '../../ui/pages/profile-page.js';
 import '../../ui/pages/clothes-add-page.js';
 
 // Import to override accounts templates
