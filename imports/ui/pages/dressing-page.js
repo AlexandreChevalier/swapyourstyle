@@ -10,7 +10,6 @@ import './dressing-page.html';
 Template.Dressing_page.helpers({
 	userProfile: function() {
 		var profile = UserInfos.findOne({userId:  Meteor.user()._id});
-		console.log(profile);
 		return profile;
 	},
     /*getTradNewCloth: function(){

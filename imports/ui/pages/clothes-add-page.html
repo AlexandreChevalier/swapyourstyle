@@ -1,8 +1,5 @@
 <!-- Created by Marc on 29/04/2016. -->
 <template name="Clothes_add_page">
-  <!-- FIXME : denying access should be handled in routes -->
-  {{#if currentUser}}
-    <br>
     <div class="container">
       <div class="card">
       {{# autoForm collection=Clothes id="insertClothForm" type="insert"}}
@@ -37,7 +34,4 @@
       {{/autoForm}}
       </div>
     </div>
-  {{else}}
-    {{> Home_page}}
-  {{/if}}
 </template>

@@ -3,8 +3,22 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 /**
  * Clothes collection (dressing) handler
+ * 
+ * @author Marc Gilbert
  */
 export const Clothes = new Mongo.Collection('clothes');
+
+if (Meteor.isServer){
+  // Only publish clothes that are public or belong to the current user
+  Meteor.publish('clothes', function clothesPublication() {
+    return Clothes.find({
+      $or: [
+        { private: { $ne: true } },
+        { owner: this.userId },
+      ],
+    });
+  });
+}
 
 // Deny all client-side updates since we will be 
 // using methods to manage this collection
@@ -110,17 +124,13 @@ Clothes.schema = new SimpleSchema({
 
 Clothes.attachSchema(Clothes.schema);
 
-Clothes.publicFields = {
-  name: 1,
-  userId: 1,
-};
-
 // TODO : is this useful with Methods ?
 Clothes.allow({
   //on vérifie que l'utilisateur a bien le droit de modifier l'objet
   insert: function(userId, doc) {
+    console.log("inserting cloth : ", doc);
     return doc && (userId === doc.userId);
-    },
+  },
   update: function(userId, doc) {
     return doc && (userId === doc.userId);
   }

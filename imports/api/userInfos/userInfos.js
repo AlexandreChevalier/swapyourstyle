@@ -1,4 +1,5 @@
 import { Mongo } from 'meteor/mongo';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 /**
  * UserInfos collection handler
@@ -6,6 +7,18 @@ import { Mongo } from 'meteor/mongo';
  * @author Marc Gilbert
  */
 export const UserInfos = new Mongo.Collection("userInfos");
+
+if (Meteor.isServer){
+  // Only publish infos that are public or belong to the current user
+  Meteor.publish('userInfos', function userInfosPublication() {
+    return UserInfos.find({
+      $or: [
+        { private: { $ne: true } },
+        { owner: this.userId },
+      ],
+    });
+  });
+}
 
 addressSchema = new SimpleSchema({
   //TODO final formatted date
@@ -97,5 +110,8 @@ UserInfos.allow({
   // Checking user can update his infos
   update: function(userId, doc) {
     return doc && (userId === doc.userId);
+  },
+  insert: function(userId, doc) {
+    return false;
   }
 });

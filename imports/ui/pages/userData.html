@@ -1,0 +1,9 @@
+<template name="userData">
+    Bienvenue {{userProfile.firstName}} {{userProfile.lastName}} !<br />
+    Sexe : {{userProfile.gender}}<br />
+    T&eacute;l&eacute;phone : {{userProfile.phoneNumber}}<br />
+    Adresse : {{userProfile.address.street}}, {{userProfile.address.postalCode}}, {{userProfile.address.city}} ({{userProfile.address.country}})<br />
+    Date de Naissance : {{getBirthdate}}<br />
+    A propos de vous : {{userProfile.bio}}<br/>
+    mail : {{userMail}}<br /><br />
+</template>

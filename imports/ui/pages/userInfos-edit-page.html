@@ -1,0 +1,20 @@
+<template name="userInfos_edit_page">
+    {{# autoForm collection=userInfos id="updateProfileForm" doc=selfProf type="update"}}
+    <fieldset>
+        <legend>{{ getUpdateLegend }}</legend>
+        {{> afQuickField name='firstName'}}
+        {{> afQuickField name='lastName'}}
+        {{> afQuickField name='birthdate'}}
+        {{> afFormGroup name='gender'}}
+        {{> afQuickField name='bio' rows=6}}
+        {{> afQuickField name='phoneNumber'}}
+        <legend>{{ getTradAddress }}</legend>
+        {{> afQuickField name='address.street'}}
+        {{> afQuickField name='address.postalCode'}}
+        {{> afQuickField name='address.city'}}
+        {{> afQuickField name='address.country'}}
+        <button type="submit" class="btn btn-primary">{{ getSubmit }}</button>
+        <button type="reset" class="btn btn-default">{{ getReset }}</button>
+    </fieldset>
+    {{/autoForm}}
+</template>

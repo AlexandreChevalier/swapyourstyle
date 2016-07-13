@@ -16,6 +16,7 @@ import '../../ui/pages/dressing-page.js';
 import '../../ui/pages/profile-page.js';
 import '../../ui/pages/clothes-add-page.js';
 import '../../ui/pages/clothes-edit-page.js';
+import '../../ui/pages/userInfos-edit-page.js';
 
 // Import to override accounts templates
 import '../../ui/accounts/accounts-templates.js';
@@ -74,6 +75,18 @@ exposed.route('/dressing', {
   name: 'dressing',
   action: function() { 
     BlazeLayout.render("App_body", {main: "Dressing_page"});
+  }
+});
+
+// TODO :
+// check if loggedIn -> going to personal infos
+// if not loggedIn -> redirect to a presentation of features
+//                   \ or maybe : to login page 
+// Route to current user's dressing
+exposed.route('/editInfo', {
+  name: 'editInfo',
+  action: function() { 
+    BlazeLayout.render("App_body", {main: "userInfos_edit_page"});
   }
 });
 

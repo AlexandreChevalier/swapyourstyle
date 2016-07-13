@@ -10,6 +10,7 @@ import './home-page.html';
 import '../homepage/presentation.js';
 import '../homepage/info-banner.js';
 import '../homepage/theme-item.js';
+import './userData.js';
 
 Template.Home_page.helpers({
 	getAddress: function(){

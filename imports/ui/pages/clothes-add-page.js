@@ -78,6 +78,7 @@ var Clothes_add_pageHooks = {
     // on le lie a son propriétaire et son dressing
     insert: function(doc){
       doc.userId = Meteor.userId();
+      console.log("cool : ", doc);
       return doc;
     }
   },

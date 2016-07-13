@@ -1,0 +1,18 @@
+<!--Created by Marc on 20/06/2016.-->
+<template name="search">
+	{{#if currentUser}}
+		<ul class="collection with-header">
+		<li class="collection-header"><h4>{{ getTradClothes }}</h4></li>
+		{{#each cloth}} 
+			<li class="collection-item avatar">
+		      <img src="images/{{getImage}}" alt="" class="circle">
+		      <span class="title">{{clothName}}</span>
+		      <p>{{clothDescr}}</p>
+		      <a href="/viewCloth/{{_id}}" class="secondary-content"><i class="material-icons">send</i></a>
+		    </li>
+		{{/each}}
+		</ul>
+    {{else}}
+        {{> accueil}}
+    {{/if}}
+</template>
