@@ -34,7 +34,7 @@ accounts-google
 aldeed:template-extension
 useraccounts:flow-routing
 accounts-twitter
-ostrio:files
+#ostrio:files
 service-configuration
 msavin:mongol
 mdg:geolocation

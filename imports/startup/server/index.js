@@ -1,7 +1,6 @@
 /**
  * Index entry point for server imports on startup
  */
-import '../../api/clothes/methods.js';
 // import '../../api/clothes/server/publications.js';
 
 /* Example from todos-master project */

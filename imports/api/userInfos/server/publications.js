@@ -1,10 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 
-import { Clothes } from '../clothes.js';
+import { UserInfos } from '../userInfos.js';
 
 // Only publish clothes that are public or belong to the current user
-Meteor.publish('clothes', function clothesPublication() {
-  return Clothes.find({
+Meteor.publish('userInfos', function userInfosPublication() {
+  return UserInfos.find({
     $or: [
       { private: { $ne: true } },
       { owner: this.userId },

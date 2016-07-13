@@ -15,6 +15,7 @@ import '../../ui/pages/dressing-page.js';
 
 import '../../ui/pages/profile-page.js';
 import '../../ui/pages/clothes-add-page.js';
+import '../../ui/pages/clothes-edit-page.js';
 
 // Import to override accounts templates
 import '../../ui/accounts/accounts-templates.js';
@@ -81,6 +82,20 @@ exposed.route('/new', {
   name: 'new-clothes',
   action: function() { 
     BlazeLayout.render("App_body", {main: "Clothes_add_page"});
+  }
+});
+
+// Route to edit clothes form page
+exposed.route('/edit/:_id', {
+  name: 'edit-clothes',
+  action: function(params) { 
+    var toUpdate = Clothes.findOne({_id: params._id});
+    if(toUpdate){
+      BlazeLayout.render("App_body", {main: "Clothes_edit_page"});
+    }
+    else {
+      FlowRouter.go('/404');
+    }
   }
 });
 

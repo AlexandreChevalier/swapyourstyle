@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Session } from 'meteor/session';
+import { Geolocation } from 'meteor/mdg:geolocation';
 
 // Associated template
 import './home-page.html';
@@ -14,7 +15,6 @@ Template.Home_page.helpers({
 	getAddress: function(){
 		var location = Geolocation.currentLocation().coords;
 		Meteor.call('getLocation', location.latitude, location.longitude, function(err, response) {
-			console.log(response[0]);
 			Session.set('location', response[0]);
 		});
 		return Session.get('location').formattedAddress;

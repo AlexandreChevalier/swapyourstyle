@@ -4,23 +4,8 @@ import { Mongo } from 'meteor/mongo';
  * UserInfos collection handler
  * 
  * @author Marc Gilbert
- * @author Alexandre Chevalier
  */
 export const UserInfos = new Mongo.Collection("userInfos");
-
-// TODO refactor in api/user/server/publications.js
-if (Meteor.isServer) {
-  // This code only runs on the server
-  // Only publish tasks that are public or belong to the current user
-  Meteor.publish('userInfos', function userInfosPublication() {
-    return userInfos.find({
-      $or: [
-        { private: { $ne: true } },
-        { owner: this.userId },
-      ],
-    });
-  });
-}
 
 addressSchema = new SimpleSchema({
   //TODO final formatted date
@@ -104,7 +89,7 @@ UserInfos.schema = new SimpleSchema({
     optional: true,
     label: T9n.get("Dressing Name")
   }
-})
+});
 
 UserInfos.attachSchema(UserInfos.schema);
 
