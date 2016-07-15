@@ -1,14 +1,16 @@
 /*
 created by Marc G
 11/06/2016
-*/
-/*export const Images = new FilesCollection({
-  //storagePath: 'assets/app/uploads/Images',
-  //downloadRoute: '/uploads',
+*/import { Mongo } from 'meteor/mongo';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { FilesCollection } from 'meteor/ostrio:files';
+
+export const Images = new FilesCollection({
+  storagePath: 'assets/app/uploads/Images',
+  downloadRoute: '/uploads',
   collectionName: 'Images',
   allowClientCode: false, // Disallow remove files from Client
-  //public: true,
-  debug: true,
+  public: true,
   onBeforeUpload: function (file) {
     // Allow upload files under 10MB, and only in png/jpg/jpeg formats
     if (file.size <= 10485760 && /png|jpg|jpeg/i.test(file.extension)) {
@@ -42,4 +44,4 @@ Images.collection.allow({
   remove: function() {
     return true;
   }
-});*/
+});

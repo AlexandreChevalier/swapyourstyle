@@ -128,7 +128,6 @@ Clothes.attachSchema(Clothes.schema);
 Clothes.allow({
   //on vérifie que l'utilisateur a bien le droit de modifier l'objet
   insert: function(userId, doc) {
-    console.log("inserting cloth : ", doc);
     return doc && (userId === doc.userId);
   },
   update: function(userId, doc) {

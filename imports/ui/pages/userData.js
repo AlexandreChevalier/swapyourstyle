@@ -21,7 +21,7 @@ Template.userData.helpers({
 		}
 	},
 	userProfile: function(){
-    	var item = UserInfos.findOne({userId:  Meteor.user()._id});
+    	var item = UserInfos.findOne({userId: Meteor.user()._id});
 		return item;
 	},
 	getBirthdate: function(){

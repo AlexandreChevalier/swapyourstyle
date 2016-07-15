@@ -1,6 +1,8 @@
 import '/imports/startup/server';
 import { GeoCoder } from 'meteor/aldeed:geocoder';
 import { UserInfos } from '../imports/api/userInfos/userInfos.js';
+import { Clothes } from '../imports/api/clothes/clothes.js';
+import { Images } from '../imports/api/images/image.js';
 
 Meteor.methods({
 	'getLocation': function(latitude, longitude){

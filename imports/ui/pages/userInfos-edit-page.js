@@ -1,11 +1,9 @@
 /**
  * Created by Marc on 27/04/2016.
  */
-import { Template } from 'meteor/templating';
 
 import { UserInfos } from '../../api/userInfos/userInfos.js';
 import './userInfos-edit-page.html';
-
 
 Template.userInfos_edit_page.onRendered(function() {
     //needed so the select displays 
@@ -17,6 +15,7 @@ Template.userInfos_edit_page.onRendered(function() {
 Template.userInfos_edit_page.helpers({
     selfProf: function(){
         var item = UserInfos.findOne({userId: Meteor.userId()});
+        console.log(item);
         return item;
     },
     userInfos: function(){
