@@ -1,1 +1,0 @@
-import './infoBlock.html';

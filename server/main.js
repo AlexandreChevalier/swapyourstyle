@@ -1,4 +1,16 @@
-import { userProfile } from '../imports/api/userProfile.js';
+import '/imports/startup/server';
+import { GeoCoder } from 'meteor/aldeed:geocoder';
+import { UserInfos } from '../imports/api/userInfos/userInfos.js';
+import { Clothes } from '../imports/api/clothes/clothes.js';
+import { Images } from '../imports/api/images/image.js';
+
+Meteor.methods({
+	'getLocation': function(latitude, longitude){
+		var geo = new GeoCoder();
+		var result = geo.reverse(latitude, longitude);
+		return result;
+	}
+});
 
 Meteor.startup(function () {
     /*
@@ -22,16 +34,20 @@ Meteor.users.allow({
 });
 
 Accounts.onCreateUser(function(options, user) {
+    console.log("creation : ", user);
     if(!user.username){
         user.username = "Anonyme";
     }
-	userProfile.insert({
+	UserInfos.insert({
 		userId: user._id,
-    dressingName: "Dressing de " + user.username
+    	dressingName: "Dressing de " + user.username
 	}, function(error, result) {
 	  if(error){
 	  	console.log(error.invalidKeys);
 	  }
+      else {
+        console.log("result : ", result);
+      }
 	});
 	return user;
 });

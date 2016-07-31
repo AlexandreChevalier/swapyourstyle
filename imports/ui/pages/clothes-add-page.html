@@ -1,0 +1,37 @@
+<!-- Created by Marc on 29/04/2016. -->
+<template name="Clothes_add_page">
+    <div class="container">
+      <div class="card">
+      {{# autoForm collection=clothes id="insertClothForm" type="insert"}}
+        <fieldset>
+          <legend>{{ getUpdateLegend }}</legend>
+          {{> afQuickField name='clothName'}}
+          {{> afQuickField name='clothType'}}
+          {{> afQuickField name='clothTheme'}}
+          {{> afQuickField name='clothColor'}}
+          {{> afQuickField name='clothGender'}}
+          {{> afQuickField name='clothSize'}}
+          {{> afQuickField name='clothDescr' rows=6}}
+          {{#if currentUpload}}
+            {{#with currentUpload}}
+              <div class="file-field input-field">
+                Uploading <b>{{file.name}}</b> : 
+                <span id="progress">{{progress}} %</span>
+              </div>
+            {{/with}}
+          {{else}}
+            <div class="file-field input-field">
+              <div class="btn">
+                <span id="progress">Upload</span>
+                <input id="fileInput" type="file" /><br/>
+              </div>
+            </div>
+            <br/><br/><br/>
+          {{/if}}
+          <button type="submit" class="btn btn-primary">{{ getSubmit }}</button>
+          <button type="reset" class="btn btn-default">{{ getReset }}</button>
+        </fieldset>
+      {{/autoForm}}
+      </div>
+    </div>
+</template>

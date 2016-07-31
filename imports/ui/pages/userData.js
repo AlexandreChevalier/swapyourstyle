@@ -1,20 +1,7 @@
-import { userProfile } from '../../api/userProfile.js';
+import { UserInfos } from '../../api/userInfos/userInfos.js';
 import './userData.html';
 
 Template.userData.helpers({
-    userProfileExists: function(){
-    	var item = userProfile.findOne({userId:  Meteor.user()._id});
-    	if(item){
-	        if(item.firstName == null || item.lastName == null){
-	            return false;
-	        } else {
-	            return true;
-	        }
-    	}
-    	else {
-    		return false;
-    	}
-    },
 	userMail: function(){
 		//fonction pour récupérer les mails de l'utilisateur et de les renvoyer en une seule chaine de charactères
 		var resultEmail = "";
@@ -34,11 +21,11 @@ Template.userData.helpers({
 		}
 	},
 	userProfile: function(){
-    	var item = userProfile.findOne({userId:  Meteor.user()._id});
+    	var item = UserInfos.findOne({userId: Meteor.user()._id});
 		return item;
 	},
 	getBirthdate: function(){
-    	var item = userProfile.findOne({userId:  Meteor.user()._id});
+    	var item = UserInfos.findOne({userId:  Meteor.user()._id});
     	if(item){
     		var birthdate = item.birthdate;
     		if(birthdate){

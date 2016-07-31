@@ -1,7 +1,19 @@
+/* CSS declarations go here */
+
 @font-face {
     font-family: Banana Yeti; 
     src:
     url("/fonts/BananaYeti-Extrabold Trial.ttf")
+}
+
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
 }
 
 .nav-wrapper {
@@ -27,4 +39,8 @@
 
 .info-block {
 	margin-bottom: 0;
+}
+
+footer.page-footer {
+
 }

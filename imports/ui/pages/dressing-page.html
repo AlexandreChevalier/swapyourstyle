@@ -1,0 +1,15 @@
+<template name="Dressing_page">
+	<div class="container">
+		<h3>{{userProfile.dressingName}}</h3>
+		Mes vêtements :
+		<ul>
+			{{#each cloth}} 
+				<li><a href="/edit/{{_id}}">{{clothName}}</a> {{clothDescr}}</li>
+			{{/each}}
+		</ul>
+		<br>
+		<a class="btn btn-primary" href="/new">Nouveau vêtement</a>
+		<a class="btn btn-primary" href="/updateDressing">Modifier le Dressing</a>
+		<!-- TODO : add templates for clothes and items generation logic -->
+	</div>
+</template>
