@@ -112,7 +112,7 @@ Clothes.schema = new SimpleSchema({
     label: T9n.get("Cloth Size")
   },
   clothImage: {
-    type: [String],
+    type: String,
     optional: true,
     label: T9n.get("Cloth Images")
   },
@@ -129,7 +129,6 @@ Clothes.attachSchema(Clothes.schema);
 Clothes.allow({
   //on vérifie que l'utilisateur a bien le droit de modifier l'objet
   insert: function(userId, doc) {
-    console.log("new CLoth : ", doc);
     return doc && (userId === doc.userId);
   },
   update: function(userId, doc) {

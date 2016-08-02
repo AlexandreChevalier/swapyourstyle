@@ -11,8 +11,10 @@
             {{> afQuickField name='clothGender'}}
             {{> afQuickField name='clothSize'}}
             {{> afQuickField name='clothDescr' rows=6}}
-            {{> afFieldInput disabled=waitingForApiResponse name='clothImage' type='file' id='fileInput'}}
-            <button type="submit" class="btn btn-primary">{{ getSubmit }}</button>
+            {{#if imageEmpty}}
+                {{> afFieldInput disabled=waitingForApiResponse name='clothImage' type='file' id='fileInput'}}
+            {{/if}}
+            <button type="submit" disabled={{waitingForApiResponse}} class="btn btn-primary">{{ getSubmit }}</button>
             <button type="reset" class="btn btn-default">{{ getReset }}</button>
         </fieldset>
         {{/autoForm}}

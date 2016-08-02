@@ -27,8 +27,8 @@ Template.Clothes_add_page.onRendered(function clothesShowPageOnRendered() {
 
 Template.Clothes_add_page.onCreated(function () {
   Session.set("waitingForApiResponse", false);
-  Session.set("image", "");
-  Session.set("images", []);
+  Session.set("imageCode", "");
+  Session.set("image", []);
 });
 
 Template.Clothes_add_page.helpers({
@@ -60,7 +60,7 @@ Template.Clothes_add_page.events({
       loadImageFileAsURL(e.currentTarget.files[0], function(response){
         if(response){
           Imgur.upload({
-            image: Session.get("image"),
+            image: Session.get("imageCode"),
             apiKey: "49240428869e3b2" //TODO : get from environment variable
           }, function (error, data) {
             if(error){
@@ -75,15 +75,9 @@ Template.Clothes_add_page.events({
                   console.log(error);
                 }
                 else {
-                  var arrayImages = Session.get("images");
-                  if(arrayImages){
-                    arrayImages.push(result);
-                  }
-                  else {
-                    arrayImages = [result];
-                  }
-                  Session.set("image", "");
-                  Session.set("images", arrayImages);
+                  console.log(result);
+                  Session.set("imageCode", "");
+                  Session.set("image", result);
                   Session.set('waitingForApiResponse', false);
                 }
               });
@@ -104,15 +98,11 @@ var Clothes_add_pageHooks = {
     // on le lie a son propriétaire et son dressing
     insert: function(doc){
       doc.userId = Meteor.userId();
-      var arrayImages = Session.get("images");
-      if(arrayImages.length > 0){
-        doc.clothImage = arrayImages;
-        console.log("doc : ", doc);
-        return doc;
+      if(Session.get("image") != ""){
+        doc.clothImage = Session.get("image");
       }
-      else {
-        return doc;
-      }
+      console.log("doc : ", doc);
+      return doc;
     }
   },
   onSuccess: function (doc) {
@@ -126,7 +116,7 @@ function loadImageFileAsURL(image, callback) {
 
   fileReader.onload = function(fileLoadedEvent) 
   {
-    Session.set('image', fileLoadedEvent.target.result);
+    Session.set('imageCode', fileLoadedEvent.target.result);
     callback(true);
   };
 

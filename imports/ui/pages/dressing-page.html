@@ -4,7 +4,7 @@
 		Mes vêtements :
 		<ul>
 			{{#each cloth}} 
-				<li><a href="/edit/{{_id}}">{{clothName}}</a> {{clothDescr}}</li>
+				<li style="border-style: solid;"><a href="/edit/{{_id}}">{{clothName}}</a> {{clothDescr}} <img src={{getThumbnail(getClothImage(clothImage))}}></li>
 			{{/each}}
 		</ul>
 		<br>

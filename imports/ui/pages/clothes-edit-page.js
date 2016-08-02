@@ -20,8 +20,8 @@ Template.Clothes_edit_page.onRendered(function clothesShowPageOnRendered() {
 
 Template.Clothes_edit_page.onCreated(function () {
   Session.set("waitingForApiResponse", false);
+  Session.set("imageCode", "");
   Session.set("image", "");
-  Session.set("images", []);
 });
 
 Template.Clothes_edit_page.helpers({
@@ -46,6 +46,13 @@ Template.Clothes_edit_page.helpers({
   },
   waitingForApiResponse: function () {
     return Session.get("waitingForApiResponse");
+  },
+  imageEmpty: function () {
+    var item = Clothes.findOne({_id: FlowRouter.current().params._id});
+    if(item.clothImage){
+      return false;
+    }
+    return true;
   }
 });
 
@@ -56,7 +63,7 @@ Template.Clothes_edit_page.events({
       loadImageFileAsURL(e.currentTarget.files[0], function(response){
         if(response){
           Imgur.upload({
-            image: Session.get("image"),
+            image: Session.get("imageCode"),
             apiKey: "49240428869e3b2" //TODO : get from environment variable
           }, function (error, data) {
             if(error){
@@ -71,15 +78,9 @@ Template.Clothes_edit_page.events({
                   console.log(error);
                 }
                 else {
-                  var arrayImages = Session.get("images");
-                  if(arrayImages){
-                    arrayImages.push(result);
-                  }
-                  else {
-                    arrayImages = [result];
-                  }
-                  Session.set("image", "");
-                  Session.set("images", arrayImages);
+                  console.log(result);
+                  Session.set("imageCode", "");
+                  Session.set("image", result);
                   Session.set('waitingForApiResponse', false);
                 }
               });
@@ -99,15 +100,11 @@ var Clothes_edit_pageHooks = {
     // A l'ajout d'un nouveau vetement, 
     // on le lie a son propriétaire et son dressing
     update: function(doc){
-      var arrayImages = Session.get("images");
-      if(arrayImages.length > 0){
-        doc.$set.clothImage = arrayImages;
-        console.log("doc : ", doc);
-        return doc;
+      if(Session.get("image") != ""){
+        doc.$set.clothImage = Session.get("image");
       }
-      else {
-        return doc;
-      }
+      console.log("doc : ", doc);
+      return doc;
     }
   },
   onSuccess: function (doc) {
@@ -121,7 +118,7 @@ function loadImageFileAsURL(image, callback) {
 
   fileReader.onload = function(fileLoadedEvent) 
   {
-    Session.set('image', fileLoadedEvent.target.result);
+    Session.set('imageCode', fileLoadedEvent.target.result);
     callback(true);
   };
 

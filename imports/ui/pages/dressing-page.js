@@ -5,6 +5,7 @@ import { Template } from 'meteor/templating';
 
 import { UserInfos } from '../../api/userInfos/userInfos.js';
 import { Clothes } from '../../api/clothes/clothes.js';
+import { Images } from '../../api/images/images.js';
 import './dressing-page.html';
 
 Template.Dressing_page.helpers({
@@ -22,5 +23,13 @@ Template.Dressing_page.helpers({
 		//renvoie tous les vetements de l'utilisateur
 		var allClothes = Clothes.find({userId: Meteor.user()._id});
 		return allClothes;
+	},
+	getClothImage: function(clothId) {
+		var item = Images.findOne({_id: clothId});
+		return item.url;
+	},
+	getThumbnail: function(imgUrl) {
+		var thumb = Imgur.toThumbnail(imgUrl, Imgur.BIG_SQUARE);
+		return thumb;
 	}
 });
