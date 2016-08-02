@@ -4,6 +4,7 @@ import { AccountsTemplates } from 'meteor/useraccounts:core';
 // TODO : enable when implementing custom accounts
 // import { AccountsTemplates } from 'meteor/useraccounts:core';
 import { Meteor } from 'meteor/meteor';
+import { Clothes } from '../../api/clothes/clothes.js';
 
 // Import to load these templates
 import '../../ui/layouts/app-body.js'; // main layout

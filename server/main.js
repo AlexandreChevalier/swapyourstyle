@@ -2,7 +2,7 @@ import '/imports/startup/server';
 import { GeoCoder } from 'meteor/aldeed:geocoder';
 import { UserInfos } from '../imports/api/userInfos/userInfos.js';
 import { Clothes } from '../imports/api/clothes/clothes.js';
-import { Images } from '../imports/api/images/image.js';
+import { Images } from '../imports/api/images/images.js';
 
 Meteor.methods({
 	'getLocation': function(latitude, longitude){
@@ -21,6 +21,7 @@ Meteor.startup(function () {
     * imgur ClientSecret: 21019f3ffaf98daf72592f78feb85e3139cbda05
     */
     process.env.MAIL_URL = 'smtp://swapmysuitnoreply%40gmail.com:Swap2016suit@smtp.gmail.com:587';
+    process.env.imgurKey = "49240428869e3b2";
     SimpleSchema.debug = true;
 });
 

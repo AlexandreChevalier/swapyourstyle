@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Images } from '../images/images.js';
 
 /**
  * Clothes collection (dressing) handler
@@ -128,6 +129,7 @@ Clothes.attachSchema(Clothes.schema);
 Clothes.allow({
   //on vérifie que l'utilisateur a bien le droit de modifier l'objet
   insert: function(userId, doc) {
+    console.log("new CLoth : ", doc);
     return doc && (userId === doc.userId);
   },
   update: function(userId, doc) {

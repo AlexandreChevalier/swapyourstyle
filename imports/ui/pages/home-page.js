@@ -26,6 +26,7 @@ Template.Home_page.onCreated(function homePageOnCreated() {
 	this.state = new ReactiveDict();
 	Meteor.subscribe('userInfos');
 	Meteor.subscribe('clothes');
+	Meteor.subscribe('images');
 });
 
 Template.Home_page.onRendered(function() {
