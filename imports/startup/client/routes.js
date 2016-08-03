@@ -9,15 +9,17 @@ import { Clothes } from '../../api/clothes/clothes.js';
 // Import to load these templates
 import '../../ui/layouts/app-body.js'; // main layout
 import '../../ui/pages/home-page.js';
-
+/*
 import '../../ui/pages/signup-page.html';
-import '../../ui/pages/login-page.html';
+import '../../ui/pages/login-page.html';*/
 import '../../ui/pages/dressing-page.js';
 
 import '../../ui/pages/profile-page.js';
 import '../../ui/pages/clothes-add-page.js';
 import '../../ui/pages/clothes-edit-page.js';
 import '../../ui/pages/userInfos-edit-page.js';
+import '../../ui/pages/search.js';
+import '../../ui/pages/viewCloth.js';
 
 // Import to override accounts templates
 import '../../ui/accounts/accounts-templates.js';
@@ -113,6 +115,26 @@ exposed.route('/edit/:_id', {
   }
 });
 
+// Default route for cloth searching
+FlowRouter.route('/search', {
+  action: function(){
+    BlazeLayout.render("App_body", {main: 'search'});
+  }
+});
+
+//route for viewing a cloth
+FlowRouter.route('/viewCloth/:_id', {
+  action: function(params){
+    var toShow = Clothes.findOne({_id: params._id});
+    if(toShow){
+      BlazeLayout.render("App_body", {main: 'viewCloth'});
+    }
+    else {
+      FlowRouter.go('/404');
+    }
+  }
+});
+
 // TODO : 404 page
 FlowRouter.notFound = {
   action() {  // for now we render homepage on 404
@@ -139,53 +161,6 @@ import '../../ui/layouts/app-body.html';*/
 /*FlowRouter.route('/resetPassword', {
   action: function() {
     BlazeLayout.render("app-body", {content: "recupPassword"});
-  }
-});
-FlowRouter.route('/dressing', {
-  action: function() {
-    BlazeLayout.render("app-body", {content: "manageDressing"});
-  }
-});
-FlowRouter.route('/addCloth', {
-  action: function() {
-    BlazeLayout.render("app-body", {content: "newCloth"});
-  }
-});
-FlowRouter.route('/updateProfile', {
-  action: function() {
-    BlazeLayout.render("app-body", {content: "updateProfile"});
-  }
-});
-FlowRouter.route('/updateDressing', {
-  action: function(){
-    BlazeLayout.render("app-body", {content: 'updateDressing'});
-  }
-});
-FlowRouter.route('/updateCloth/:_id', {
-  action: function(params){
-    var toUpdate = Clothes.findOne({_id: params._id});
-    if(toUpdate){
-      BlazeLayout.render("app-body", {content: 'updateCloth'});
-    }
-    else {
-      FlowRouter.go('/404');
-    }
-  }
-});
-FlowRouter.route('/search', {
-  action: function(){
-    BlazeLayout.render("app-body", {content: 'search'});
-  }
-});
-FlowRouter.route('/viewCloth/:_id', {
-  action: function(params){
-    var toShow = Clothes.findOne({_id: params._id});
-    if(toShow){
-      BlazeLayout.render("app-body", {content: 'viewCloth'});
-    }
-    else {
-      FlowRouter.go('/404');
-    }
   }
 });
 

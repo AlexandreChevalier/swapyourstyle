@@ -6,6 +6,6 @@
 	{{ getTradColor }} : {{cloth.clothColor}}<br/>
 	{{ getTradGender }} : {{cloth.clothGender}}<br/>
 	{{ getTradSize }} : {{cloth.clothSize}}<br/>
-	{{ getTradImages }} : {{cloth.clothImages}}<br/>
+	{{ getTradImages }} : <img src={{getThumbnail(getClothImage(cloth.clothImage))}}><br/>
 	{{ getTradDescr }} : {{cloth.clothDescr}}<br/>
 </template>

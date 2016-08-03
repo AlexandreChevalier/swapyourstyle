@@ -1,7 +1,8 @@
 /**
  * Created by Marc on 20/06/2016.
  */
-import { Clothes } from '../../api/cloth.js';
+import { Clothes } from '../../api/clothes/clothes.js';
+import { Images } from '../../api/images/images.js';
 import './search.html';
 
 Template.search.helpers({
@@ -13,8 +14,13 @@ Template.search.helpers({
 	getTradClothes: function(){
 		return T9n.get("Available Clothes");
 	},
-	getImage: function(){
-		return "test.jpg";
+	getClothImage: function(clothId) {
+		var item = Images.findOne({_id: clothId});
+		return item.url;
+	},
+	getThumbnail: function(imgUrl) {
+		var thumb = Imgur.toThumbnail(imgUrl, Imgur.BIG_SQUARE);
+		return thumb;
 	}
 });
 /*

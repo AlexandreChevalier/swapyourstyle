@@ -1,7 +1,8 @@
 /**
  * Created by Marc on 20/06/2016.
  */
-import { Clothes } from '../../api/cloth.js';
+import { Clothes } from '../../api/clothes/clothes.js';
+import { Images } from '../../api/images/images.js';
 import './viewCloth.html';
 
 Template.viewCloth.helpers({
@@ -33,6 +34,14 @@ Template.viewCloth.helpers({
 	},
 	getTradDescr: function(){
 		return T9n.get("Cloth Description");
+	},
+	getClothImage: function(clothId) {
+		var item = Images.findOne({_id: clothId});
+		return item.url;
+	},
+	getThumbnail: function(imgUrl) {
+		var thumb = Imgur.toThumbnail(imgUrl, Imgur.LARGE_THUMBNAIL);
+		return thumb;
 	}
 });
 /*
