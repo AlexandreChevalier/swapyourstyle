@@ -34,7 +34,7 @@ main {
 }
 
 .row .col.s12 .card-image {
-	max-height: 120px;
+	/*max-height: 120px;*/
 }
 
 .info-block {
@@ -42,5 +42,33 @@ main {
 }
 
 footer.page-footer {
+}
 
+.cloth-item .card-image {
+	height: 50%;
+}
+
+.cloth-item .img-wrapper {
+	height: 180px;
+	overflow: hidden;	
+}
+
+.cloth-item img {
+	/*width: inherit;*/
+}
+
+.cloth-item .price {
+	position: relative;
+	margin-top: -27px;
+	font-size: 34px;
+	text-transform: none;
+	z-index: 1;
+}
+
+.cloth-item .card-content {
+	padding-top: 0;
+}
+
+.cloth-item .card-action {
+	background-color: #000;
 }
