@@ -1,15 +1,15 @@
 <template name="Dressing_page">
-	<div class="container">
-		<h3>{{userProfile.dressingName}}</h3>
-		Mes vêtements :
-		<ul>
-			{{#each cloth}} 
-				<li style="border-style: solid;"><a href="/edit/{{_id}}">{{clothName}}</a> {{clothDescr}} <img src={{getThumbnail(getClothImage(clothImage))}}></li>
-			{{/each}}
-		</ul>
+	<div class="container dressing">
+		<div class="dressing-header">
+			<h2>Mon dressing</h2>
+			<a class="btn grey darken-3" href="/new">Nouveau vêtement</a>
+			<a class="btn grey darken-3" href="/updateDressing">Modifier le Dressing</a>
+		</div>
 		<br>
-		<a class="btn btn-primary" href="/new">Nouveau vêtement</a>
-		<a class="btn btn-primary" href="/updateDressing">Modifier le Dressing</a>
-		<!-- TODO : add templates for clothes and items generation logic -->
+		<div class="row">
+		{{#each cloth in Clothes}}
+			{{> Clothes_item cloth=cloth}}
+		{{/each}}
+		</div>
 	</div>
 </template>
