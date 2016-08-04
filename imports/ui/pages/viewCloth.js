@@ -8,7 +8,6 @@ import './viewCloth.html';
 Template.viewCloth.helpers({
 	cloth: function(){
         var item = Clothes.findOne({_id: FlowRouter.current().params._id});
-        console.log("hey : ", item);
         return item;
 	},
 	getTradName: function(){

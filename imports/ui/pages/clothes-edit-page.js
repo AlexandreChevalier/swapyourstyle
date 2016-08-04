@@ -10,6 +10,7 @@ import './clothes-edit-page.html';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { Session } from 'meteor/session';
 
 Template.Clothes_edit_page.onRendered(function clothesShowPageOnRendered() {
   //needed so the select displays 

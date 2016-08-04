@@ -1,9 +1,19 @@
 <!--Created by Marc on 20/06/2016.-->
 <template name="search">
-	{{#if currentUser}}
-		<ul class="collection with-header">
+	<div class="container">
+		{{#each paramSelect}}
+			<div class="input-field col s12">
+				{{selectName}}
+				<select style="display: list-item;">
+					{{#each paramOption(selectName)}}
+						<option value={{optionName}}>{{optionName}}</option>
+					{{/each}}
+				</select>
+			</div>
+		{{/each}}
+	<ul class="collection with-header">
 		<li class="collection-header"><h4>{{ getTradClothes }}</h4></li>
-		{{#each cloth}} 
+		{{#each cloth}}
 			<li class="collection-item avatar">
 		      <a href="/viewCloth/{{_id}}">
 		      <img src={{getThumbnail(getClothImage(clothImage))}} alt="" class="circle">
@@ -12,8 +22,6 @@
 		      <i class="material-icons">send</i></a>
 		    </li>
 		{{/each}}
-		</ul>
-    {{else}}
-        {{> accueil}}
-    {{/if}}
+	</ul>
+	</div>
 </template>
