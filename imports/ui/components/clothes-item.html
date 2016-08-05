@@ -11,7 +11,7 @@
 
       <div class="card-content center-align">        
         <div class="price green btn-large">
-          <span class="white-text thin">9€/j</span>
+          <span class="white-text thin">{{cloth.clothPrice}}€/j</span>
         </div>
         <span class="card-title white-text truncate">{{cloth.clothName}}</span>
         <p class="white-text thin">{{cloth.clothDescr}}</p>
@@ -25,11 +25,11 @@
           Disponibilité : demain
           <!-- {{cloth.date}} -->
           <br>
-          Prix : 9€ / jour de location
-          <!-- {{cloth.price}} -->
+          Prix : {{cloth.clothPrice}}€ / jour de location
           <br>
-          Propriétaire : Pikachu (voir son dressing)
+          Propriétaire : {{getOwnerUserName(cloth.userId)}} (voir son dressing)
           <!-- {{cloth.owner.name}} -->
+          Emplacement : {{getCity(cloth.userId)}}
         </p>
       </div>
 

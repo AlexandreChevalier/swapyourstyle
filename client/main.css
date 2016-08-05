@@ -59,7 +59,7 @@ footer.page-footer {
 
 .cloth-item .price {
 	position: relative;
-	margin-top: -27px;
+	margin-top: 0px;
 	font-size: 34px;
 	text-transform: none;
 	z-index: 1;
@@ -67,6 +67,8 @@ footer.page-footer {
 
 .cloth-item .card-content {
 	padding-top: 0;
+	height: 150px;
+	overflow: hidden;
 }
 
 .cloth-item .card-action {

@@ -1,24 +1,36 @@
 <!--Created by Marc on 29/04/2016.-->
 <template name="Clothes_edit_page">
-	{{#if currentUser}}
-        {{# autoForm collection=Clothes doc=clothProfile id="updateClothForm" type="update"}}
-        <fieldset>
-            <legend>{{ getUpdateLegend }}</legend>
-            {{> afQuickField name='clothName'}}
-            {{> afQuickField name='clothType'}}
-            {{> afQuickField name='clothTheme'}}
-            {{> afQuickField name='clothColor'}}
-            {{> afQuickField name='clothGender'}}
-            {{> afQuickField name='clothSize'}}
-            {{> afQuickField name='clothDescr' rows=6}}
-            {{#if imageEmpty}}
-                {{> afFieldInput disabled=waitingForApiResponse name='clothImage' type='file' id='fileInput'}}
-            {{/if}}
-            <button type="submit" disabled={{waitingForApiResponse}} class="btn btn-primary">{{ getSubmit }}</button>
-            <button type="reset" class="btn btn-default">{{ getReset }}</button>
-        </fieldset>
-        {{/autoForm}}
-    {{else}}
-        {{> accueil}}
-    {{/if}}
+    <div class="container">
+        <div class="card">
+            {{# autoForm collection=Clothes doc=clothProfile id="updateClothForm" type="update"}}
+                <fieldset>
+                    <legend>{{ getUpdateLegend }}</legend>
+                    {{> afQuickField name='clothName'}}
+                    {{> afQuickField name='clothType'}}
+                    {{> afQuickField name='clothTheme'}}
+                    {{> afQuickField name='clothColor'}}
+                    {{> afQuickField name='clothGender'}}
+                    {{> afQuickField name='clothSize'}}
+                    {{> afQuickField name='clothDescr' rows=6}}
+                    <p class="range-field">
+                        {{> afQuickField name="clothPrice"}}
+                    </p>
+                    {{> afQuickField name='disponibility'}}
+                    {{#if imageEmpty}}
+                    <div class="file-field input-field">
+                      <div class="btn">
+                        <span>File</span>
+                        {{> afFieldInput disabled=waitingForApiResponse name='clothImage' type='file' id='fileInput'}}
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Upload one file">
+                      </div>
+                    </div>
+                    {{/if}}
+                    <button type="submit" disabled={{waitingForApiResponse}} class="btn btn-primary">{{ getSubmit }}</button>
+                    <button type="reset" class="btn btn-default">{{ getReset }}</button>
+                </fieldset>
+            {{/autoForm}}
+        </div>
+    </div>
 </template>

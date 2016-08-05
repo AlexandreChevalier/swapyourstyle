@@ -15,13 +15,6 @@ Meteor.methods({
 });
 
 Meteor.startup(function () {
-    /*
-    * email : swapmysuitnoreply@gmail.com
-    * imgur login: SwapMyStyle
-    * password : Swap2016suit
-    * imgur ClientID: 978c711049778ca
-    * imgur ClientSecret: 21019f3ffaf98daf72592f78feb85e3139cbda05
-    */
     process.env.MAIL_URL = 'smtp://swapmysuitnoreply%40gmail.com:Swap2016suit@smtp.gmail.com:587';
     process.env.imgurKey = "49240428869e3b2";
     SimpleSchema.debug = true;

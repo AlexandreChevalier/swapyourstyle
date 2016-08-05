@@ -15,17 +15,6 @@ Template.Dressing_page.helpers({
 		var profile = UserInfos.findOne({userId:  Meteor.user()._id});
 		return profile;
 	},
-    /*getTradNewCloth: function(){
-        return T9n.get("New Cloth");
-    },
-    getTradDressing: function(){
-        return T9n.get("Customize Dressing");
-    },*/
-	// cloth: function(){
-	// 	//renvoie tous les vetements de l'utilisateur
-	// 	var allClothes = Clothes.find({userId: Meteor.user()._id});
-	// 	return allClothes;
-	// },
 	getClothImage: function(clothId) {
 		var item = Images.findOne({_id: clothId});
 		return item.url;
@@ -40,5 +29,5 @@ Template.Dressing_page.helpers({
 			{ userId: Meteor.userId() }, 
 			{ sort: { createdAt: -1 } }
 		);
-	},
+	}
 });

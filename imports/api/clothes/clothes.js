@@ -44,11 +44,7 @@ Clothes.schema = new SimpleSchema({
     autoform: {
       type: "select",
       options: function () {
-        return [
-          {label: T9n.get("Top"), value: "Top"},
-          {label: T9n.get("Bottom"), value: "Bottom"},
-          {label: T9n.get("Shoes"), value: "Shoes"}
-        ];
+        return Meteor.settings.public.clothType;
       }
     },
     optional: true,
@@ -59,11 +55,7 @@ Clothes.schema = new SimpleSchema({
     autoform: {
       type: "select",
       options: function () {
-        return [
-          {label: T9n.get("Wedding"), value: "Wedding"},
-          {label: T9n.get("Party"), value: "Party"},
-          {label: T9n.get("Casual"), value: "Casual"}
-        ];
+        return Meteor.settings.public.clothTheme;
       }
     },
     optional: true,
@@ -74,18 +66,7 @@ Clothes.schema = new SimpleSchema({
     autoform: {
       type: "select",
       options: function () {
-        return [
-          {label: T9n.get("Blue"), value: "Blue"},
-          {label: T9n.get("Red"), value: "Red"},
-          {label: T9n.get("Green"), value: "Green"},
-          {label: T9n.get("White"), value: "White"},
-          {label: T9n.get("Black"), value: "Black"},
-          {label: T9n.get("Brown"), value: "Brown"},
-          {label: T9n.get("Yellow"), value: "Yellow"},
-          {label: T9n.get("Purple"), value: "Purple"},
-          {label: T9n.get("Pink"), value: "Pink"},
-          {label: T9n.get("Gray"), value: "Gray"}
-        ];
+        return Meteor.settings.public.clothColor;
       }
     },
     optional: true,
@@ -96,11 +77,7 @@ Clothes.schema = new SimpleSchema({
     autoform: {
       type: "select",
       options: function () {
-        return [
-          {label: T9n.get("Male"), value: "Male"},
-          {label: T9n.get("Female"), value: "Female"},
-          {label: T9n.get("Unisex"), value: "Unisex"}
-        ];
+        return Meteor.settings.public.clothGender;
       }
     },
     optional: true,
@@ -108,18 +85,52 @@ Clothes.schema = new SimpleSchema({
   },
   clothSize: {
     type: String,
+    autoform: {
+      type: "select",
+      options: function () {
+        return Meteor.settings.public.clothSize;
+      }
+    },
     optional: true,
     label: T9n.get("Cloth Size")
   },
   clothImage: {
     type: String,
     optional: true,
-    label: T9n.get("Cloth Images")
+    label: T9n.get("Cloth Image")
   },
   clothDescr: {
     type: String,
     optional: true,
     label: T9n.get("Cloth Description")
+  },
+  disponibility: {
+    type: [Date],
+    optional: true,
+    label: T9n.get("Disponibility"),
+    autoform: {
+      type:"pickadate",
+      pickadateOptions: {
+        multiple: true,
+        selectYears: true,
+        selectMonths: true,
+        format: "dd mmmm yyyy"
+      }
+    }
+  },
+  clothPrice: {
+    type: Number,
+    decimal: true,
+    optional: true,
+    autoform: {
+      afFieldInput: {
+        type: "range",
+        min: 1,
+        max: 150,
+        step: 0.5
+      }
+    },
+    label: T9n.get("Cloth Price")
   }
 });
 

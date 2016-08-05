@@ -1,22 +1,16 @@
 /**
  * Created by Marc on 20/06/2016.
  */
+import { Template } from 'meteor/templating';
+
 import { Clothes } from '../../api/clothes/clothes.js';
 import { Images } from '../../api/images/images.js';
 import { Session } from 'meteor/session';
 import './search.html';
 
 Template.search.helpers({
-	cloth: function(){
-		//TODO : affiner la recherche
-		var param = Session.get("searchParam");
-		if(param){
-			var allClothes = Clothes.find(param);
-		}
-		else {
-			var allClothes = Clothes.find();			
-		}
-		return allClothes;
+	Clothes() {
+		return Clothes.find();
 	},
 	getTradClothes: function(){
 		return T9n.get("Available Clothes");
@@ -28,7 +22,7 @@ Template.search.helpers({
 	getThumbnail: function(imgUrl) {
 		var thumb = Imgur.toThumbnail(imgUrl, Imgur.BIG_SQUARE);
 		return thumb;
-	},
+	}/*,
 	paramSelect: function(){
 		var arraySelect = [
 			{'selectName': "test1"},
@@ -52,7 +46,7 @@ Template.search.helpers({
 			]
 		};
 		return arrayOption[list];
-	}
+	}*/
 });
 /*
 Template.search.events({

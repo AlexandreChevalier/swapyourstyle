@@ -61,7 +61,12 @@ UserInfos.schema = new SimpleSchema({
     optional: true,
     label: T9n.get("Birthdate"),
     autoform: {
-      type:"pickadate"
+      type:"pickadate",
+      pickadateOptions: {
+        selectYears: true,
+        selectMonths: true,
+        format: "dd mmmm yyyy"
+      }
     }
   },
   gender: {

@@ -1,0 +1,12 @@
+<template name="categoryMenu">
+  <div class="dropdown">
+    <a class="Category" href="/">{{i18n "Category"}}</a>
+    <div class="dropdown-menu">
+      <ul role="menu" aria-labelledby="dLabel">
+        {{#each category}}
+          {{> menuItem this}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</template>

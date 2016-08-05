@@ -1,0 +1,12 @@
+<template name="themeMenu">
+  <div class="dropdown">
+    <a class="theme" href="/">{{i18n "theme"}}</a>
+    <div class="dropdown-menu">
+      <ul role="menu" aria-labelledby="dLabel">
+        {{#each theme}}
+          {{> menuItem this}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</template>
