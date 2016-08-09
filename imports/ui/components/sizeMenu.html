@@ -1,12 +1,18 @@
 <template name="sizeMenu">
-  <div class="dropdown">
-    <a class="size" href="/">{{i18n "size"}}</a>
-    <div class="dropdown-menu">
-      <ul role="menu" aria-labelledby="dLabel">
-        {{#each size}}
-          {{> menuItem this}}
-        {{/each}}
-      </ul>
-    </div>
+  <div class="input-field col s12">
+    <select>
+      {{#each size in sizes}}
+        <option value="{{ size.value }}">{{ size.label }}</option>
+      {{/each}}
+    </select>
+    <label>Size</label>
   </div>
 </template>
+
+
+<!--   <a class="dropdown-button btn" href="#" data-activates='dropdownSize'>Size</a>
+<ul id="dropdownSize" class="dropdown-content">
+  {{#each size}}
+    {{ size.label }}
+  {{/each}}
+</ul> -->

@@ -1,12 +1,10 @@
 <template name="themeMenu">
-  <div class="dropdown">
-    <a class="theme" href="/">{{i18n "theme"}}</a>
-    <div class="dropdown-menu">
-      <ul role="menu" aria-labelledby="dLabel">
-        {{#each theme}}
-          {{> menuItem this}}
-        {{/each}}
-      </ul>
-    </div>
+  <div class="input-field col s12">
+    <select>
+      {{#each theme in themes}}
+        <option value="{{ theme.value }}">{{ theme.label }}</option>
+      {{/each}}
+    </select>
+    <label>Theme</label>
   </div>
 </template>

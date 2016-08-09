@@ -1,16 +1,9 @@
 <!--Created by Marc on 20/06/2016.-->
 <template name="search">
 	<div class="container">
-		<!-- {{#each paramSelect}}
-			<div class="input-field col s12">
-				{{selectName}}
-				<select style="display: list-item;">
-					{{#each paramOption(selectName)}}
-						<option value={{optionName}}>{{optionName}}</option>
-					{{/each}}
-				</select>
-			</div>
-		{{/each}} -->
+		{{#each navItems}}
+			{{> Template.dynamic template=this}}
+		{{/each}}
 		<div class="row">
 		{{#each cloth in Clothes}}
 			{{> Clothes_item cloth=cloth}}

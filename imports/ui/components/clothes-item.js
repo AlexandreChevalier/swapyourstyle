@@ -23,7 +23,6 @@ Template.Clothes_item.helpers({
   },
   getCity(userId){
   	var info = UserInfos.findOne({userId: userId});
-  	console.log(info);
   	return info.address.city;
   }
 });

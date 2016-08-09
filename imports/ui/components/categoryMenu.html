@@ -1,12 +1,15 @@
 <template name="categoryMenu">
-  <div class="dropdown">
-    <a class="Category" href="/">{{i18n "Category"}}</a>
-    <div class="dropdown-menu">
-      <ul role="menu" aria-labelledby="dLabel">
-        {{#each category}}
-          {{> menuItem this}}
-        {{/each}}
-      </ul>
-    </div>
+  <!-- <a class='dropdown-button btn' data-activates='dropdownCategory'>Category</a>
+  <ul id='dropdownCategory' class='dropdown-content'> -->
+  <div class="input-field col s12">
+    <select>
+      {{#each category in categories}}
+        <!-- <li> -->
+        <option class='selectOption' value="{{ category.value }}">{{ category.label }}</option>
+        <!-- </li> -->
+      {{/each}}
+    </select>
+    <label>Category</label>
   </div>
+  <!-- </ul> -->
 </template>

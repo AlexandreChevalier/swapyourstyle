@@ -20,5 +20,5 @@ Template.Header.onRendered(function(){
 });
 
 Template.Header.helpers({
-  'title': "Swap Your Style"
+  'title': "Swap My Style"
 });
