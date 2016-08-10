@@ -20,6 +20,7 @@ import '../../ui/pages/clothes-edit-page.js';
 import '../../ui/pages/userInfos-edit-page.js';
 import '../../ui/pages/search.js';
 import '../../ui/pages/viewCloth.js';
+import '../../ui/pages/updateDressing.js';
 
 // Import to override accounts templates
 import '../../ui/accounts/accounts-templates.js';
@@ -78,6 +79,18 @@ exposed.route('/dressing', {
   name: 'dressing',
   action: function() { 
     BlazeLayout.render("App_body", {main: "Dressing_page"});
+  }
+});
+
+// TODO :
+// check if loggedIn -> going to profile
+// if not loggedIn -> redirect to login page
+//
+// Route to current user's profile
+exposed.route('/updateDressing', {
+  name: 'updateDressing',
+  action: function() { 
+    BlazeLayout.render("App_body", {main: "updateDressing"});
   }
 });
 
@@ -151,7 +164,6 @@ import '../../ui/pages/manageDressing.js';
 import '../../ui/pages/newCloth.js';
 import '../../ui/pages/updateProfile.js';
 import '../../ui/pages/updateCloth.js';
-import '../../ui/pages/updateDressing.js';
 import '../../ui/pages/search.js';
 import '../../ui/pages/viewCloth.js';
 import '../../ui/pages/404.html';

@@ -4,6 +4,7 @@
 		{{#each navItems}}
 			{{> Template.dynamic template=this}}
 		{{/each}}
+		<h1>{{ getTradClothes }}</h1>
 		<div class="row">
 		{{#each cloth in Clothes}}
 			{{> Clothes_item cloth=cloth}}

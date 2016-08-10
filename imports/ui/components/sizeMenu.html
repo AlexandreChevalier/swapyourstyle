@@ -1,6 +1,6 @@
 <template name="sizeMenu">
   <div class="input-field col s12">
-    <select>
+    <select id="sizeSelect">
       {{#each size in sizes}}
         <option value="{{ size.value }}">{{ size.label }}</option>
       {{/each}}
@@ -8,11 +8,3 @@
     <label>Size</label>
   </div>
 </template>
-
-
-<!--   <a class="dropdown-button btn" href="#" data-activates='dropdownSize'>Size</a>
-<ul id="dropdownSize" class="dropdown-content">
-  {{#each size}}
-    {{ size.label }}
-  {{/each}}
-</ul> -->

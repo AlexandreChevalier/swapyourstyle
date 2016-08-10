@@ -1,15 +1,10 @@
 <template name="categoryMenu">
-  <!-- <a class='dropdown-button btn' data-activates='dropdownCategory'>Category</a>
-  <ul id='dropdownCategory' class='dropdown-content'> -->
   <div class="input-field col s12">
-    <select>
+    <select id="categorySelect">
       {{#each category in categories}}
-        <!-- <li> -->
-        <option class='selectOption' value="{{ category.value }}">{{ category.label }}</option>
-        <!-- </li> -->
+        <option value="{{ category.value }}">{{ category.label }}</option>
       {{/each}}
     </select>
     <label>Category</label>
   </div>
-  <!-- </ul> -->
 </template>

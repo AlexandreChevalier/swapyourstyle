@@ -28,8 +28,8 @@ Template.viewCloth.helpers({
 	getTradSize: function(){
 		return T9n.get("Cloth Size");
 	},
-	getTradImages: function(){
-		return T9n.get("Cloth Images");
+	getTradImage: function(){
+		return T9n.get("Cloth Image");
 	},
 	getTradDescr: function(){
 		return T9n.get("Cloth Description");

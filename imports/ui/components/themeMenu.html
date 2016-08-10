@@ -1,6 +1,6 @@
 <template name="themeMenu">
   <div class="input-field col s12">
-    <select>
+    <select id="themeSelect">
       {{#each theme in themes}}
         <option value="{{ theme.value }}">{{ theme.label }}</option>
       {{/each}}

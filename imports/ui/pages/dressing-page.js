@@ -29,5 +29,9 @@ Template.Dressing_page.helpers({
 			{ userId: Meteor.userId() }, 
 			{ sort: { createdAt: -1 } }
 		);
+	},
+	getDressingName: function(){
+		var profile = UserInfos.findOne({userId:  Meteor.user()._id});
+		return profile.dressingName;
 	}
 });

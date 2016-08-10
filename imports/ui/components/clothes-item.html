@@ -28,13 +28,12 @@
           Prix : {{cloth.clothPrice}}€ / jour de location
           <br>
           Propriétaire : {{getOwnerUserName(cloth.userId)}} (voir son dressing)
-          <!-- {{cloth.owner.name}} -->
           Emplacement : {{getCity(cloth.userId)}}
         </p>
       </div>
 
       <div class="card-action center-align">
-        <a class="white-text center-align" href="/edit/{{cloth._id}}">Consulter l'offre</a>
+        <a class="white-text center-align" href="{{ accessRoute(cloth) }}">{{ accessMessage(cloth.userId) }}</a>
       </div>
     </div>
   </div>

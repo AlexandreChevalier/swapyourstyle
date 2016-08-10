@@ -1,17 +1,8 @@
 /**
  * Created by Marc on 09/08/2016.
  */
-import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/kadira:flow-router';
-import { ReactiveVar } from 'meteor/reactive-var';
+import { Session } from 'meteor/session';
 import './categoryMenu.html';
-
-/*Template.categoryMenu.onCreated(function () {
-  $( document ).ready(function(){
-    // Loading material selects
-    $(".dropdown-button btn").dropdown('open');
-  });
-});*/
 
 Template.categoryMenu.helpers({
   categories() {
@@ -23,8 +14,8 @@ Template.categoryMenu.helpers({
   }
 });
 
-/*Template.categoryMenu.events({
-  'click .active': function(event, template){
-    swal("test");
+Template.categoryMenu.events({
+  'change #categorySelect': function(event, template){
+    Session.set("categoryFilter", $('#categorySelect option:selected').val());
   }
-});*/
+});
