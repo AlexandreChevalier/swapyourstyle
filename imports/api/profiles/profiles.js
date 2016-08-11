@@ -2,16 +2,14 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 /**
- * UserInfos collection handler
- * 
- * @author Marc Gilbert
+ * Profiles collection definition.
  */
-export const UserInfos = new Mongo.Collection("userInfos");
+export const Profiles = new Mongo.Collection('profiles');
 
-if (Meteor.isServer){
+if (Meteor.isServer) {
   // Only publish infos that are public or belong to the current user
-  Meteor.publish('userInfos', function userInfosPublication() {
-    return UserInfos.find({
+  Meteor.publish('profiles', function imagesPublication() {
+    return Profiles.find({
       $or: [
         { private: { $ne: true } },
         { owner: this.userId },
@@ -20,43 +18,43 @@ if (Meteor.isServer){
   });
 }
 
+/* Address sub-schema definition */
 addressSchema = new SimpleSchema({
-  //TODO final formatted date
-  street: {
+  'street': {
     type: String,
     label: T9n.get("Street")
   },
-  postalCode: {
+  'postalCode': {
     type: String,
     max: 5,
     regEx:/^\d+$/,
     label: T9n.get("Postal Code")
   },
-  city: {
+  'city': {
     type: String,
     label: T9n.get("City")
   },
-  country: {
+  'country': {
     type: String,
     label: T9n.get("Country")
   }
 });
 
-UserInfos.schema = new SimpleSchema({
-  userId: {
+Profiles.schema = new SimpleSchema({
+  'userId': {
     type: String
   },
-  firstName: {
+  'firstName': {
     type: String,
     optional: true,
     label: T9n.get("Firstname")
   },
-  lastName: {
+  'lastName': {
     type: String,
     optional: true,
     label: T9n.get("Lastname")
   },
-  birthdate: {
+  'birthdate': {
     type: Date,
     optional: true,
     label: T9n.get("Birthdate"),
@@ -69,7 +67,7 @@ UserInfos.schema = new SimpleSchema({
       }
     }
   },
-  gender: {
+  'gender': {
       type: String,
     autoform: {
       type: "select",
@@ -84,34 +82,34 @@ UserInfos.schema = new SimpleSchema({
     },
     optional: true
   },
-  phoneNumber : {
+  'phoneNumber' : {
     type: String,
     max: 10,
     regEx: /^\d+$/,
     label: T9n.get("Phone Number"),
     optional: true
   },
-  bio: {
+  'bio': {
     type: String,
     max: 500,
     optional: true,
     label: T9n.get("Bio")
   },
-  address: {
+  'address': {
     type: addressSchema,
     optional: true,
     label: T9n.get("Address")
   },
-  dressingName: {
+  'dressingName': {
     type:String,
     optional: true,
     label: T9n.get("Dressing Name")
   }
 });
 
-UserInfos.attachSchema(UserInfos.schema);
+Profiles.attachSchema(Profiles.schema);
 
-UserInfos.allow({
+Profiles.allow({
   // Checking user can update his infos
   update: function(userId, doc) {
     return doc && (userId === doc.userId);

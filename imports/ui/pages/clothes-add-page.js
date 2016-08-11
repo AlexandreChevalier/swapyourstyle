@@ -1,18 +1,18 @@
 /**
- * Template handler for adding clothes form
+ * Template handler for clothes insert form
  * 
  * Created by Marc on 27/04/2016.
  */
 import { Clothes } from '../../api/clothes/clothes.js';
-import { Images } from '../../api/images/images.js';
-import './clothes-add-page.html';
-
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Session } from 'meteor/session';
-import 'meteor/deanius:promise';
 import { encode } from 'node-base64-image';
+import { Images } from '../../api/images/images.js';
+import 'meteor/deanius:promise';
+
+import './clothes-add-page.html';
 
 Template.Clothes_add_page.onRendered(function clothesShowPageOnRendered() {
   $( document ).ready(function(){
@@ -29,7 +29,7 @@ Template.Clothes_add_page.onCreated(function () {
 
 Template.Clothes_add_page.helpers({
   // accessing our collection
-  Clothes: function(){
+  clothes: function(){
     return Clothes;
   },
   getUpdateLegend: function(){
@@ -93,7 +93,7 @@ var Clothes_add_pageHooks = {
     // A l'ajout d'un nouveau vetement, 
     // on le lie a son propriétaire et son dressing
     insert: function(doc){
-      doc.userId = Meteor.userId();
+      doc.owner = Meteor.userId();
       if(Session.get("image") != ""){
         doc.clothImage = Session.get("image");
       }

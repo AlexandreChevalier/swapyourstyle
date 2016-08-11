@@ -9,15 +9,11 @@ import { Clothes } from '../../api/clothes/clothes.js';
 // Import to load these templates
 import '../../ui/layouts/app-body.js'; // main layout
 import '../../ui/pages/home-page.js';
-/*
-import '../../ui/pages/signup-page.html';
-import '../../ui/pages/login-page.html';*/
 import '../../ui/pages/dressing-page.js';
-
 import '../../ui/pages/profile-page.js';
 import '../../ui/pages/clothes-add-page.js';
 import '../../ui/pages/clothes-edit-page.js';
-import '../../ui/pages/userInfos-edit-page.js';
+import '../../ui/pages/profile-edit-page.js';
 import '../../ui/pages/search.js';
 import '../../ui/pages/viewCloth.js';
 import '../../ui/pages/updateDressing.js';
@@ -40,7 +36,7 @@ var admin = FlowRouter.group({});
  * only if the user is authenticated
  */
 function checkLogin(context) {
-  console.log(context)
+  // console.log(context)
   // if(!(Meteor.loggingIn() || Meteor.userId()) ) {
   //   route = FlowRouter.current();
   //   if(route.route.name !=== 'login') {
@@ -102,7 +98,7 @@ exposed.route('/updateDressing', {
 exposed.route('/editInfo', {
   name: 'editInfo',
   action: function() { 
-    BlazeLayout.render("App_body", {main: "userInfos_edit_page"});
+    BlazeLayout.render("App_body", {main: "Profile_edit_page"});
   }
 });
 
@@ -154,31 +150,3 @@ FlowRouter.notFound = {
     BlazeLayout.render('App_body', { main: 'Home_page' });
   },
 };
-
-
-
-/*import '../../ui/components/recupPassword.js';
-import '../../ui/components/notFound.html';
-import '../../ui/components/loading.html';
-import '../../ui/pages/manageDressing.js';
-import '../../ui/pages/newCloth.js';
-import '../../ui/pages/updateProfile.js';
-import '../../ui/pages/updateCloth.js';
-import '../../ui/pages/search.js';
-import '../../ui/pages/viewCloth.js';
-import '../../ui/pages/404.html';
-import '../../ui/accueil.js';
-import '../../ui/layouts/app-body.html';*/
-
-/*FlowRouter.route('/resetPassword', {
-  action: function() {
-    BlazeLayout.render("app-body", {content: "recupPassword"});
-  }
-});
-
-//error routes
-FlowRouter.route('/404', {
-  action: function(){
-    BlazeLayout.render("app-body", {content: '404'});
-  }
-});*/

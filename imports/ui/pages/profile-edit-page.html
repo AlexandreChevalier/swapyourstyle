@@ -1,6 +1,7 @@
-<template name="userInfos_edit_page">
+<template name="Profile_edit_page">
   <div class="container">
-    {{# autoForm collection=userInfos id="updateProfileForm" doc=selfProf type="update"}}
+    {{# autoForm collection=Profiles id="updateProfileForm" 
+    doc=selfProf type="update"}}
     <fieldset>
         <legend>{{ getUpdateLegend }}</legend>
         {{> afQuickField name='firstName'}}

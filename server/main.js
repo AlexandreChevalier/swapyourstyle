@@ -2,7 +2,7 @@ import '/imports/startup/server';
 import { Meteor } from 'meteor/meteor';
 import { Geolocation } from 'meteor/mdg:geolocation';
 import { GeoCoder } from 'meteor/aldeed:geocoder';
-import { UserInfos } from '../imports/api/userInfos/userInfos.js';
+import { Profiles } from '../imports/api/profiles/profiles.js';
 import { Clothes } from '../imports/api/clothes/clothes.js';
 import { Images } from '../imports/api/images/images.js';
 

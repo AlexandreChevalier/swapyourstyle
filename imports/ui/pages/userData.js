@@ -1,4 +1,4 @@
-import { UserInfos } from '../../api/userInfos/userInfos.js';
+import { Profiles } from '../../api/profiles/profiles.js';
 import './userData.html';
 
 Template.userData.helpers({
@@ -20,12 +20,12 @@ Template.userData.helpers({
 			return "Email non renseigné";
 		}
 	},
-	userProfile: function(){
-    	var item = UserInfos.findOne({userId: Meteor.user()._id});
+	profile: function(){
+    	var item = Profiles.findOne({userId: Meteor.user()._id});
 		return item;
 	},
 	getBirthdate: function(){
-    	var item = UserInfos.findOne({userId:  Meteor.user()._id});
+    	var item = Profiles.findOne({userId:  Meteor.user()._id});
     	if(item){
     		var birthdate = item.birthdate;
     		if(birthdate){

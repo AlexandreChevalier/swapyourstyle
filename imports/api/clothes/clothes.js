@@ -3,7 +3,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Images } from '../images/images.js';
 import { clothes_properties } 
   from '../../../lib/properties/clothes_properties.js';
-  let properties = clothes_properties;
+  var properties = clothes_properties;
 
 /**
  * Clothes collection definition.
@@ -11,6 +11,7 @@ import { clothes_properties }
 export const Clothes = new Mongo.Collection('clothes');
 
 if (Meteor.isServer) {
+  Clothes._ensureIndex({ name:1, theme:1, size:1 });
   Meteor.publish('clothes', () => Clothes.find());
   console.log("Publishing clothes");
 }

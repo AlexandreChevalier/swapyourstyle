@@ -2,8 +2,8 @@
 <template name="Clothes_add_page">
   <div class="container">
     <div class="card">
-    {{# autoForm collection=Clothes 
-    id="insertClothForm" type="insert"}}
+      {{# autoForm collection=clothes 
+      id="insertClothForm" type="insert"}}
       <fieldset>
         <legend>{{ getUpdateLegend }}</legend>
         {{> afQuickField name='name'}}

@@ -3,7 +3,7 @@
  */
 import { Template } from 'meteor/templating';
 
-import { UserInfos } from '../../api/userInfos/userInfos.js';
+import { Profiles } from '../../api/profiles/profiles.js';
 import { Clothes } from '../../api/clothes/clothes.js';
 import { Images } from '../../api/images/images.js';
 
@@ -12,7 +12,7 @@ import '../components/clothes-item.js';
 
 Template.Dressing_page.helpers({
 	userProfile: function() {
-		var profile = UserInfos.findOne({userId:  Meteor.user()._id});
+		var profile = Profiles.findOne({ userId: Meteor.userId() });
 		return profile;
 	},
 	getClothImage: function(clothId) {
@@ -23,15 +23,15 @@ Template.Dressing_page.helpers({
 		var thumb = Imgur.toThumbnail(imgUrl, Imgur.BIG_SQUARE);
 		return thumb;
 	},
-	Clothes() {
-		return Clothes.find(
-			// Only current user's clothes
-			{ userId: Meteor.userId() }, 
+	clothes() {
+		let clothes = Clothes.find(
+			{ owner: Meteor.userId() }, 
 			{ sort: { createdAt: -1 } }
 		);
+		if(clothes) { return clothes }
 	},
 	getDressingName: function(){
-		var profile = UserInfos.findOne({userId:  Meteor.user()._id});
+		var profile = Profiles.findOne({ userId: Meteor.userId() });
 		return profile.dressingName;
 	}
 });

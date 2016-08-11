@@ -22,3 +22,11 @@ Template.Header.onRendered(function(){
 Template.Header.helpers({
   'title': "Swap My Style"
 });
+
+Template.links.helpers({
+  dressing_label: function() {
+    if(Meteor.userId()){
+      return "Mon dressing";
+    } else { return "Créer mon dressing" }
+  },
+});

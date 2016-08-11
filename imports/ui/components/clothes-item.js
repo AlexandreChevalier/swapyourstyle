@@ -1,15 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Images } from '../../api/images/images.js';
-import { UserInfos } from '../../api/userInfos/userInfos.js';
+import { Profiles } from '../../api/profiles/profiles.js';
 
 import './clothes-item.html';
-
-/*Template.Clothes_item.onRendered(function clothesItemOnRendered() {
-  $( document ).ready(function(){
-
-  });
-});*/
 
 Template.Clothes_item.helpers({
   getIllustration(clothImage) {
@@ -22,7 +16,7 @@ Template.Clothes_item.helpers({
   	return owner.username;
   },
   getCity(userId){
-  	var info = UserInfos.findOne({userId: userId});
+  	var info = Profiles.findOne({userId: userId});
   	return info.address.city;
   },
   accessMessage(userId){

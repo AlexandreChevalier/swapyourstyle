@@ -26,7 +26,7 @@ Template.search.onRendered(function searchShowPageOnRendered() {
 });
 
 Template.search.helpers({
-	Clothes() {
+	clothes() {
 		var categoryFilter = Session.get("categoryFilter");
 		var sizeFilter = Session.get("sizeFilter");
 		var themeFilter = Session.get("themeFilter");

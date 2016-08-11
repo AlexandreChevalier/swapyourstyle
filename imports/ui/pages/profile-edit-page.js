@@ -2,21 +2,21 @@
  * Created by Marc on 27/04/2016.
  */
 
-import { UserInfos } from '../../api/userInfos/userInfos.js';
-import './userInfos-edit-page.html';
+import { Profiles } from '../../api/profiles/profiles.js';
+import './profile-edit-page.html';
 
 import { Template } from 'meteor/templating';
 
-Template.userInfos_edit_page.onRendered(function() {
+Template.Profile_edit_page.onRendered(function() {
     //needed so the select displays 
     $( document ).ready(function(){
         $('select').material_select();
     });
 });
 
-Template.userInfos_edit_page.onCreated(function() {
+Template.Profile_edit_page.onCreated(function() {
     //needed so the select displays 
-    var infos = UserInfos.findOne({userId: Meteor.userId()});
+    var infos = Profiles.findOne({userId: Meteor.userId()});
     if(!infos.address){
         if(Geolocation.currentLocation()){
             var location = Geolocation.currentLocation().coords;
@@ -34,7 +34,7 @@ Template.userInfos_edit_page.onCreated(function() {
                 closeOnConfirm: false,
                 html: false
             }, function(){
-                UserInfos.update(infos._id,
+                Profiles.update(infos._id,
                     {$set: {address: {
                         street: Session.get('location').streetNumber + " " + Session.get('location').streetName,
                         postalCode: Session.get('location').zipcode,
@@ -59,13 +59,13 @@ Template.userInfos_edit_page.onCreated(function() {
     }
 });
 
-Template.userInfos_edit_page.helpers({
+Template.Profile_edit_page.helpers({
     selfProf: function(){
-        var item = UserInfos.findOne({userId: Meteor.userId()});
+        var item = Profiles.findOne({userId: Meteor.userId()});
         return item;
     },
-    userInfos: function(){
-        return UserInfos;
+    profiles: function(){
+        return Profiles;
     },
     getUpdateLegend: function(){
         return T9n.get("Updating your profile");
@@ -78,9 +78,9 @@ Template.userInfos_edit_page.helpers({
     }
 });
 
-var userInfos_edit_pageHooks = {
+var Profile_edit_pageHooks = {
     onSuccess: function (doc) {
         FlowRouter.go('/');
     }
 }
-AutoForm.addHooks('updateProfileForm', userInfos_edit_pageHooks);
+AutoForm.addHooks('updateProfileForm', Profile_edit_pageHooks);

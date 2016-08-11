@@ -1,16 +1,16 @@
 /**
- * Template handler for editing clothes form
+ * Template handler for clothes update form
  * 
  * Created by Marc on 27/04/2016.
  */
 import { Clothes } from '../../api/clothes/clothes.js';
-import { Images } from '../../api/images/images.js';
-import './clothes-edit-page.html';
-
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Session } from 'meteor/session';
+import { Images } from '../../api/images/images.js';
+
+import './clothes-edit-page.html';
 
 Template.Clothes_edit_page.onRendered(function clothesShowPageOnRendered() {
   //needed so the select displays 
@@ -26,8 +26,12 @@ Template.Clothes_edit_page.onCreated(function () {
 });
 
 Template.Clothes_edit_page.helpers({
-  Clothes: function(){
-    return Clothes;
+  clothes() {
+    let clothes = Clothes.find(
+      { owner: Meteor.userId() }, 
+      { sort: { createdAt: -1 } }
+    );
+    if(clothes) { return clothes }
   },
   clothProfile: function(){
     var item = Clothes.findOne({_id: FlowRouter.current().params._id});

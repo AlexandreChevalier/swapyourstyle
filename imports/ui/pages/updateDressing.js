@@ -1,16 +1,16 @@
 /**
  * Created by Marc on 12/06/2016.
  */
-import { UserInfos } from '../../api/userInfos/userInfos.js';
+import { Profiles } from '../../api/profiles/profiles.js';
 import './updateDressing.html';
 
  Template.updateDressing.helpers({
     selfProfile: function(){
-        var item = UserInfos.findOne({userId: Meteor.userId()});
+        var item = Profiles.findOne({userId: Meteor.userId()});
         return item;
     },
-    userInfos: function(){
-        return UserInfos;
+    profiles: function(){
+        return Profiles;
     },
     getUpdateLegend: function(){
         return T9n.get("Updating infos on Dressing");

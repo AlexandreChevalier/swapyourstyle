@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 /**
- * Images collection handler
+ * Images collection definition.
  * 
  * @author Marc Gilbert
  */

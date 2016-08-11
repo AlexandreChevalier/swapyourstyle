@@ -16,37 +16,9 @@
 <template name="links">
   <li><a href="/women">Femme</a></li>
   <li><a href="/men">Homme</a></li>
-  <li><a href="/dressing">Créer mon dressing</a></li>
+  <li><a href="/dressing">{{dressing_label}}</a></li>
   <li><a href="/editInfo">Mon Compte</a></li>
   <li><a href="/blog">Blog</a></li>
   <!-- Reactive useraccounts sign-in/logout button -->
   <li>{{> atNavButton}}</li>
-<!--   {{#if currentUser}}
-    <li><a href="/profile">
-      {{#if currentUser.username}}
-        {{currentUser.username}}
-      {{else}}
-        {{currentUser.emails.[0].address}}
-      {{/if}}
-    </a></li>
-  {{else}}
-    <li><a href="/signin">Connexion</a></li>
-    <li><a href="/join">Inscription</a></li>
-  {{/if}} -->
-</template>
-
-<template name="login_button">
-  <li>
-      <!-- TODO : move this logic to routes.js groups check-in -->
-      <a href="{{#if currentUser}}/profile{{else}}/login{{/if}}">
-      <div class="chip">
-        <img src="/images/test.jpg" alt="Anonymous user">
-        {{#if currentUser}}
-          {{currentUser.username}}
-        {{else}}
-          Anonyme
-        {{/if}}
-      </div>
-    </a>
-  </li>
 </template>

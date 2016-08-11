@@ -1,13 +1,13 @@
 <template name="Dressing_page">
 	<div class="container dressing">
 		<div class="dressing-header">
-			<h2>{{ getDressingName }}</h2>
+			<h2>Mon dressing</h2>
 			<a class="btn grey darken-3" href="/new">Nouveau vêtement</a>
 			<a class="btn grey darken-3" href="/updateDressing">Modifier le Dressing</a>
 		</div>
 		<br>
 		<div class="row">
-		{{#each cloth in Clothes}}
+		{{#each cloth in clothes}}
 			{{> Clothes_item cloth=cloth}}
 		{{/each}}
 		</div>
