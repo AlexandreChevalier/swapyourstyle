@@ -1,110 +1,93 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Images } from '../images/images.js';
+import { clothes_properties } 
+  from '../../../lib/properties/clothes_properties.js';
+  let properties = clothes_properties;
 
 /**
- * Clothes collection (dressing) handler
- * 
- * @author Marc Gilbert
+ * Clothes collection definition.
  */
 export const Clothes = new Mongo.Collection('clothes');
 
-if (Meteor.isServer){
-  // Only publish clothes that are public or belong to the current user
-  Meteor.publish('clothes', function clothesPublication() {
-    return Clothes.find({
-      $or: [
-        { private: { $ne: true } },
-        { owner: this.userId },
-      ],
-    });
-  });
+if (Meteor.isServer) {
+  Meteor.publish('clothes', () => Clothes.find());
+  console.log("Publishing clothes");
+}
+if (Meteor.isClient) {
+  Meteor.subscribe('clothes');
+  console.log("Subscribing to clothes");
 }
 
-// Deny all client-side updates since we will be 
-// using methods to manage this collection
-/*Clothes.deny({
-  insert() { return true; },
-  update() { return true; },
-  remove() { return true; },
-});*/
-
-// TODO : better schema
+/* Clothes schema definition */
 Clothes.schema = new SimpleSchema({
-  userId: {
-    type: String
-  },
-  clothName: {
+  'ownerId': { type: String },
+  'name': {
     type: String,
     optional: true,
     label: T9n.get("Cloth Name")
   },
-  clothType: {
+  'type': {
     type: String,
     autoform: {
       type: "select",
-      options: function () {
-        return Meteor.settings.public.clothType;
-      }
+      firstOption: "(Choisissez un type)",
+      options: function () { return properties.types }
     },
     optional: true,
     label: T9n.get("Cloth Type")
   },
-  clothTheme: {
+  'theme': {
     type: String,
     autoform: {
       type: "select",
-      options: function () {
-        return Meteor.settings.public.clothTheme;
-      }
+      firstOption: "(Choisissez un thème)",
+      options: function () { return properties.themes }
     },
     optional: true,
     label: T9n.get("Cloth Theme")
   },
-  clothColor: {
+  'color': {
     type: String,
     autoform: {
       type: "select",
-      options: function () {
-        return Meteor.settings.public.clothColor;
-      }
+      firstOption: "(Choisissez une couleur)",
+      options: function () { return properties.colors }
     },
     optional: true,
     label: T9n.get("Cloth Color")
   },
-  clothGender: {
+  'gender': {
     type: String,
     autoform: {
       type: "select",
-      options: function () {
-        return Meteor.settings.public.clothGender;
-      }
+      firstOption: "(Choisissez un genre)",
+      options: function () { return properties.genders }
     },
     optional: true,
     label: T9n.get("Cloth Gender")
   },
-  clothSize: {
+  'size': {
     type: String,
     autoform: {
       type: "select",
-      options: function () {
-        return Meteor.settings.public.clothSize;
-      }
+      firstOption: "(Choisissez une taille)",
+      options: function () { return properties.sizes }
     },
     optional: true,
     label: T9n.get("Cloth Size")
   },
-  clothImage: {
+  'image': {
     type: String,
     optional: true,
     label: T9n.get("Cloth Image")
   },
-  clothDescr: {
+  'description': {
     type: String,
     optional: true,
     label: T9n.get("Cloth Description")
   },
-  disponibility: {
+  'disponibility': {
     type: [Date],
     optional: true,
     label: T9n.get("Disponibility"),
@@ -118,7 +101,7 @@ Clothes.schema = new SimpleSchema({
       }
     }
   },
-  clothPrice: {
+  'price': {
     type: Number,
     decimal: true,
     optional: true,
@@ -131,47 +114,22 @@ Clothes.schema = new SimpleSchema({
       }
     },
     label: T9n.get("Cloth Price")
-  }
+  },
 });
 
 Clothes.attachSchema(Clothes.schema);
 
-// TODO : is this useful with Methods ?
 Clothes.allow({
-  //on vérifie que l'utilisateur a bien le droit de modifier l'objet
   insert: function(userId, doc) {
-    return doc && (userId === doc.userId);
+    // only allow inserting if you are logged in
+    return !! userId;
   },
   update: function(userId, doc) {
-    return doc && (userId === doc.userId);
-  }
+    // only allow updating if you are logged in
+    return !! userId; 
+  },
+  remove: function(userId, doc) {
+    // only allow removing if you are logged in
+    return !! userId; 
+  },
 });
-
-// TODO refactor helpers :
-// Define appropriate or needed ones
-/*Clothes.helpers({
-  
-  // A cloth is considered to be private 
-  // if it has a userId set
-  isPrivate() {
-    return !!this.userId;
-  },
-  // TODO better helper
-  isLastPublicCloth() {
-    const publicClothCount = Clothes.find({ userId: { $exists: false } }).count();
-    return !this.isPrivate() && publicClothCount === 1;
-  },
-  // Is user the owner of this (cloth) ?
-  editableBy(userId) {
-    if (!this.userId) { return true; }
-    return this.userId === userId;
-  },
-  // Get the list of all clothes
-  clothes() {
-    return Clothes.find(
-      { clothId: this._id }, 
-      { sort: { createdAt: -1 } 
-    });
-  }
-
-});*/

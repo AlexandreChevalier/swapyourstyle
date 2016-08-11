@@ -14,11 +14,7 @@ import { Session } from 'meteor/session';
 import 'meteor/deanius:promise';
 import { encode } from 'node-base64-image';
 
-// Components used inside the template
-// import './app-not-found.js';
-
 Template.Clothes_add_page.onRendered(function clothesShowPageOnRendered() {
-  //this.getListId = () => FlowRouter.getParam('_id');
   $( document ).ready(function(){
     // Loading material selects
     $('select').material_select();
@@ -33,7 +29,7 @@ Template.Clothes_add_page.onCreated(function () {
 
 Template.Clothes_add_page.helpers({
   // accessing our collection
-  clothes: function(){
+  Clothes: function(){
     return Clothes;
   },
   getUpdateLegend: function(){
