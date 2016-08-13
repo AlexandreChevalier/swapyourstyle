@@ -51,20 +51,47 @@ Template.viewCloth.helpers({
 	},
 	disponibility: function(){
 		var item = Clothes.findOne({_id: FlowRouter.current().params._id});
-		console.log(item);
 		return item.disponibility;
 	}
 });
 
-Template.search.events({
+Template.viewCloth.events({
 	'submit #dateSelection': function(event, template) {
 		event.preventDefault();
 		var selected = template.findAll("input[type=checkbox]:checked");
 		var array = _.map(selected, function(item){
 			return item.defaultValue;
-		})
-		swal("Une requête a été envoyée au propriétaire. Nous vous notifierons lors de sa réponse." + array,
-            "Requête envoyée !",
-            "success");
+		});
+		swal({
+            title: "Confirmation",
+            text: "Etes vous sûr de vouloir louer cet objet aux dates suivantes ?<br/>" + array,
+            type: "warning",
+            confirmButtonColor: "#00897b",
+            confirmButtonText: "Oui",
+            showCancelButton: true,
+            cancelButtonText: "Non",
+            closeOnConfirm: false,
+            html: true
+        }, function(){
+        	//TODO: function
+            /*UserInfos.update(infos._id,
+                {$set: {address: {
+                    street: Session.get('location').streetNumber + " " + Session.get('location').streetName,
+                    postalCode: Session.get('location').zipcode,
+                    city: Session.get('location').city,
+                    country: Session.get('location').country
+                }}},
+                function(error, result) {
+                    if(error){
+                        swal("Error !",
+                            "Error : " + error.invalidKeys,
+                            "error");
+                    }
+                    else {*/
+						swal("Requête envoyée !",
+				            "Une requête a été envoyée au propriétaire. Nous vous notifierons lors de sa réponse.",
+				            "success");
+                //}
+        });
 	}
 });

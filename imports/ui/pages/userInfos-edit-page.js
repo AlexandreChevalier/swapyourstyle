@@ -27,7 +27,7 @@ Template.userInfos_edit_page.onCreated(function() {
                 title: "Is this your Address ?",
                 text: Session.get('location').formattedAddress,
                 type: "warning",
-                confirmButtonColor: "#FF0000",
+                confirmButtonColor: "#00897b",
                 confirmButtonText: "Yes",
                 showCancelButton: true,
                 cancelButtonText: "No",
@@ -52,9 +52,8 @@ Template.userInfos_edit_page.onCreated(function() {
                                 "Your address has been updated",
                                 "success");
                         }
-                    });
+                });
             });
-
         }
     }
 });
