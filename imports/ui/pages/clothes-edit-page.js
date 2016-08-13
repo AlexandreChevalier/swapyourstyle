@@ -13,6 +13,12 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Session } from 'meteor/session';
 
 Template.Clothes_edit_page.onRendered(function clothesShowPageOnRendered() {
+  $("#multidatespicker").multiDatesPicker({
+    dateFormat: "dd/mm/yy"
+  });
+  var item = Clothes.findOne({_id: FlowRouter.current().params._id});
+  var datesArray = item.disponibility;
+  $("#multidatespicker").multiDatesPicker('addDates', datesArray);
   //needed so the select displays 
   $( document ).ready(function(){
     $('select').material_select();
@@ -101,10 +107,13 @@ var Clothes_edit_pageHooks = {
     // A l'ajout d'un nouveau vetement, 
     // on le lie a son propriétaire et son dressing
     update: function(doc){
+      var dates = $("#multidatespicker").multiDatesPicker('getDates');
+      if(dates.length > 0){
+        doc.$set.disponibility = dates;
+      }
       if(Session.get("image") != ""){
         doc.$set.clothImage = Session.get("image");
       }
-      console.log("doc : ", doc);
       return doc;
     }
   },

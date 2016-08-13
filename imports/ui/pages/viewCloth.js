@@ -5,6 +5,13 @@ import { Clothes } from '../../api/clothes/clothes.js';
 import { Images } from '../../api/images/images.js';
 import './viewCloth.html';
 
+/*Template.viewCloth.onRendered(function viewClothPageOnRendered() {
+  $("#multidatespicker").multiDatesPicker();
+  var item = Clothes.findOne({_id: FlowRouter.current().params._id});
+  var datesArray = item.disponibility;
+  $("#multidatespicker").multiDatesPicker('addDates', datesArray);
+});*/
+
 Template.viewCloth.helpers({
 	cloth: function(){
         var item = Clothes.findOne({_id: FlowRouter.current().params._id});
@@ -41,9 +48,23 @@ Template.viewCloth.helpers({
 	getThumbnail: function(imgUrl) {
 		var thumb = Imgur.toThumbnail(imgUrl, Imgur.LARGE_THUMBNAIL);
 		return thumb;
+	},
+	disponibility: function(){
+		var item = Clothes.findOne({_id: FlowRouter.current().params._id});
+		console.log(item);
+		return item.disponibility;
 	}
 });
-/*
-Template.search.events({
 
-});*/
+Template.search.events({
+	'submit #dateSelection': function(event, template) {
+		event.preventDefault();
+		var selected = template.findAll("input[type=checkbox]:checked");
+		var array = _.map(selected, function(item){
+			return item.defaultValue;
+		})
+		swal("Une requête a été envoyée au propriétaire. Nous vous notifierons lors de sa réponse." + array,
+            "Requête envoyée !",
+            "success");
+	}
+});

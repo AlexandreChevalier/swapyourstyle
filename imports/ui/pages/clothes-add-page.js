@@ -13,12 +13,15 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Session } from 'meteor/session';
 import 'meteor/deanius:promise';
 import { encode } from 'node-base64-image';
+import '../../../client/multidatespicker/jquery-ui.multidatespicker.js';
 
 // Components used inside the template
 // import './app-not-found.js';
 
 Template.Clothes_add_page.onRendered(function clothesShowPageOnRendered() {
-  //this.getListId = () => FlowRouter.getParam('_id');
+  $("#multidatespicker").multiDatesPicker({
+    dateFormat: "dd/mm/yy"
+  });
   $( document ).ready(function(){
     // Loading material selects
     $('select').material_select();
@@ -97,11 +100,14 @@ var Clothes_add_pageHooks = {
     // A l'ajout d'un nouveau vetement, 
     // on le lie a son propriétaire et son dressing
     insert: function(doc){
+      var dates = $("#multidatespicker").multiDatesPicker('getDates');
+      if(dates.length > 0){
+        doc.disponibility = dates;
+      }
       doc.userId = Meteor.userId();
       if(Session.get("image") != ""){
         doc.clothImage = Session.get("image");
       }
-      console.log("doc : ", doc);
       return doc;
     }
   },

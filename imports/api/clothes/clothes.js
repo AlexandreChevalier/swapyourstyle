@@ -105,18 +105,9 @@ Clothes.schema = new SimpleSchema({
     label: T9n.get("Cloth Description")
   },
   disponibility: {
-    type: [Date],
+    type: [String],
     optional: true,
-    label: T9n.get("Disponibility"),
-    autoform: {
-      type:"pickadate",
-      pickadateOptions: {
-        multiple: true,
-        selectYears: true,
-        selectMonths: true,
-        format: "dd mmmm yyyy"
-      }
-    }
+    label: T9n.get("Disponibility")
   },
   clothPrice: {
     type: Number,

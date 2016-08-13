@@ -1,5 +1,6 @@
 <!--Created by Marc on 20/06/2016.-->
 <template name="viewCloth">
+	<div class="container">
 	{{ getTradName }} : {{cloth.clothName}}<br/>
 	{{ getTradType }} : {{cloth.clothType}}<br/>
 	{{ getTradTheme }} : {{cloth.clothTheme}}<br/>
@@ -8,4 +9,14 @@
 	{{ getTradSize }} : {{cloth.clothSize}}<br/>
 	{{ getTradImage }} : <img src={{getThumbnail(getClothImage(cloth.clothImage))}}><br/>
 	{{ getTradDescr }} : {{cloth.clothDescr}}<br/>
+	<form id="dateSelection">
+	    {{#each day in disponibility}}
+	    	<input type="checkbox" value="{{day}}" />
+	    	<label for="{{day}}">{{ day }}</label><br/>
+	    {{/each}}
+	    <button type="submit" class="btn btn-primary">Louer !</button>
+	    <button type="reset" class="btn btn-default">Réinitialiser les dates</button>
+    </form>
+    <!-- <div id="multidatespicker"></div> -->
+    </div>
 </template>
