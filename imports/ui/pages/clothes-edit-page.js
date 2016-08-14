@@ -17,7 +17,7 @@ Template.Clothes_edit_page.onRendered(function clothesShowPageOnRendered() {
     dateFormat: "dd/mm/yy"
   });
   var item = Clothes.findOne({_id: FlowRouter.current().params._id});
-  var datesArray = item.disponibility;
+  var datesArray = item.notAvailable;
   $("#multidatespicker").multiDatesPicker('addDates', datesArray);
   //needed so the select displays 
   $( document ).ready(function(){
@@ -109,7 +109,7 @@ var Clothes_edit_pageHooks = {
     update: function(doc){
       var dates = $("#multidatespicker").multiDatesPicker('getDates');
       if(dates.length > 0){
-        doc.$set.disponibility = dates;
+        doc.$set.notAvailable = dates;
       }
       if(Session.get("image") != ""){
         doc.$set.clothImage = Session.get("image");

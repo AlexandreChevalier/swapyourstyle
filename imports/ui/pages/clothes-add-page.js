@@ -102,7 +102,7 @@ var Clothes_add_pageHooks = {
     insert: function(doc){
       var dates = $("#multidatespicker").multiDatesPicker('getDates');
       if(dates.length > 0){
-        doc.disponibility = dates;
+        doc.notAvailable = dates;
       }
       doc.userId = Meteor.userId();
       if(Session.get("image") != ""){

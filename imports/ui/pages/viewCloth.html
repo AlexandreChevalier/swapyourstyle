@@ -9,14 +9,15 @@
 		{{ getTradSize }} : {{cloth.clothSize}}<br/>
 		{{ getTradImage }} : <img src={{getThumbnail(getClothImage(cloth.clothImage))}}><br/>
 		{{ getTradDescr }} : {{cloth.clothDescr}}<br/>
-		<form id="dateSelection">
+		<!-- <form id="dateSelection">
 		    {{#each day in disponibility}}
 		    	<input id="{{day}}" type="checkbox" value="{{day}}" />
 		    	<label for="{{day}}">{{ day }}</label><br/>
 		    {{/each}}
 		    <button type="submit" class="btn btn-primary">Louer !</button>
 		    <button type="reset" class="btn btn-default">Réinitialiser les dates</button>
-	    </form>
-    	<!-- <div id="multidatespicker"></div> -->
+			    </form> -->
+		<button id="rentBtn" class="btn btn-primary">Louer !</button>
+    	<div id="multidatespicker"></div>
     </div>
 </template>

@@ -104,10 +104,10 @@ Clothes.schema = new SimpleSchema({
     optional: true,
     label: T9n.get("Cloth Description")
   },
-  disponibility: {
+  notAvailable: {
     type: [String],
     optional: true,
-    label: T9n.get("Disponibility")
+    label: T9n.get("Not Available")
   },
   clothPrice: {
     type: Number,

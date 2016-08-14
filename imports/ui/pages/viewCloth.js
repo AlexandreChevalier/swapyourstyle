@@ -5,13 +5,6 @@ import { Clothes } from '../../api/clothes/clothes.js';
 import { Images } from '../../api/images/images.js';
 import './viewCloth.html';
 
-/*Template.viewCloth.onRendered(function viewClothPageOnRendered() {
-  $("#multidatespicker").multiDatesPicker();
-  var item = Clothes.findOne({_id: FlowRouter.current().params._id});
-  var datesArray = item.disponibility;
-  $("#multidatespicker").multiDatesPicker('addDates', datesArray);
-});*/
-
 Template.viewCloth.helpers({
 	cloth: function(){
         var item = Clothes.findOne({_id: FlowRouter.current().params._id});
@@ -56,7 +49,7 @@ Template.viewCloth.helpers({
 });
 
 Template.viewCloth.events({
-	'submit #dateSelection': function(event, template) {
+	/*'submit #dateSelection': function(event, template) {
 		event.preventDefault();
 		var selected = template.findAll("input[type=checkbox]:checked");
 		var array = _.map(selected, function(item){
@@ -74,7 +67,7 @@ Template.viewCloth.events({
             html: true
         }, function(){
         	//TODO: function
-            /*UserInfos.update(infos._id,
+            UserInfos.update(infos._id,
                 {$set: {address: {
                     street: Session.get('location').streetNumber + " " + Session.get('location').streetName,
                     postalCode: Session.get('location').zipcode,
@@ -87,11 +80,21 @@ Template.viewCloth.events({
                             "Error : " + error.invalidKeys,
                             "error");
                     }
-                    else {*/
+                    else {
 						swal("Requête envoyée !",
 				            "Une requête a été envoyée au propriétaire. Nous vous notifierons lors de sa réponse.",
 				            "success");
                 //}
         });
+	}*/
+	'click #rentBtn': function (event, template) {
+		$("#multidatespicker").multiDatesPicker({
+    		dateFormat: "dd/mm/yy"
+		});
+		var item = Clothes.findOne({_id: FlowRouter.current().params._id});
+		var datesArray = item.notAvailable;
+		$("#multidatespicker").multiDatesPicker({
+			addDisabledDates: datesArray
+		});
 	}
 });
