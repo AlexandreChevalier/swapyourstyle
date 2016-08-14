@@ -14,20 +14,21 @@
         {{> afQuickField name='size'}}
         {{> afQuickField name='description' rows=6}}
         <p class="range-field">
-          {{> afQuickField name="price"}}
+          {{> afQuickField name='price'}}
         </p>
-        {{> afQuickField name='disponibility'}}
         <div class="file-field input-field">
           <div class="btn">
-            <span>File</span>
-            {{> afFieldInput disabled=waitingForApiResponse name='image' type='file' id='fileInput'}}
+            <span>Image</span>
+            {{> afFieldInput disabled=waitingForApiResponse 
+            name='image' type='file' id='fileInput'}}
           </div>
           <div class="file-path-wrapper">
-            <input class="file-path validate" type="text" placeholder="Upload one file">
+            <input class="file-path validate" type="text" 
+            placeholder="(Ajoutez une image)">
           </div>
         </div>
-        <button type="submit" disabled={{waitingForApiResponse}} class="btn btn-primary">{{ getSubmit }}</button>
-        <button type="reset" class="btn btn-default">{{ getReset }}</button>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="reset" class="btn btn-default">Recommencer</button>
       </fieldset>
     {{/autoForm}}
     </div>

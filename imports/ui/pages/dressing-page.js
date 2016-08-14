@@ -10,28 +10,27 @@ import { Images } from '../../api/images/images.js';
 import './dressing-page.html';
 import '../components/clothes-item.js';
 
+Template.Dressing_page.onCreated(function(){
+	Meteor.subscribe('clothes');
+	console.log("Subscribing to clothes");
+});
+
+var delay = 100;
+
+Template.Dressing_page.onRendered(function(){
+	$( document ).ready(function(){
+		$('body')
+			.velocity("fadeIn", { duration: 500 })
+    		.velocity({ opacity: 1 });
+	});
+});
+
 Template.Dressing_page.helpers({
-	userProfile: function() {
-		var profile = Profiles.findOne({ userId: Meteor.userId() });
-		return profile;
-	},
-	getClothImage: function(clothId) {
-		var item = Images.findOne({_id: clothId});
-		return item.url;
-	},
-	getThumbnail: function(imgUrl) {
-		var thumb = Imgur.toThumbnail(imgUrl, Imgur.BIG_SQUARE);
-		return thumb;
-	},
 	clothes() {
 		let clothes = Clothes.find(
-			{ owner: Meteor.userId() }, 
+			{ ownerId: Meteor.userId() }, 
 			{ sort: { createdAt: -1 } }
 		);
 		if(clothes) { return clothes }
-	},
-	getDressingName: function(){
-		var profile = Profiles.findOne({ userId: Meteor.userId() });
-		return profile.dressingName;
 	}
 });

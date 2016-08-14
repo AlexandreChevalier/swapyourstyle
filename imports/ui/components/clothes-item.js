@@ -6,10 +6,14 @@ import { Profiles } from '../../api/profiles/profiles.js';
 import './clothes-item.html';
 
 Template.Clothes_item.helpers({
-  getIllustration(clothImage) {
-    var item = Images.findOne({_id: clothImage});
-    var picture = Imgur.toThumbnail(item.url, Imgur.BIG_SQUARE);
-    return picture;
+  getIllustration(imageId) {
+    var item = Images.findOne({_id: imageId});
+    if(item){
+      var picture = Imgur.toThumbnail(item.url, Imgur.BIG_SQUARE);
+      return picture;
+    } else {
+      return "/images/clothes.jpg";
+    }
   },
   getOwnerUserName(userId){
   	var owner = Meteor.users.findOne({_id: userId});
@@ -17,25 +21,18 @@ Template.Clothes_item.helpers({
   },
   getCity(userId){
   	var info = Profiles.findOne({userId: userId});
-  	return info.address.city;
+  	if(info.address.city){ return info.address.city } 
+    else { return "Inconnu" }
   },
-  accessMessage(userId){
+  actionLabel(userId){
     var owner = Meteor.users.findOne({_id: userId});
-    if(owner){
-      return "Modifier l'offre";
-    }
-    else {
-      return "Consulter l'offre";
-    }
+    if(owner){ return "Modifier l'offre" }
+    else { return "Consulter l'offre" }
   },
-  accessRoute(cloth){
-    var owner = Meteor.users.findOne({_id: cloth.userId});
-    if(owner){
-      return "/edit/" + cloth._id;
-    }
-    else {
-      return "/viewCloth/" + cloth._id;
-    }
+  actionRoute(cloth){
+    var owner = Meteor.users.findOne({_id: cloth.ownerId});
+    if(owner){ return "/edit/" + cloth._id }
+    else { return "/viewCloth/" + cloth._id }
   }
 });
 

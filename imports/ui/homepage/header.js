@@ -20,7 +20,7 @@ Template.Header.onRendered(function(){
 });
 
 Template.Header.helpers({
-  'title': "Swap My Style"
+  'title': "Swap Your Style"
 });
 
 Template.links.helpers({

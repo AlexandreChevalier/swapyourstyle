@@ -1,14 +1,21 @@
 <template name="Dressing_page">
 	<div class="container dressing">
 		<div class="dressing-header">
-			<h2>Mon dressing</h2>
+			<!-- TODO : possibility to display a reactive input here for renaming -->
+			<h2>
+				{{#if currentUser.dressing_name}}
+					{{currentUser.dressing_name}}
+				{{else}}
+					Mon dressing
+				{{/if}}
+			</h2>
 			<a class="btn grey darken-3" href="/new">Nouveau vêtement</a>
 			<a class="btn grey darken-3" href="/updateDressing">Modifier le Dressing</a>
 		</div>
 		<br>
 		<div class="row">
-		{{#each cloth in clothes}}
-			{{> Clothes_item cloth=cloth}}
+		{{#each item in clothes}}
+			{{> Clothes_item cloth=item}}
 		{{/each}}
 		</div>
 	</div>

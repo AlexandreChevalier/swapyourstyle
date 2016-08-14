@@ -1,5 +1,5 @@
 <template name="Header">
-  <nav class="grey darken-3">
+  <nav class="top-menu">
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">{{title}}</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -17,8 +17,12 @@
   <li><a href="/women">Femme</a></li>
   <li><a href="/men">Homme</a></li>
   <li><a href="/dressing">{{dressing_label}}</a></li>
-  <li><a href="/editInfo">Mon Compte</a></li>
+  <li><a href="/account">Mon Compte</a></li>
   <li><a href="/blog">Blog</a></li>
-  <!-- Reactive useraccounts sign-in/logout button -->
-  <li>{{> atNavButton}}</li>
+  {{#if currentUser}}
+    <li><a href="/profile">{{currentUser.username}}</a></li>
+  {{else}}
+    <!-- Reactive useraccounts sign-in/logout button -->
+    <li>{{> atNavButton}}</li>
+  {{/if}}
 </template>

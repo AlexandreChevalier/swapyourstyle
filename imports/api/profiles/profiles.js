@@ -7,15 +7,13 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const Profiles = new Mongo.Collection('profiles');
 
 if (Meteor.isServer) {
-  // Only publish infos that are public or belong to the current user
-  Meteor.publish('profiles', function imagesPublication() {
-    return Profiles.find({
-      $or: [
-        { private: { $ne: true } },
-        { owner: this.userId },
-      ],
-    });
-  });
+  Meteor.publish('profiles', () => Profiles.find());
+  console.log("Publishing profiles");
+}
+
+if (Meteor.isClient) {
+  Meteor.subscribe('profiles');
+  console.log("Subscribing to profiles");
 }
 
 /* Address sub-schema definition */
@@ -40,6 +38,7 @@ addressSchema = new SimpleSchema({
   }
 });
 
+/* Profiles schema definition */
 Profiles.schema = new SimpleSchema({
   'userId': {
     type: String
@@ -110,11 +109,16 @@ Profiles.schema = new SimpleSchema({
 Profiles.attachSchema(Profiles.schema);
 
 Profiles.allow({
-  // Checking user can update his infos
-  update: function(userId, doc) {
-    return doc && (userId === doc.userId);
-  },
   insert: function(userId, doc) {
-    return false;
-  }
+    // only allow inserting if you are logged in
+    return !! userId;
+  },
+  update: function(userId, doc) {
+    // only allow updating if you are logged in
+    return !! userId; 
+  },
+  remove: function(userId, doc) {
+    // only allow removing if you are logged in
+    return !! userId; 
+  },
 });

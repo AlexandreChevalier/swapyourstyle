@@ -11,24 +11,28 @@ import { clothes_properties }
 export const Clothes = new Mongo.Collection('clothes');
 
 if (Meteor.isServer) {
-  Clothes._ensureIndex({ name:1, theme:1, size:1 });
   Meteor.publish('clothes', () => Clothes.find());
   console.log("Publishing clothes");
+  Clothes._ensureIndex({ name:1, theme:1, size:1 });
 }
+
 if (Meteor.isClient) {
-  Meteor.subscribe('clothes');
-  console.log("Subscribing to clothes");
+  // Meteor.subscribe('clothes');
+  // console.log("Subscribing to clothes");
 }
 
 /* Clothes schema definition */
 Clothes.schema = new SimpleSchema({
-  'ownerId': { type: String },
-  'name': {
+  "ownerId" : {
+    type: String,
+    autoValue: function () { return this.userId }
+  },
+  "name": {
     type: String,
     optional: true,
     label: T9n.get("Cloth Name")
   },
-  'type': {
+  "type": {
     type: String,
     autoform: {
       type: "select",
@@ -38,7 +42,7 @@ Clothes.schema = new SimpleSchema({
     optional: true,
     label: T9n.get("Cloth Type")
   },
-  'theme': {
+  "theme": {
     type: String,
     autoform: {
       type: "select",
@@ -48,7 +52,7 @@ Clothes.schema = new SimpleSchema({
     optional: true,
     label: T9n.get("Cloth Theme")
   },
-  'color': {
+  "color": {
     type: String,
     autoform: {
       type: "select",
@@ -58,7 +62,7 @@ Clothes.schema = new SimpleSchema({
     optional: true,
     label: T9n.get("Cloth Color")
   },
-  'gender': {
+  "gender": {
     type: String,
     autoform: {
       type: "select",
@@ -68,50 +72,62 @@ Clothes.schema = new SimpleSchema({
     optional: true,
     label: T9n.get("Cloth Gender")
   },
-  'size': {
-    type: String,
+  "allowSize": {
+    type: Boolean,
     autoform: {
-      type: "select",
-      firstOption: "(Choisissez une taille)",
-      options: function () { return properties.sizes }
+      type:"switch",
+      trueLabel:"Oui",
+      falseLabel:"Non"
+    },
+    autoValue: function () { return false },
+    optional: true,
+    label: "Indiquer une taille ?",
+
+  },
+  "size": {
+    type: Number,
+    max: 54,
+    min: 32,
+    autoform: {
+      type: "noUiSlider",
+      noUiSliderOptions: {
+        start: 34,
+        step: 2,
+      },  
+      noUiSlider_pipsOptions: {
+        mode: 'steps',
+        density: 2,
+      }
     },
     optional: true,
     label: T9n.get("Cloth Size")
   },
-  'image': {
+  "image": {
     type: String,
     optional: true,
     label: T9n.get("Cloth Image")
   },
-  'description': {
+  "description": {
     type: String,
     optional: true,
     label: T9n.get("Cloth Description")
   },
-  'disponibility': {
-    type: [Date],
-    optional: true,
-    label: T9n.get("Disponibility"),
-    autoform: {
-      type:"pickadate",
-      pickadateOptions: {
-        multiple: true,
-        selectYears: true,
-        selectMonths: true,
-        format: "dd mmmm yyyy"
-      }
-    }
-  },
-  'price': {
+  "price": {
     type: Number,
+    max: 100,
+    min: 1,
     decimal: true,
-    optional: true,
     autoform: {
-      afFieldInput: {
-        type: "range",
-        min: 1,
-        max: 150,
-        step: 0.5
+      type: "noUiSlider",
+      noUiSliderOptions: {
+        start: 10,
+        connect: 'lower',
+        step: .5,
+      },
+      noUiSlider_pipsOptions: {
+        mode: 'values',
+        values: [1, 100],
+        density: 25,
       }
     },
     label: T9n.get("Cloth Price")

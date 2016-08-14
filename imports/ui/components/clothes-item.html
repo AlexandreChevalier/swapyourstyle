@@ -1,10 +1,10 @@
 <template name="Clothes_item">
-  <div class="col s12 m4 l3 cloth-item">
+  <div class="col s6 m4 l3 cloth-item">
     <div class="card grey darken-3">
 
       <div class="card-image center-align">
         <div class="img-wrapper">
-          <img class="activator" src="{{getIllustration(cloth.image)}}">
+          <img class="activator" src="{{getIllustration(cloth.imageId)}}">
           <!-- TODO : is active helper -->
         </div>
       </div>
@@ -14,7 +14,7 @@
           <span class="white-text thin">{{cloth.price}}€/j</span>
         </div>
         <span class="card-title white-text truncate">{{cloth.name}}</span>
-        <p class="white-text thin">{{cloth.description}}</p>
+        <p class="white-text thin">Description : {{cloth.description}}</p>
       </div>
 
       <div class="card-reveal">
@@ -27,13 +27,15 @@
           <br>
           Prix : {{cloth.price}}€ / jour de location
           <br>
-          Propriétaire : {{getOwnerUserName(cloth.owner)}} (voir son dressing)
-          Emplacement : {{getCity(cloth.owner)}}
+          Propriétaire : {{getOwnerUserName(cloth.ownerId)}} (voir son dressing)
+          Emplacement : {{getCity(cloth.ownerId)}}
         </p>
       </div>
 
       <div class="card-action center-align">
-        <a class="white-text center-align" href="{{ accessRoute(cloth) }}">{{ accessMessage(cloth.owner) }}</a>
+        <a class="white-text center-align" href="{{ actionRoute(cloth) }}">
+          {{ actionLabel(cloth.ownerId) }}
+        </a>
       </div>
     </div>
   </div>

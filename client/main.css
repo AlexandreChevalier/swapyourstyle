@@ -16,6 +16,10 @@ main {
 	flex: 1 0 auto;
 }
 
+.top-menu {
+	background-color: rgb(100,152,254);
+}
+
 .nav-wrapper {
 	padding-left: 20px;
 }
@@ -31,6 +35,10 @@ main {
 
 .parallax-container {
 	height: 400px;
+}
+
+#search-button {
+	background-color: rgb(100,152,254);
 }
 
 .row .col.s12 .card-image {
@@ -58,19 +66,122 @@ footer.page-footer {
 }
 
 .cloth-item .price {
-	position: relative;
-	margin-top: 0px;
 	font-size: 34px;
+	min-width: 150px;
+	padding: 0 1rem;
 	text-transform: none;
-	z-index: 1;
 }
 
 .cloth-item .card-content {
 	padding-top: 0;
 	height: 150px;
 	overflow: hidden;
+	background-color: black;
 }
 
 .cloth-item .card-action {
 	background-color: #000;
 }
+
+.cloth-item .card-action a {
+	margin-right: 0 !important;
+}
+
+/* Forms label color */
+.form-group .dropdown-content li > span {
+	color: #000;
+}
+/* Label underline focus color */
+.form-group input[type=text]:focus {
+	border-bottom: 1px solid #000;
+	box-shadow: 0 1px 0 0 #000;
+}
+
+#insertClothForm fieldset {
+    padding: 1.6rem;
+    padding-top: 1.3rem;
+}
+
+#insertClothForm label {
+	font-size: 1rem;
+}
+
+#insertClothForm .control-label {
+	font-size: 1.2rem;
+	color: black;
+}
+
+#insertClothForm .switch-size {
+	display: inline-block;
+}
+
+#insertClothForm .size-value {
+	border: 1px solid black;
+	border-radius: 80px;
+	display: inline-block;
+	font-size: 23px;
+	line-height: 26px;
+	height: 48px;
+	margin-left: 10px;
+	margin-top: -20px;
+	padding: 10px;
+	text-align: center;
+	vertical-align: middle;
+	width: 48px;
+}
+
+#insertClothForm .size-slider {
+	margin-bottom: 60px;
+}
+
+#insertClothForm
+.switch label 
+input[type=checkbox]:checked + .lever:after {
+	background-color: #4CAF50;
+}
+
+#insertClothForm
+.switch label 
+input[type=checkbox]:checked + .lever {
+	background-color: rgb(126, 225, 130);
+}
+
+#insertClothForm .price-wrapper {
+	margin-bottom: 15px;
+	margin-top: 20px;
+	text-align: center;
+}
+
+#insertClothForm .price {
+	font-size: 34px;
+	min-width: 150px;
+	padding: 0 1rem;
+	text-transform: none;
+}
+
+#insertClothForm .price-slider {
+	margin-top: 10px;
+}
+
+#insertClothForm .noUi-connect {
+	background-color: #4CAF50;
+}
+
+#insertClothForm .size-control,
+#insertClothForm .price-control {
+	margin-top: 15px;
+}
+
+#insertClothForm .form-buttons {
+	margin-top: 15px;
+}
+
+#insertClothForm .form-buttons .btn {
+	margin-top: 5px;
+}
+/*TODO better media queries*/
+/*@media only screen and (min-width: 993px){
+	.dressing .cloth-item {
+		width: 50%;
+	}
+}*/

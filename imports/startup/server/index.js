@@ -1,7 +1,11 @@
 /**
  * Index entry point for server imports on startup
  */
+
+import { Clothes } from '../../api/clothes/clothes.js';
+SimpleSchema.debug = true;
 // import '../../api/clothes/server/publications.js';
+
 
 /* Example from todos-master project */
 // import '../../api/todos/methods.js';

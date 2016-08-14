@@ -1,12 +1,9 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { AccountsTemplates } from 'meteor/useraccounts:core';
-// TODO : enable when implementing custom accounts
-// import { AccountsTemplates } from 'meteor/useraccounts:core';
 import { Meteor } from 'meteor/meteor';
-import { Clothes } from '../../api/clothes/clothes.js';
 
-// Import to load these templates
+// Loading templates
 import '../../ui/layouts/app-body.js'; // main layout
 import '../../ui/pages/home-page.js';
 import '../../ui/pages/dressing-page.js';
@@ -15,14 +12,10 @@ import '../../ui/pages/clothes-add-page.js';
 import '../../ui/pages/clothes-edit-page.js';
 import '../../ui/pages/profile-edit-page.js';
 import '../../ui/pages/search.js';
-import '../../ui/pages/viewCloth.js';
-import '../../ui/pages/updateDressing.js';
+//import '../../ui/pages/viewCloth.js';
 
 // Import to override accounts templates
 import '../../ui/accounts/accounts-templates.js';
-
-// TODO : import other templates
-// TODO : put routes in appropriate groups  
 
 // Public routes group
 var exposed = FlowRouter.group({});
@@ -79,24 +72,12 @@ exposed.route('/dressing', {
 });
 
 // TODO :
-// check if loggedIn -> going to profile
-// if not loggedIn -> redirect to login page
-//
-// Route to current user's profile
-exposed.route('/updateDressing', {
-  name: 'updateDressing',
-  action: function() { 
-    BlazeLayout.render("App_body", {main: "updateDressing"});
-  }
-});
-
-// TODO :
 // check if loggedIn -> going to personal infos
 // if not loggedIn -> redirect to a presentation of features
 //                   \ or maybe : to login page 
 // Route to current user's dressing
-exposed.route('/editInfo', {
-  name: 'editInfo',
+exposed.route('/profile', {
+  name: 'edit-profile',
   action: function() { 
     BlazeLayout.render("App_body", {main: "Profile_edit_page"});
   }
@@ -131,18 +112,19 @@ FlowRouter.route('/search', {
   }
 });
 
-//route for viewing a cloth
-FlowRouter.route('/viewCloth/:_id', {
-  action: function(params){
-    var toShow = Clothes.findOne({_id: params._id});
-    if(toShow){
-      BlazeLayout.render("App_body", {main: 'viewCloth'});
-    }
-    else {
-      FlowRouter.go('/404');
-    }
-  }
-});
+// FIXME : proper cloth offer view
+// Route to view clothes page
+// FlowRouter.route('/view/:_id', {
+//   action: function(params){
+//     var toShow = Clothes.findOne({_id: params._id});
+//     if(toShow){
+//       BlazeLayout.render("App_body", {main: 'Clothes_view_page'});
+//     }
+//     else {
+//       FlowRouter.go('/404');
+//     }
+//   }
+// });
 
 // TODO : 404 page
 FlowRouter.notFound = {
