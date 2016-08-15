@@ -79,7 +79,7 @@ Clothes.schema = new SimpleSchema({
       trueLabel:"Oui",
       falseLabel:"Non"
     },
-    autoValue: function () { return false },
+    defaultValue: false,
     optional: true,
     label: "Indiquer une taille ?",
 

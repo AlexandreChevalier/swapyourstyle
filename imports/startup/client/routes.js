@@ -7,11 +7,11 @@ import { Meteor } from 'meteor/meteor';
 import '../../ui/layouts/app-body.js'; // main layout
 import '../../ui/pages/home-page.js';
 import '../../ui/pages/dressing-page.js';
-import '../../ui/pages/profile-page.js';
+import '../../ui/pages/search-page.js';
 import '../../ui/pages/clothes-add-page.js';
 import '../../ui/pages/clothes-edit-page.js';
+import '../../ui/pages/profile-page.js';
 import '../../ui/pages/profile-edit-page.js';
-import '../../ui/pages/search.js';
 //import '../../ui/pages/viewCloth.js';
 
 // Import to override accounts templates
@@ -105,10 +105,10 @@ exposed.route('/edit/:_id', {
   }
 });
 
-// Default route for cloth searching
+// Default route for clothes searching
 FlowRouter.route('/search', {
   action: function(){
-    BlazeLayout.render("App_body", {main: 'search'});
+    BlazeLayout.render("App_body", {main: 'Search_page'});
   }
 });
 

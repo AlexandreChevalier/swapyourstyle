@@ -10,19 +10,32 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Clothes } from '../../api/clothes/clothes.js';
 import './clothes-add-page.html';
 
+var defaultPrice = 10;
+var defaultSize = 34;
+
 Template.Clothes_add_page.onCreated(function () {
   // Current price on the price slider 
-  this.priceValue = new ReactiveVar(10);
+  this.priceValue = new ReactiveVar(defaultPrice);
   // Current size on the size slider 
-  this.sizeValue = new ReactiveVar(34);
+  this.sizeValue = new ReactiveVar(defaultSize);
   // Session.set("waitingForApiResponse", false);
   // Session.set("imageCode", "");
   // Session.set("image", []);
 });
 
 Template.Clothes_add_page.onRendered(function () {
-  // Loading material selects
-  $('select').material_select();
+  $( document ).ready(function(){
+    // Switch to off on page load
+    if($("#allowSize").is(":checked")){
+      $("#allowSize").click();
+    }
+    // Loading material selects
+    $('select').material_select();
+    // Animations
+    $('#main')
+      .velocity("fadeIn", { duration: 500 })
+      .velocity({ opacity: 1 });
+  });
 });
 
 Template.Clothes_add_page.helpers({
@@ -30,7 +43,7 @@ Template.Clothes_add_page.helpers({
   clothes() { return Clothes },
   // Reactive helpers for sliders
   currentSize() { return Template.instance().sizeValue.get() },
-  currentPrice() { return Template.instance().priceValue.get() }
+  currentPrice() { return Template.instance().priceValue.get() },
 });
 
 Template.Clothes_add_page.events({
@@ -42,9 +55,18 @@ Template.Clothes_add_page.events({
   "change #sizeSlider": function(event, template) {
     template.sizeValue.set(parseFloat($('#sizeSlider .nouislider').val()));
   },
+  // On reset button click, force values reset 
   "click .reset-btn": function(event, template) {
-    template.priceValue.set(10);
-    template.sizeValue.set(34);
+    // Reset reactive values for sliders
+    template.priceValue.set(defaultPrice);
+    template.sizeValue.set(defaultSize);
+    // Reset sliders
+    $('#priceSlider .nouislider').val(defaultPrice);
+    $('#sizeSlider .nouislider').val(defaultSize);
+    // Reset switch to unchecked
+    if($("#allowSize").is(":checked")){
+      $("#allowSize").click();
+    }
   }
 
   // 'change #fileInput': function (e, template) {

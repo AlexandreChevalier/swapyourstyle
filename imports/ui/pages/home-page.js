@@ -13,28 +13,29 @@ import '../homepage/theme-item.js';
 import './userData.js';
 
 Template.Home_page.onCreated(function(){
-	// this.state = new ReactiveDict();
-	// Meteor.subscribe('userInfos');
-	// Meteor.subscribe('clothes');
-	// Meteor.subscribe('images');
+  // this.state = new ReactiveDict();
+  // Meteor.subscribe('userInfos');
+  // Meteor.subscribe('clothes');
+  // Meteor.subscribe('images');
 });
 
 Template.Home_page.onRendered(function(){
-	$( document ).ready(function(){
-		// Loading parallax for image blocks
-		$(".parallax").parallax();
-		$('body')
-			.velocity("fadeIn", { duration: 500 })
-    		.velocity({ opacity: 1 });
-	});
+  // Animations
+  $('#main')
+    .velocity("fadeIn", { duration: 200 })
+    .velocity({ opacity: 1 });
+  $( document ).ready(function(){
+    // Loading parallax for image blocks
+    $(".parallax").parallax();
+  });
 });
 
 Template.Home_page.helpers({
-	// getAddress: function(){
-	// 	var location = Geolocation.currentLocation().coords;
-	// 	Meteor.call('getLocation', location.latitude, location.longitude, function(err, response) {
-	// 		Session.set('location', response[0]);
-	// 	});
-	// 	return Session.get('location').formattedAddress;
-	// }
+  // getAddress: function(){
+  //  var location = Geolocation.currentLocation().coords;
+  //  Meteor.call('getLocation', location.latitude, location.longitude, function(err, response) {
+  //    Session.set('location', response[0]);
+  //  });
+  //  return Session.get('location').formattedAddress;
+  // }
 });
