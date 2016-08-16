@@ -25,8 +25,17 @@ Template.Header.helpers({
 
 Template.links.helpers({
   dressing_label: function() {
-    if(Meteor.userId()){
+    if(Meteor.userId()) {
       return "Mon dressing";
     } else { return "Créer mon dressing" }
+  },
+  profile_label: function() {
+    if(Meteor.userId()) {
+      if(Meteor.user().username) { 
+        return "@"+Meteor.user().username; 
+      } 
+      else { return "@Utilisateur" }
+    }
+    else { return "@Déconnecté" }
   },
 });

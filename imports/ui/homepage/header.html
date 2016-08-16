@@ -20,7 +20,7 @@
   <li><a href="/account">Mon Compte</a></li>
   <li><a href="/blog">Blog</a></li>
   {{#if currentUser}}
-    <li><a href="/profile">{{currentUser.username}}</a></li>
+    <li><a href="/profile">{{profile_label}}</a></li>
   {{else}}
     <!-- Reactive useraccounts sign-in/logout button -->
     <li>{{> atNavButton}}</li>
