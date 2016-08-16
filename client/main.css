@@ -1,9 +1,9 @@
- CSS declarations go here */
+/* CSS declarations go here */
 
 @font-face {
     font-family: Banana Yeti; 
     src:
-    url("/fonts/BananaYeti-Extrabold Trial.ttf")
+    url("/fonts/BananaYeti-Extrabold Trial.ttf");
 }
 
 body {
