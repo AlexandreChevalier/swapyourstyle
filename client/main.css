@@ -51,6 +51,20 @@ main {
 footer.page-footer {
 }
 
+/*----------------*/
+/* dressing style */
+/*----------------*/
+.dressing-header
+.new-cloth-btn,
+.dressing-header
+.edit-dressing-btn {
+	background-color: rgb(57,92,164);
+}
+
+/*--------------------*/
+/* end dressing style */
+/*--------------------*/
+
 /*------------------*/
 /* cloth item style */
 /*------------------*/

@@ -1,8 +1,11 @@
 /**
  * Index entry point for server imports on startup
  */
+import { Profiles } from '../../api/profiles/profiles.js';
 
 import { Clothes } from '../../api/clothes/clothes.js';
+import { Dressings } from '../../api/dressings/dressings.js';
+
 SimpleSchema.debug = true;
 // import '../../api/clothes/server/publications.js';
 

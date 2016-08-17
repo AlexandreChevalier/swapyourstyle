@@ -20,9 +20,10 @@ Template.Clothes_item.helpers({
   	return owner.username;
   },
   getCity(userId){
-  	var info = Profiles.findOne({userId: userId});
-  	if(info.address.city){ return info.address.city } 
-    else { return "Inconnu" }
+  	return "Inconnu";
+    // var info = Profiles.findOne({userId: userId});
+  	// if(info.address.city){ return info.address.city } 
+    //  else { return "Inconnu" }
   },
   actionLabel(userId){
     var owner = Meteor.users.findOne({_id: userId});

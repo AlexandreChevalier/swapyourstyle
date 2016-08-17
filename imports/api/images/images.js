@@ -8,15 +8,18 @@ export const Images = new Mongo.Collection('images');
 
 if (Meteor.isServer) {
   Meteor.publish('images', function(){
-    Images.find();
+    var data = Images.find();
+    if(data){
+      console.log("Publishing Images");
+      return data;
+    }
     return this.ready();
-    console.log("Images published");
   });
 }
 
 if (Meteor.isClient) {
   Meteor.subscribe('images');
-  console.log("Subscribing to images");
+  console.log("Subscribing to Images");
 }
 
 /* Images schema definition */

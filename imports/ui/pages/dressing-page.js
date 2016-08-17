@@ -11,8 +11,8 @@ import './dressing-page.html';
 import '../components/clothes-item.js';
 
 Template.Dressing_page.onCreated(function(){
-  Meteor.subscribe('clothes');
-  console.log("Subscribing to clothes");
+  Meteor.subscribe('personal_clothes');
+  console.log("Subscribing to personal clothes");
 });
 
 var delay = 100;

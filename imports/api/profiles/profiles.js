@@ -8,15 +8,18 @@ export const Profiles = new Mongo.Collection('profiles');
 
 if (Meteor.isServer) {
   Meteor.publish('profiles', function(){
-    Profiles.find({ "userId" : this.userId });
+    var data = Profiles.find();
+    if(data){
+      console.log("Publishing Profiles");
+      return data;
+    }
     return this.ready();
-    console.log("Profiles published");
   });
 }
 
 if (Meteor.isClient) {
   Meteor.subscribe('profiles');
-  console.log("Subscribing to profiles");
+  console.log("Subscribing to Profiles");
 }
 
 /* Address sub-schema definition */

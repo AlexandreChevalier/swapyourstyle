@@ -8,15 +8,18 @@ export const Dressings = new Mongo.Collection('dressings');
 
 if (Meteor.isServer) {
   Meteor.publish('dressings', function(){
-    Dressings.find({ "owner" : this.userId });
+    var data = Dressings.find();
+    if(data){
+      console.log("Publishing Dressings");
+      return data;
+    }
     return this.ready();
-    console.log("Dressings published");
   });
 }
 
 if (Meteor.isClient) {
   Meteor.subscribe('dressings');
-  console.log("Subscribing to dressings");
+  console.log("Subscribing to Dressings");
 }
 
 /* Profiles schema definition */
