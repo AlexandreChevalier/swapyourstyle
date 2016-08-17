@@ -7,8 +7,11 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const Profiles = new Mongo.Collection('profiles');
 
 if (Meteor.isServer) {
-  Meteor.publish('profiles', () => Profiles.find());
-  console.log("Publishing profiles");
+  Meteor.publish('profiles', function(){
+    Profiles.find({ "userId" : this.userId });
+    return this.ready();
+    console.log("Profiles published");
+  });
 }
 
 if (Meteor.isClient) {
@@ -18,21 +21,21 @@ if (Meteor.isClient) {
 
 /* Address sub-schema definition */
 addressSchema = new SimpleSchema({
-  'street': {
+  "street": {
     type: String,
     label: T9n.get("Street")
   },
-  'postalCode': {
+  "postalCode": {
     type: String,
     max: 5,
     regEx:/^\d+$/,
     label: T9n.get("Postal Code")
   },
-  'city': {
+  "city": {
     type: String,
     label: T9n.get("City")
   },
-  'country': {
+  "country": {
     type: String,
     label: T9n.get("Country")
   }
@@ -40,20 +43,20 @@ addressSchema = new SimpleSchema({
 
 /* Profiles schema definition */
 Profiles.schema = new SimpleSchema({
-  'userId': {
+  "userId": {
     type: String
   },
-  'firstName': {
+  "firstName": {
     type: String,
     optional: true,
     label: T9n.get("Firstname")
   },
-  'lastName': {
+  "lastName": {
     type: String,
     optional: true,
     label: T9n.get("Lastname")
   },
-  'birthdate': {
+  "birthdate": {
     type: Date,
     optional: true,
     label: T9n.get("Birthdate"),
@@ -66,7 +69,7 @@ Profiles.schema = new SimpleSchema({
       }
     }
   },
-  'gender': {
+  "gender": {
       type: String,
     autoform: {
       type: "select",
@@ -81,25 +84,25 @@ Profiles.schema = new SimpleSchema({
     },
     optional: true
   },
-  'phoneNumber' : {
+  "phoneNumber" : {
     type: String,
     max: 10,
     regEx: /^\d+$/,
     label: T9n.get("Phone Number"),
     optional: true
   },
-  'bio': {
+  "bio": {
     type: String,
     max: 500,
     optional: true,
     label: T9n.get("Bio")
   },
-  'address': {
+  "address": {
     type: addressSchema,
     optional: true,
     label: T9n.get("Address")
   },
-  'dressingName': {
+  "dressingName": {
     type:String,
     optional: true,
     label: T9n.get("Dressing Name")

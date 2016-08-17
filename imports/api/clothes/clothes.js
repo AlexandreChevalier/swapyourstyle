@@ -11,8 +11,11 @@ import { clothes_properties }
 export const Clothes = new Mongo.Collection('clothes');
 
 if (Meteor.isServer) {
-  Meteor.publish('clothes', () => Clothes.find());
-  console.log("Publishing clothes");
+  Meteor.publish('clothes', function(){
+    Clothes.find();
+    return this.ready();
+    console.log("Clothes published");
+  });
   Clothes._ensureIndex({ name:1, theme:1, size:1 });
 }
 

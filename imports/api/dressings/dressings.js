@@ -2,36 +2,36 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 /**
- * Images collection definition.
+ * Dressings collection definition.
  */
-export const Images = new Mongo.Collection('images');
+export const Dressings = new Mongo.Collection('dressings');
 
 if (Meteor.isServer) {
-  Meteor.publish('images', function(){
-    Images.find();
+  Meteor.publish('dressings', function(){
+    Dressings.find({ "owner" : this.userId });
     return this.ready();
-    console.log("Images published");
+    console.log("Dressings published");
   });
 }
 
 if (Meteor.isClient) {
-  Meteor.subscribe('images');
-  console.log("Subscribing to images");
+  Meteor.subscribe('dressings');
+  console.log("Subscribing to dressings");
 }
 
-/* Images schema definition */
-Images.schema = new SimpleSchema({
-  "url": {
+/* Profiles schema definition */
+Dressings.schema = new SimpleSchema({
+  "owner": {
     type: String
   },
-  "deleteHash": {
+  "name": {
     type: String
   }
 });
 
-Images.attachSchema(Images.schema);
+Dressings.attachSchema(Dressings.schema);
 
-Images.allow({
+Dressings.allow({
   insert: function(userId, doc) {
     // only allow inserting if you are logged in
     return !! userId;
