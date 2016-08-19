@@ -1,17 +1,16 @@
-/**
- * Created by Marc on 20/06/2016.
- */
 import { Template } from 'meteor/templating';
 
 import { Clothes } from '../../api/clothes/clothes.js';
-import { Images } from '../../api/images/images.js';
-import { Session } from 'meteor/session';
+import { clothes_properties } 
+  from '../../../lib/properties/clothes_properties.js';
+  var properties = clothes_properties;
+
 import './search-page.html';
-import '../components/themeMenu.js';
-import '../components/categoryMenu.js';
-import '../components/sizeMenu.js';
-import '../components/genderMenu.js';
-import '../components/colorMenu.js';
+
+Template.Search_page.onRendered(function(){
+	Meteor.subscribe('clothes');
+	console.log("Subscribing to clothes");
+});
 
 Template.Search_page.onRendered(function(){
   $( document ).ready(function(){
@@ -25,5 +24,11 @@ Template.Search_page.onRendered(function(){
 });
 
 Template.Search_page.helpers({
-
+  clothes() {
+    let clothes = Clothes.find(
+      //{ ownerId: Meteor.userId() }, 
+      { sort: { createdAt: -1 } }
+    );
+    if(clothes) { return clothes }
+  }
 });

@@ -73,7 +73,7 @@ footer.page-footer {
 }
 
 .cloth-item .img-wrapper {
-	height: 180px;
+	height: 130px;
 	overflow: hidden;	
 }
 
@@ -83,7 +83,7 @@ footer.page-footer {
 
 .cloth-item .price {
 	font-size: 34px;
-	min-width: 150px;
+	margin-top: -30px;
 	padding: 0 1rem;
 	text-transform: none;
 }

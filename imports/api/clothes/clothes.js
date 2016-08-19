@@ -40,6 +40,7 @@ Clothes.schema = new SimpleSchema({
   "name": {
     type: String,
     optional: true,
+    //defaultValue: null,
     label: T9n.get("Cloth Name")
   },
   "type": {
@@ -50,6 +51,7 @@ Clothes.schema = new SimpleSchema({
       options: function () { return properties.types }
     },
     optional: true,
+    //defaultValue: null,
     label: T9n.get("Cloth Type")
   },
   "theme": {
@@ -60,6 +62,7 @@ Clothes.schema = new SimpleSchema({
       options: function () { return properties.themes }
     },
     optional: true,
+    //defaultValue: null,
     label: T9n.get("Cloth Theme")
   },
   "color": {
@@ -70,6 +73,7 @@ Clothes.schema = new SimpleSchema({
       options: function () { return properties.colors }
     },
     optional: true,
+    //defaultValue: null,
     label: T9n.get("Cloth Color")
   },
   "gender": {
@@ -80,6 +84,7 @@ Clothes.schema = new SimpleSchema({
       options: function () { return properties.genders }
     },
     optional: true,
+    //defaultValue: null,   
     label: T9n.get("Cloth Gender")
   },
   "allowSize": {
@@ -91,8 +96,8 @@ Clothes.schema = new SimpleSchema({
     },
     defaultValue: false,
     optional: true,
+    //defaultValue: null,
     label: "Indiquer une taille ?",
-
   },
   "size": {
     type: Number,
@@ -110,6 +115,7 @@ Clothes.schema = new SimpleSchema({
       }
     },
     optional: true,
+    //defaultValue: null,
     label: T9n.get("Cloth Size")
   },
   "image": {
@@ -120,7 +126,8 @@ Clothes.schema = new SimpleSchema({
   "description": {
     type: String,
     optional: true,
-    label: T9n.get("Cloth Description")
+    //defaultValue: null,
+    label: T9n.get("Cloth Description"),
   },
   "price": {
     type: Number,
@@ -140,7 +147,8 @@ Clothes.schema = new SimpleSchema({
         density: 25,
       }
     },
-    label: T9n.get("Cloth Price")
+    //defaultValue: null,
+    label: T9n.get("Cloth Price"),
   },
 });
 

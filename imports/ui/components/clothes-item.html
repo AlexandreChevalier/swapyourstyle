@@ -1,5 +1,5 @@
 <template name="Clothes_item">
-  <div class="col s6 m4 l3 cloth-item">
+  <div class="col s12 m6 l3 cloth-item">
     <div class="card grey darken-3">
 
       <div class="card-image center-align">
@@ -7,12 +7,12 @@
           <img class="activator" src="{{getIllustration(cloth.imageId)}}">
           <!-- TODO : is active helper -->
         </div>
-      </div>
-
-      <div class="card-content center-align">        
         <div class="price green btn-large">
           <span class="white-text thin">{{cloth.price}}€/j</span>
         </div>
+      </div>
+
+      <div class="card-content center-align">        
         <span class="card-title white-text truncate">{{cloth.name}}</span>
         <p class="white-text thin">Description : {{cloth.description}}</p>
       </div>
