@@ -25,10 +25,7 @@ Template.Search_page.onRendered(function(){
 
 Template.Search_page.helpers({
   clothes() {
-    let clothes = Clothes.find(
-      //{ ownerId: Meteor.userId() }, 
-      { sort: { createdAt: -1 } }
-    );
+    let clothes = Clothes.find();
     if(clothes) { return clothes }
   }
 });

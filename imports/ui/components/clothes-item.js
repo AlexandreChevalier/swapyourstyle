@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Images } from '../../api/images/images.js';
 import { Profiles } from '../../api/profiles/profiles.js';
+import { Clothes } from '../../api/clothes/clothes.js';
 
 import './clothes-item.html';
 
@@ -32,8 +33,8 @@ Template.Clothes_item.helpers({
   },
   actionRoute(cloth){
     var owner = Meteor.users.findOne({_id: cloth.ownerId});
-    if(owner){ return "/edit/" + cloth._id }
-    else { return "/viewCloth/" + cloth._id }
+    if(owner){ return cloth._id + "/edit" }
+    else { return cloth._id + "/view" }
   }
 });
 

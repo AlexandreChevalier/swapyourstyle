@@ -1,9 +1,9 @@
 /* CSS declarations go here */
 
 @font-face {
-    font-family: Banana Yeti; 
-    src:
-    url("/fonts/BananaYeti-Extrabold Trial.ttf");
+	font-family: Banana Yeti; 
+	src:
+	url("/fonts/BananaYeti-Extrabold Trial.ttf");
 }
 
 body {
@@ -28,20 +28,32 @@ main {
 	font-size: 40px;
 }
 
+.main-title {
+	font-family: Banana Yeti;
+	font-size: 5rem;
+}
+
+#at-nav-button { background-color: rgb(57,92,164) }
+#at-nav-button:hover { background-color: rgb(100,152,254) }
+
+#search-button { background-color: rgb(57,92,164) }
+#search-button:hover { background-color: rgb(100,152,254) }
+
 .row.center h5 {
 	color: white;
 }
 
+#index-banner {
+	background-color: black;
+	opacity: 0.9;
+}
+
+.main-image-container {
+	opacity: 0.4;
+}
+
 .parallax-container {
 	height: 400px;
-}
-
-#search-button {
-	background-color: rgb(100,152,254);
-}
-
-.row .col.s12 .card-image {
-	/*max-height: 120px;*/
 }
 
 .info-block {
@@ -61,6 +73,13 @@ footer.page-footer {
 	background-color: rgb(57,92,164);
 }
 
+.dressing-header
+.new-cloth-btn:hover,
+.dressing-header
+.edit-dressing-btn:hover {
+	background-color: rgb(100,152,254);
+}
+
 /*--------------------*/
 /* end dressing style */
 /*--------------------*/
@@ -69,11 +88,12 @@ footer.page-footer {
 /* cloth item style */
 /*------------------*/
 .cloth-item .card-image {
+	display: flex;
 	height: 50%;
+	justify-content:center;
 }
 
 .cloth-item .img-wrapper {
-	height: 130px;
 	overflow: hidden;	
 }
 
@@ -82,9 +102,10 @@ footer.page-footer {
 }
 
 .cloth-item .price {
+	bottom: -25px;
 	font-size: 34px;
-	margin-top: -30px;
 	padding: 0 1rem;
+	position: absolute;
 	text-transform: none;
 }
 
@@ -105,6 +126,27 @@ footer.page-footer {
 /*----------------------*/
 /* end cloth item style */
 /*----------------------*/
+
+.view-cloth-form .card {
+	padding: 1.6rem;
+	padding-top: 1.6rem;
+	width: 100%;
+}
+
+.row.view-cloth-content {
+	margin-bottom: 0;
+}
+
+.view-cloth-form .card-image {
+  align-items: center;
+  display: flex;
+  height: 300px;
+  justify-content: center;
+}
+
+.view-cloth-attributes {
+	text-align: left;
+}
 
 #insertClothForm 
 .form-group input[type=text],

@@ -1,15 +1,10 @@
-<!--Created by Marc on 20/06/2016.-->
 <template name="Search_page">
-	<div class="container">
-<!-- 		{{#each navItems}}
-			{{> Template.dynamic template=this}}
-		{{/each}}
-		<h1>{{ getTradClothes }}</h1> -->
-		<div class="row">
-		<h1>Vêtements disponibles</h1>
-	 	{{#each cloth in clothes}}
-			{{> Clothes_item cloth=cloth}}
-		{{/each}}
-		</div>
-	</div>
+  <div class="container search-results">
+    <h3>Vêtements disponibles dans la région</h3>
+    <div class="row">
+    {{#each item in clothes}}
+      {{> Clothes_item cloth=item}}
+    {{/each}}
+    </div>
+  </div>
 </template>

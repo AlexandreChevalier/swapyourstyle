@@ -10,10 +10,21 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Clothes } from '../../api/clothes/clothes.js';
 import './clothes-add-page.html';
 
+// Default behavior : insert form
+var isUpdate = false;
 var defaultPrice = 10;
 var defaultSize = 34;
 
 Template.Clothes_add_page.onCreated(function () {
+  clothToUpdate = Clothes.findOne({ "_id":FlowRouter.current().params._id });
+  // If this template is loaded as an unpdate
+  if(FlowRouter.current().route.name == "edit-clothes"){
+    isUpdate = true; // the behavior is update
+    defaultPrice = clothToUpdate.price;
+    if(clothToUpdate.allowSize){
+      defaultSize = clothToUpdate.size;
+    }
+  }
   // Current price on the price slider 
   this.priceValue = new ReactiveVar(defaultPrice);
   // Current size on the size slider 
@@ -35,6 +46,10 @@ Template.Clothes_add_page.onRendered(function () {
     $('#main')
       .velocity("fadeIn", { duration: 500 })
       .velocity({ opacity: 1 });
+    // Update form sliders
+    $('#priceSlider .nouislider').val(defaultPrice);
+    // FIXME : conditional on allowSize + switch on
+    //$('#sizeSlider .nouislider').val(defaultSize);
   });
 });
 
@@ -44,6 +59,26 @@ Template.Clothes_add_page.helpers({
   // Reactive helpers for sliders
   currentSize() { return Template.instance().sizeValue.get() },
   currentPrice() { return Template.instance().priceValue.get() },
+  /**
+   * Update form helpers
+   * When this form is called from a /:_id/edit route
+   * the form is reused as an update form
+   */
+  isUpdate(){ return isUpdate },
+  formType(){ 
+    if (isUpdate) { return "update" }
+    else { return "insert" }
+  },
+  clothToUpdate(){ 
+    return Clothes.find({ "_id":FlowRouter.current().params });
+  },
+  hasSize() { 
+    if(isUpdate){
+      return clothToUpdate.allowSize; 
+    } else {
+      return false;
+    }
+  },
 });
 
 Template.Clothes_add_page.events({

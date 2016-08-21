@@ -11,14 +11,6 @@ import { clothes_properties }
 export const Clothes = new Mongo.Collection('clothes');
 
 if (Meteor.isServer) {
-  Meteor.publish('personal_clothes', function(){
-    var data = Clothes.find({"ownerId":this.userId});
-    if(data){
-      console.log("Publishing personal Clothes");
-      return data;
-    }
-    return this.ready();
-  });
   Meteor.publish('clothes', function(){
     var data = Clothes.find();
     if(data){
@@ -27,8 +19,21 @@ if (Meteor.isServer) {
     }
     return this.ready();
   });
+  Meteor.publish('personal_clothes', function(){
+    var data = Clothes.find({"ownerId":this.userId});
+    if(data){
+      console.log("Publishing personal Clothes");
+      return data;
+    }
+    return this.ready();
+  });
   // MongoDB indexing following fields 
   Clothes._ensureIndex({ name:1, theme:1, size:1 });
+}
+
+if (Meteor.isClient) {
+  Meteor.subscribe('clothes');
+  console.log("Subscribing to Clothes from import");
 }
 
 /* Clothes schema definition */

@@ -21,13 +21,11 @@
         <span class="card-title grey-text text-darken-4">{{cloth.name}}<i class="material-icons right">close</i></span>
         <p>
           {{cloth.description}}
-          <br><br>
-          Disponibilité : demain
-          <!-- {{cloth.date}} -->
           <br>
           Prix : {{cloth.price}}€ / jour de location
           <br>
           Propriétaire : {{getOwnerUserName(cloth.ownerId)}} (voir son dressing)
+          <br>
           Emplacement : {{getCity(cloth.ownerId)}}
         </p>
       </div>

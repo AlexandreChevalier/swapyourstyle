@@ -21,9 +21,9 @@ Template.Home_page.onCreated(function(){
 
 Template.Home_page.onRendered(function(){
   // Animations
-  $('#main')
+/*  $('#main')
     .velocity("fadeIn", { duration: 200 })
-    .velocity({ opacity: 1 });
+    .velocity({ opacity: 1 });*/
   $( document ).ready(function(){
     // Loading parallax for image blocks
     $(".parallax").parallax();

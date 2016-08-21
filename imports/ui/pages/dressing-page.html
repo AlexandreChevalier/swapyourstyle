@@ -1,22 +1,22 @@
 <template name="Dressing_page">
-	<div class="container dressing">
-		<div class="dressing-header">
-			<!-- TODO : possibility to display a reactive input here for renaming -->
-			<h2>
-				{{#if currentUser.dressing_name}}
-					{{currentUser.dressing_name}}
-				{{else}}
-					Mon dressing
-				{{/if}}
-			</h2>
-			<a class="btn new-cloth-btn" href="/new">Nouveau vêtement</a>
-			<a class="btn edit-dressing-btn" href="/updateDressing">Modifier le Dressing</a>
-		</div>
-		<br>
-		<div class="row">
-		{{#each item in clothes}}
-			{{> Clothes_item cloth=item}}
-		{{/each}}
-		</div>
-	</div>
+  <div class="container dressing">
+    <div class="dressing-header">
+      <!-- TODO : possibility to display a reactive input here for renaming -->
+      <h3>
+        {{#if currentUser.dressing_name}}
+          {{currentUser.dressing_name}}
+        {{else}}
+          Mon dressing
+        {{/if}}
+      </h3>
+      <a class="btn new-cloth-btn" href="/new">Nouveau vêtement</a>
+      <a class="btn edit-dressing-btn" href="/updateDressing">Modifier le Dressing</a>
+    </div>
+    <br>
+    <div class="row">
+    {{#each item in clothes}}
+      {{> Clothes_item cloth=item}}
+    {{/each}}
+    </div>
+  </div>
 </template>
