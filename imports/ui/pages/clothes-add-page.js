@@ -20,7 +20,8 @@ Template.Clothes_add_page.onCreated(function () {
   // If this template is loaded as an unpdate
   if(FlowRouter.current().route.name == "edit-clothes"){
     isUpdate = true; // the behavior is update
-    defaultPrice = clothToUpdate.price;
+
+    defaultPrice = reactivePrice;
     if(clothToUpdate.allowSize){
       defaultSize = clothToUpdate.size;
     }
@@ -71,13 +72,6 @@ Template.Clothes_add_page.helpers({
   },
   clothToUpdate(){ 
     return Clothes.find({ "_id":FlowRouter.current().params });
-  },
-  hasSize() { 
-    if(isUpdate){
-      return clothToUpdate.allowSize; 
-    } else {
-      return false;
-    }
   },
 });
 

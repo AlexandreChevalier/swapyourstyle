@@ -6,6 +6,10 @@ import { Clothes } from '../../api/clothes/clothes.js';
 
 import './clothes-item.html';
 
+Template.Clothes_item.onCreated(function () {
+
+});
+
 Template.Clothes_item.helpers({
   getIllustration(imageId) {
     var item = Images.findOne({_id: imageId});

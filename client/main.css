@@ -1,36 +1,36 @@
 /* CSS declarations go here */
 
 @font-face {
-	font-family: Banana Yeti; 
-	src:
-	url("/fonts/BananaYeti-Extrabold Trial.ttf");
+  font-family: Banana Yeti; 
+  src:
+  url("/fonts/BananaYeti-Extrabold Trial.ttf");
 }
 
 body {
-	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 main {
-	flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 .top-menu {
-	background-color: rgb(100,152,254);
+  background-color: rgb(100,152,254);
 }
 
 .nav-wrapper {
-	padding-left: 20px;
+  padding-left: 20px;
 }
 
 .brand-logo {
-	font-family: 'Banana Yeti';
-	font-size: 40px;
+  font-family: 'Banana Yeti';
+  font-size: 40px;
 }
 
 .main-title {
-	font-family: Banana Yeti;
-	font-size: 5rem;
+  font-family: Banana Yeti;
+  font-size: 5rem;
 }
 
 #at-nav-button { background-color: rgb(57,92,164) }
@@ -40,24 +40,24 @@ main {
 #search-button:hover { background-color: rgb(100,152,254) }
 
 .row.center h5 {
-	color: white;
+  color: white;
 }
 
 #index-banner {
-	background-color: black;
-	opacity: 0.9;
+  background-color: black;
+  opacity: 0.9;
 }
 
 .main-image-container {
-	opacity: 0.4;
+  opacity: 0.4;
 }
 
 .parallax-container {
-	height: 400px;
+  height: 400px;
 }
 
 .info-block {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 footer.page-footer {
@@ -70,14 +70,14 @@ footer.page-footer {
 .new-cloth-btn,
 .dressing-header
 .edit-dressing-btn {
-	background-color: rgb(57,92,164);
+  background-color: rgb(57,92,164);
 }
 
 .dressing-header
 .new-cloth-btn:hover,
 .dressing-header
 .edit-dressing-btn:hover {
-	background-color: rgb(100,152,254);
+  background-color: rgb(100,152,254);
 }
 
 /*--------------------*/
@@ -88,53 +88,56 @@ footer.page-footer {
 /* cloth item style */
 /*------------------*/
 .cloth-item .card-image {
-	display: flex;
-	height: 50%;
-	justify-content:center;
+  display: flex;
+  justify-content:center;
 }
 
 .cloth-item .img-wrapper {
-	overflow: hidden;	
+  overflow: hidden;
+  align-items: center;
+  display: flex;
+  height: 200px;
+  justify-content: center;  
 }
 
 .cloth-item img {
-	/*width: inherit;*/
+  /*width: inherit;*/
 }
 
 .cloth-item .price {
-	bottom: -25px;
-	font-size: 34px;
-	padding: 0 1rem;
-	position: absolute;
-	text-transform: none;
+  bottom: -25px;
+  font-size: 34px;
+  padding: 0 1rem;
+  position: absolute;
+  text-transform: none;
 }
 
 .cloth-item .card-content {
-	padding-top: 0;
-	height: 150px;
-	overflow: hidden;
-	background-color: black;
+  padding-top: 0;
+  height: 150px;
+  overflow: hidden;
+  background-color: black;
 }
 
 .cloth-item .card-action {
-	background-color: #000;
+  background-color: #000;
 }
 
 .cloth-item .card-action a {
-	margin-right: 0 !important;
+  margin-right: 0 !important;
 }
 /*----------------------*/
 /* end cloth item style */
 /*----------------------*/
 
 .view-cloth-form .card {
-	padding: 1.6rem;
-	padding-top: 1.6rem;
-	width: 100%;
+  padding: 1.6rem;
+  padding-top: 1.6rem;
+  width: 100%;
 }
 
 .row.view-cloth-content {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .view-cloth-form .card-image {
@@ -145,7 +148,7 @@ footer.page-footer {
 }
 
 .view-cloth-attributes {
-	text-align: left;
+  text-align: left;
 }
 
 #insertClothForm 
@@ -157,101 +160,101 @@ footer.page-footer {
 /* Forms select color */
 #insertClothForm
 .form-group .dropdown-content li > span {
-	color: rgb(58,92,164);
+  color: rgb(58,92,164);
 }
 
 /* Label underline focus color */
 #insertClothForm 
 .form-group input[type=text]:focus {
-	border-bottom: 1px solid rgb(58,92,164);
-	box-shadow: 0 1px 0 0 rgb(58,92,164);
+  border-bottom: 1px solid rgb(58,92,164);
+  box-shadow: 0 1px 0 0 rgb(58,92,164);
 }
 
 #insertClothForm fieldset {
-    padding: 1.6rem;
-    padding-top: 1.3rem;
+  padding: 1.6rem;
+  padding-top: 1.3rem;
 }
 
 #insertClothForm label {
-	font-size: 1rem;
+  font-size: 1rem;
 }
 
 #insertClothForm .control-label {
-	font-size: 1.2rem;
-	color: black;
+  font-size: 1.2rem;
+  color: black;
 }
 
 #insertClothForm .switch-size {
-	display: inline-block;
+  display: inline-block;
 }
 
 #insertClothForm .size-value {
-	border: 1px solid black;
-	border-radius: 80px;
-	display: inline-block;
-	font-size: 23px;
-	line-height: 26px;
-	height: 48px;
-	margin-left: 10px;
-	margin-top: -20px;
-	padding: 10px;
-	text-align: center;
-	vertical-align: middle;
-	width: 48px;
+  border: 1px solid black;
+  border-radius: 80px;
+  display: inline-block;
+  font-size: 23px;
+  line-height: 26px;
+  height: 48px;
+  margin-left: 10px;
+  margin-top: -20px;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  width: 48px;
 }
 
 #insertClothForm .size-slider {
-	margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
 #insertClothForm
 .switch label 
 input[type=checkbox]:checked + .lever:after {
-	background-color: #4CAF50;
+  background-color: #4CAF50;
 }
 
 #insertClothForm
 .switch label 
 input[type=checkbox]:checked + .lever {
-	background-color: rgb(126, 225, 130);
+  background-color: rgb(126, 225, 130);
 }
 
 #insertClothForm .price-wrapper {
-	margin-bottom: 15px;
-	margin-top: 20px;
-	text-align: center;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 #insertClothForm .price {
-	font-size: 34px;
-	min-width: 150px;
-	padding: 0 1rem;
-	text-transform: none;
+  font-size: 34px;
+  min-width: 150px;
+  padding: 0 1rem;
+  text-transform: none;
 }
 
 #insertClothForm .price-slider {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 #insertClothForm .noUi-connect {
-	background-color: #4CAF50;
+  background-color: #4CAF50;
 }
 
 #insertClothForm .size-control,
 #insertClothForm .price-control {
-	margin-top: 15px;
+  margin-top: 15px;
 }
 
 #insertClothForm .form-buttons {
-	margin-top: 15px;
+  margin-top: 15px;
 }
 
 #insertClothForm .form-buttons .btn {
-	margin-top: 5px;
+  margin-top: 5px;
 }
 /*TODO better media queries*/
 /*@media only screen and (min-width: 993px){
-	.dressing .cloth-item {
-		width: 50%;
-	}
+  .dressing .cloth-item {
+    width: 50%;
+  }
 }*/
