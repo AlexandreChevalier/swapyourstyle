@@ -3,17 +3,18 @@
   <div class="col s12">
   <div class="container add-cloth-form">
   <h3 class="header">
-    {{#if isUpdate}}
+    {{#if updating}}
       Modifier les informations
     {{else}}
       Ajoutez un nouveau vêtement
     {{/if}}
   </h3>
-      {{# autoForm collection=clothes 
-      id="insertClothForm" type=formType }}
+    {{# autoForm collection=clothes
+      doc=clothToUpdate
+      id="insertClothForm" type=formType}}
       <fieldset class="card">
-        {{> afQuickField name="name" 
-        placeholder="Exemple : Une jolie robe"}}
+        {{> afQuickField name="name"
+          placeholder="Exemple : Une jolie robe"}}
         {{> afQuickField name="type"}}
         {{> afQuickField name="theme"}}
         {{> afQuickField name="color"}}
@@ -32,8 +33,8 @@
           </div>
         </div>
         {{> afQuickField name="description" 
-        placeholder="Exemple : Une robe parfaite pour les soirées !" 
-        rows=6}}
+          placeholder="Exemple : Une robe parfaite pour les soirées !" 
+          rows=6}}
 <!--    <div class="file-field">
           <button class="btn grey darken-3">
             <span>Image</span>
@@ -48,7 +49,7 @@
         <div class="form-group form-buttons">
           <button type="submit" 
           class="btn add-btn green">
-            {{#if isUpdate}}Modifier{{else}}Ajouter{{/if}}
+            {{#if updating}}Modifier{{else}}Ajouter{{/if}}
           </button>
           <button type="reset" 
           class="btn reset-btn red lighten-1">Réinitialiser</button>
@@ -64,7 +65,7 @@
   <div class="form-group size-slider">
     <div class="form-control size-control">
       {{> afFieldInput id="sizeSlider"
-      name="size" type="noUiSlider"}}
+        name="size" type="noUiSlider"}}
     </div>
   </div>
 </template>
@@ -74,7 +75,7 @@
     <label class="control-label price-label">Prix</label>
     <div class="form-control price-control">
       {{> afFieldInput id="priceSlider"
-      name="price" type="noUiSlider"}}
+        name="price" type="noUiSlider"}}
     </div>
   </div>
 </template>

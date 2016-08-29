@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "bcrypt": "^0.8.7",
+    "colorify.js": "^1.0.3",
     "meteor-node-stubs": "^0.2.3",
     "node-base64-image": "^1.0.1"
   }

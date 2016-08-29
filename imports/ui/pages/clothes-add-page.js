@@ -11,20 +11,14 @@ import { Clothes } from '../../api/clothes/clothes.js';
 import './clothes-add-page.html';
 
 // Default behavior : insert form
-var isUpdate = false;
+var updating = false;
 var defaultPrice = 10;
 var defaultSize = 34;
 
 Template.Clothes_add_page.onCreated(function () {
-  clothToUpdate = Clothes.findOne({ "_id":FlowRouter.current().params._id });
   // If this template is loaded as an unpdate
   if(FlowRouter.current().route.name == "edit-clothes"){
-    isUpdate = true; // the behavior is update
-
-    defaultPrice = reactivePrice;
-    if(clothToUpdate.allowSize){
-      defaultSize = clothToUpdate.size;
-    }
+    updating = true; // the behavior is update
   }
   // Current price on the price slider 
   this.priceValue = new ReactiveVar(defaultPrice);
@@ -41,6 +35,12 @@ Template.Clothes_add_page.onRendered(function () {
     if($("#allowSize").is(":checked")){
       $("#allowSize").click();
     }
+//FIXME
+    // if (updating && ) {
+    //   if($("#allowSize").is(":checked")){
+    //      $("#allowSize").click();
+    //   }
+    // }
     // Loading material selects
     $('select').material_select();
     // Animations
@@ -61,17 +61,20 @@ Template.Clothes_add_page.helpers({
   currentSize() { return Template.instance().sizeValue.get() },
   currentPrice() { return Template.instance().priceValue.get() },
   /**
-   * Update form helpers
+   * Update form helpers below
    * When this form is called from a /:_id/edit route
    * the form is reused as an update form
    */
-  isUpdate(){ return isUpdate },
+  updating(){ return updating },
   formType(){ 
-    if (isUpdate) { return "update" }
+    if (updating) { return "update" }
     else { return "insert" }
   },
   clothToUpdate(){ 
-    return Clothes.find({ "_id":FlowRouter.current().params });
+    if (updating) {
+      var id = FlowRouter.current().params;
+      return Clothes.findOne({ "_id": id._id });
+    } else { return "" }
   },
 });
 
@@ -84,7 +87,7 @@ Template.Clothes_add_page.events({
   "change #sizeSlider": function(event, template) {
     template.sizeValue.set(parseFloat($('#sizeSlider .nouislider').val()));
   },
-  //
+//// FIXME : not working yet
   "live #allowSize": function(event, template) {
     $('#sizeSlider .nouislider').val(template.sizeValue.get());
   },
