@@ -84,6 +84,10 @@ Template.Clothes_add_page.events({
   "change #sizeSlider": function(event, template) {
     template.sizeValue.set(parseFloat($('#sizeSlider .nouislider').val()));
   },
+  //
+  "live #allowSize": function(event, template) {
+    $('#sizeSlider .nouislider').val(template.sizeValue.get());
+  },
   // On reset button click, force values reset 
   "click .reset-btn": function(event, template) {
     // Reset reactive values for sliders

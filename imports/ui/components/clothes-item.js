@@ -6,8 +6,18 @@ import { Clothes } from '../../api/clothes/clothes.js';
 
 import './clothes-item.html';
 
-Template.Clothes_item.onCreated(function () {
-
+Template.Clothes_item.onRendered(function () {
+  $(document).ready(function() {
+    // Apply ellipsis on cards' titles
+    //$(".card-title").dotdotdot({ ellipsis : '...' });
+    // Apply dynamic background color behind cards' images
+    var colorThief = new ColorThief.colorRob();
+    for(var i = 0 ; i < $(".img-wrapper img").size() ; i ++){
+      var c = colorThief.getColor($(".img-wrapper img")[i]);
+      var color = 'rgb('+c[0]+','+c[1]+','+c[2]+')';
+      $(".img-wrapper").css("background", color);
+    }
+  });
 });
 
 Template.Clothes_item.helpers({
@@ -17,7 +27,7 @@ Template.Clothes_item.helpers({
       var picture = Imgur.toThumbnail(item.url, Imgur.BIG_SQUARE);
       return picture;
     } else {
-      return "/images/clothes.jpg";
+      return "/images/bigsky.jpg";
     }
   },
   getOwnerUserName(userId){

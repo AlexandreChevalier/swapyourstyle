@@ -87,6 +87,19 @@ footer.page-footer {
 /*------------------*/
 /* cloth item style */
 /*------------------*/
+
+.cloth-item .card .card-content {
+  padding-top: 30px;
+  height: 180px;
+}
+
+.cloth-item .card .card-content .card-title {
+  font-size: 1.4rem;
+  height: 48px;
+  line-height: 24px;
+  overflow: hidden;
+}
+
 .cloth-item .card-image {
   display: flex;
   justify-content:center;
@@ -97,19 +110,39 @@ footer.page-footer {
   align-items: center;
   display: flex;
   height: 200px;
-  justify-content: center;  
+  justify-content: center;
 }
 
-.cloth-item img {
-  /*width: inherit;*/
+.cloth-item .card-image img {
+  display: block;
+  border-radius: 2px 2px 0 0;
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 .cloth-item .price {
   bottom: -25px;
   font-size: 34px;
-  padding: 0 1rem;
+  padding: 0;
   position: absolute;
   text-transform: none;
+  text-align: center;
+  left: 22%;
+  right: 22%;
+  width: 56%;
+}
+
+.cloth-item .price:hover{
+  font-size: 36px;
+}
+
+.cloth-item .description {
+  padding-top: 10px;
+  overflow: hidden;
 }
 
 .cloth-item .card-content {

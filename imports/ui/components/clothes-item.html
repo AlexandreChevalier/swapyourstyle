@@ -5,7 +5,6 @@
       <div class="card-image center-align">
         <div class="img-wrapper">
           <img class="activator" src="{{getIllustration(cloth.imageId)}}">
-          <!-- TODO : is active helper -->
         </div>
         <div class="price green btn-large">
           <span class="white-text thin">{{cloth.price}}€/j</span>
@@ -13,8 +12,8 @@
       </div>
 
       <div class="card-content center-align">        
-        <span class="card-title white-text truncate">{{cloth.name}}</span>
-        <p class="white-text thin">Description : {{cloth.description}}</p>
+        <div class="card-title white-text flow-text">{{cloth.name}}</div>
+        <p class="description white-text thin">{{cloth.description}}</p>
       </div>
 
       <div class="card-reveal">
