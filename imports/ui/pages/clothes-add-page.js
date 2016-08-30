@@ -19,6 +19,8 @@ Template.Clothes_add_page.onCreated(function () {
   // If this template is loaded as an unpdate
   if(FlowRouter.current().route.name == "edit-clothes"){
     updating = true; // the behavior is update
+  } else {
+    updating = false;
   }
   // Current price on the price slider 
   this.priceValue = new ReactiveVar(defaultPrice);
@@ -30,17 +32,13 @@ Template.Clothes_add_page.onCreated(function () {
 });
 
 Template.Clothes_add_page.onRendered(function () {
+
   $( document ).ready(function(){
-    // Switch to off on page load
-    if($("#allowSize").is(":checked")){
-      $("#allowSize").click();
-    }
-//FIXME
-    // if (updating && ) {
-    //   if($("#allowSize").is(":checked")){
-    //      $("#allowSize").click();
-    //   }
-    // }
+    $(window).scrollTop(0);
+
+    if (updating) { enableSize() }
+    else { disableSize() }
+    
     // Loading material selects
     $('select').material_select();
     // Animations
@@ -48,10 +46,10 @@ Template.Clothes_add_page.onRendered(function () {
       .velocity("fadeIn", { duration: 500 })
       .velocity({ opacity: 1 });
     // Update form sliders
-    $('#priceSlider .nouislider').val(defaultPrice);
-    // FIXME : conditional on allowSize + switch on
-    //$('#sizeSlider .nouislider').val(defaultSize);
+    setSliderPrice(defaultPrice);
+    setSliderSize(defaultSize);
   });
+
 });
 
 Template.Clothes_add_page.helpers({
@@ -81,15 +79,11 @@ Template.Clothes_add_page.helpers({
 Template.Clothes_add_page.events({
   // On price slider change, update the current price value
   "change #priceSlider": function(event, template) {
-    template.priceValue.set(parseFloat($('#priceSlider .nouislider').val()));
+    template.priceValue.set(parseFloat(getSliderPrice()));
   },
   // On size slider change, update the current size value
   "change #sizeSlider": function(event, template) {
-    template.sizeValue.set(parseFloat($('#sizeSlider .nouislider').val()));
-  },
-//// FIXME : not working yet
-  "live #allowSize": function(event, template) {
-    $('#sizeSlider .nouislider').val(template.sizeValue.get());
+    template.sizeValue.set(parseFloat(getSliderSize()));
   },
   // On reset button click, force values reset 
   "click .reset-btn": function(event, template) {
@@ -97,12 +91,10 @@ Template.Clothes_add_page.events({
     template.priceValue.set(defaultPrice);
     template.sizeValue.set(defaultSize);
     // Reset sliders
-    $('#priceSlider .nouislider').val(defaultPrice);
-    $('#sizeSlider .nouislider').val(defaultSize);
+    setSliderPrice(defaultPrice);
+    setSliderSize(defaultSize);
     // Reset switch to unchecked
-    if($("#allowSize").is(":checked")){
-      $("#allowSize").click();
-    }
+    disableSize();
   }
 
   // 'change #fileInput': function (e, template) {
@@ -181,3 +173,36 @@ AutoForm.addHooks('insertClothForm', hooks);
 
 //   fileReader.readAsDataURL(image);
 // }
+
+
+/**
+ * Utilities functions
+ * For sliders and values
+ */
+var enableSize = function() {
+  if(!$("#allowSize").is(":checked")){
+    $("#allowSize").click();
+  }
+}
+
+var disableSize = function() {
+  if($("#allowSize").is(":checked")){
+    $("#allowSize").click();
+  }
+}
+
+var getSliderPrice = function() {
+  return $('#priceSlider .nouislider').val();
+}
+
+var setSliderSize = function(value) {
+  $('#sizeSlider .nouislider').val(value)
+}
+
+var getSliderSize = function() {
+  return $('#sizeSlider .nouislider').val();
+}
+
+var setSliderPrice = function(value) {
+  $('#priceSlider .nouislider').val(value);
+}

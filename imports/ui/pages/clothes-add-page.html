@@ -29,7 +29,7 @@
         {{> price_slider}}
         <div class="price-wrapper">
           <div class="price green btn-large">
-            <span class="white-text thin">{{currentPrice}}€/j</span>
+            <span class="white-text light">{{currentPrice}}€/j</span>
           </div>
         </div>
         {{> afQuickField name="description" 
@@ -49,10 +49,15 @@
         <div class="form-group form-buttons">
           <button type="submit" 
           class="btn add-btn green">
-            {{#if updating}}Modifier{{else}}Ajouter{{/if}}
+            {{#if updating}}Sauvegarder{{else}}Ajouter{{/if}}
           </button>
-          <button type="reset" 
-          class="btn reset-btn red lighten-1">Réinitialiser</button>
+          {{#if updating}}
+<!--             <button type="" 
+            class="btn reset-btn red lighten-1">Réinitialiser</button> -->
+          {{else}}
+            <button type="reset" 
+            class="btn reset-btn red lighten-1">Réinitialiser</button>
+          {{/if}}
         </div>
       </fieldset>
       {{/autoForm}}

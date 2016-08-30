@@ -30,7 +30,6 @@ var admin = FlowRouter.group({});
  * only if the user is authenticated
  */
 function checkLogin(context) {
-  console.log(context)
   if(!(Meteor.loggingIn() || Meteor.userId())) {
     FlowRouter.go('join');
   }
