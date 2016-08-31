@@ -15,6 +15,12 @@ main {
   flex: 1 0 auto;
 }
 
+.container h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
 .top-menu {
   background-color: rgb(100,152,254);
 }
@@ -78,6 +84,11 @@ footer.page-footer {
 .dressing-header
 .edit-dressing-btn:hover {
   background-color: rgb(100,152,254);
+}
+
+.dressing-header .btn {
+  margin-top: 5px;
+  width: 100%;
 }
 
 /*--------------------*/
@@ -184,44 +195,44 @@ footer.page-footer {
   text-align: left;
 }
 
-#insertClothForm 
+.add-cloth-form 
 .form-group input[type=text],
-#insertClothForm textarea,
+.add-cloth-form textarea,
 /* Forms select label color */
-#insertClothForm
+.add-cloth-form
 .select-wrapper input.select-dropdown,
 /* Forms select color */
-#insertClothForm
+.add-cloth-form
 .form-group .dropdown-content li > span {
   color: rgb(58,92,164);
 }
 
 /* Label underline focus color */
-#insertClothForm 
+.add-cloth-form 
 .form-group input[type=text]:focus {
   border-bottom: 1px solid rgb(58,92,164);
   box-shadow: 0 1px 0 0 rgb(58,92,164);
 }
 
-#insertClothForm fieldset {
+.add-cloth-form fieldset {
   padding: 1.6rem;
   padding-top: 1.3rem;
 }
 
-#insertClothForm label {
+.add-cloth-form label {
   font-size: 1rem;
 }
 
-#insertClothForm .control-label {
+.add-cloth-form .control-label {
   font-size: 1.2rem;
   color: black;
 }
 
-#insertClothForm .switch-size {
+.add-cloth-form .switch-size {
   display: inline-block;
 }
 
-#insertClothForm .size-value {
+.add-cloth-form .size-value {
   border: 1px solid black;
   border-radius: 80px;
   display: inline-block;
@@ -236,53 +247,54 @@ footer.page-footer {
   width: 48px;
 }
 
-#insertClothForm .size-slider {
+.add-cloth-form .size-slider {
   margin-bottom: 60px;
 }
 
-#insertClothForm
+.add-cloth-form
 .switch label 
 input[type=checkbox]:checked + .lever:after {
   background-color: #4CAF50;
 }
 
-#insertClothForm
+.add-cloth-form
 .switch label 
 input[type=checkbox]:checked + .lever {
   background-color: rgb(126, 225, 130);
 }
 
-#insertClothForm .price-wrapper {
+.add-cloth-form .price-wrapper {
   margin-bottom: 15px;
   margin-top: 20px;
   text-align: center;
 }
 
-#insertClothForm .price {
+.add-cloth-form .price {
   font-size: 34px;
   min-width: 150px;
   padding: 0 1rem;
   text-transform: none;
 }
 
-#insertClothForm .price-slider {
+.add-cloth-form .price-slider {
   margin-top: 10px;
 }
 
-#insertClothForm .noUi-connect {
+.add-cloth-form .noUi-connect {
   background-color: #4CAF50;
 }
 
-#insertClothForm .size-control,
-#insertClothForm .price-control {
+.add-cloth-form .size-control,
+.add-cloth-form .price-control {
   margin-top: 15px;
 }
 
-#insertClothForm .form-buttons {
+.add-cloth-form .form-buttons {
   margin-top: 15px;
+  text-align: right;
 }
 
-#insertClothForm .form-buttons .btn {
+.add-cloth-form .form-buttons .btn {
   margin-top: 5px;
 }
 /*TODO better media queries*/

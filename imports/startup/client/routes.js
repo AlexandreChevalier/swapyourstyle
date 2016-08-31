@@ -35,6 +35,10 @@ function checkLogin(context) {
   }
 }
 
+/**
+ * BEGIN EXPOSED ROUTES
+ */
+
 // Route to homepage
 exposed.route('/', {
   name: 'home',
@@ -42,6 +46,28 @@ exposed.route('/', {
     BlazeLayout.render("App_body", {main: "Home_page"});
   }
 });
+
+
+// Route to view clothes form page
+exposed.route('/:_id/view', {
+  name: 'view-clothes',
+  action: function() { 
+    BlazeLayout.render("App_body", {main: "Clothes_view_page"});
+  }
+});
+
+// Default route for clothes searching
+exposed.route('/search', {
+  name: 'search-clothes',
+  action: function(){
+    BlazeLayout.render("App_body", {main: "Search_page"});
+  }
+});
+
+/**
+ * END EXPOSED ROUTES
+ * BEGIN LOGGED IN ROUTES
+ */
 
 // Route to current user's profile
 loggedIn.route('/profile', {
@@ -83,21 +109,9 @@ loggedIn.route('/:_id/edit', {
   }
 });
 
-// Route to view clothes form page
-exposed.route('/:_id/view', {
-  name: 'view-clothes',
-  action: function() { 
-    BlazeLayout.render("App_body", {main: "Clothes_view_page"});
-  }
-});
-
-// Default route for clothes searching
-exposed.route('/search', {
-  name: 'search-clothes',
-  action: function(){
-    BlazeLayout.render("App_body", {main: "Search_page"});
-  }
-});
+/**
+ * END LOGGED IN ROUTES
+ */
 
 // TODO : 404 page
 FlowRouter.notFound = {
