@@ -29,6 +29,11 @@ main {
   padding-left: 20px;
 }
 
+.nav-wrapper ul a {
+	display: inherit;
+	font-size: 1.2rem;
+}
+
 .brand-logo {
   font-family: 'Banana Yeti';
   font-size: 40px;
@@ -39,11 +44,22 @@ main {
   font-size: 5rem;
 }
 
-#at-nav-button { background-color: rgb(57,92,164) }
-#at-nav-button:hover { background-color: rgb(100,152,254) }
+.dressing-shortcut {
+	margin-right: 10px;
+}
 
-#search-button { background-color: rgb(57,92,164) }
-#search-button:hover { background-color: rgb(100,152,254) }
+#at-nav-button { 
+	background-color: rgb(57,92,164);
+	height: 40px;
+	line-height: 40px;
+	margin: 12px;
+}
+#at-nav-button:hover { background-color: rgb(100,152,254); }
+
+
+
+#search-button { background-color: rgb(57,92,164); }
+#search-button:hover { background-color: rgb(100,152,254); }
 
 .row.center h5 {
   color: white;
@@ -64,6 +80,10 @@ main {
 
 .info-block {
   margin-bottom: 0;
+}
+
+.theme-block img {
+	height: 150px;
 }
 
 footer.page-footer {
