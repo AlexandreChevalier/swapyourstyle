@@ -104,11 +104,22 @@ footer.page-footer {
   background-color: rgb(100,152,254);
 }
 
+.dressing-header {
+  text-align: center;
+}
+
 .dressing-header .btn {
   margin-top: 5px;
   width: 100%;
 }
-
+@media(min-width: 800px){
+  .dressing-header {
+    text-align: left;
+  }
+  .dressing-header .btn {
+    width: 31.5%;
+  }
+}
 /*--------------------*/
 /* end dressing style */
 /*--------------------*/
