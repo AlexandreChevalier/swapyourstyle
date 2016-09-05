@@ -77,6 +77,7 @@ Profiles.schema = new SimpleSchema({
     autoform: {
       type: "select",
       label: T9n.get("Gender"),
+      firstOption: "(Choisissez)",
       options: function () {
         return [
           {label: T9n.get("Male"), value: "Male"},
