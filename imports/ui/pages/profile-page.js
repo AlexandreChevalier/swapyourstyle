@@ -55,12 +55,10 @@ Template.Profile_page.onCreated(function() {
 });
 
 Template.Profile_page.helpers({
-  selfProf: function(){
+  profiles() { return Profiles },
+  profile() {
     var item = Profiles.findOne({userId: Meteor.userId()});
     return item;
-  },
-  profiles: function(){
-    return Profiles;
   },
 });
 
