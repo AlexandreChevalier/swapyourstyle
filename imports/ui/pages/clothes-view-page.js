@@ -41,5 +41,10 @@ Template.Clothes_view_page.helpers({
 });
 
 Template.Clothes_view_page.events({
-
+  "click #location": function(event, template) {
+    swal({  
+      title: "Pour louer ce vêtement",
+      text: "Veuillez contacter son propriétaire.",
+    });
+  }
 });
