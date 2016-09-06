@@ -128,7 +128,7 @@ Clothes.schema = new SimpleSchema({
     //defaultValue: null,
     label: T9n.get("Cloth Size")
   },
-  "image": {
+  "imageId": {
     type: String,
     optional: true,
     label: T9n.get("Cloth Image")

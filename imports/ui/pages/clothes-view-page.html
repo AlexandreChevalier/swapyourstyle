@@ -10,25 +10,25 @@
 
               <div class="col s12 m6 l6">
                 <div class="card card-image waves-effect waves-block waves-light white-popup mfp-hide">
-                  <img class="image-popup" href="/images/clothes.jpg" src="/images/clothes.jpg">
+                  <img class="image-popup" href="/images/clothes.jpg" src="{{getIllustration(cloth.imageId)}}">
                 </div>
 
               </div>
 
-              <div class="col s12 m6 l6 view-cloth-attributes">
-                Description : {{cloth.description}}<br>
-                Taille : {{cloth.size}}<br>
-                Genre : {{cloth.gender}}<br>
-                Couleur : {{cloth.color}}<br>
-                Theme : {{cloth.theme}}<br>
-                Type : {{cloth.type}}<br>
-              </div>
+              <p class="col s12 m6 l6 view-cloth-attributes flow-text">
+                Taille : <b>{{cloth.size}}</b><br>
+                Genre : <b>{{cloth.gender}}</b><br>
+                Couleur : <b>{{cloth.color}}</b><br>
+                Theme : <b>{{cloth.theme}}</b><br>
+                Type : <b>{{cloth.type}}</b><br>
+                Description : <b>{{cloth.description}}</b><br>
+              </p>
               <div class="form-group form-buttons">
                 <div class="price green btn-large">
-                  <span class="white-text thin">{{cloth.price}}€/j</span>
+                  <span class="white-text">{{cloth.price}}€/j</span>
                 </div>
                 <div class="blue btn-large">
-                  <span class="white-text thin">louer</span>
+                  <span class="white-text medium">louer</span>
                 </div>              
               </div>
             </div>
