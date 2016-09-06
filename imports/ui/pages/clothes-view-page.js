@@ -13,6 +13,14 @@ Template.Clothes_view_page.onCreated(function () {
 
 Template.Clothes_view_page.onRendered(function () {
   $( document ).ready(function(){
+    var item = Clothes.findOne({_id: FlowRouter.current().params._id});
+    var datesArray = item.notAvailable;
+    $("#multidatespicker").multiDatesPicker({
+      dateFormat: "dd/mm/yy",
+      addDisabledDates: datesArray,
+      maxPicks: 2,
+      minDate: 0
+    });
     $(window).scrollTop(0);
     // Loading material selects
     $('select').material_select();
@@ -42,9 +50,18 @@ Template.Clothes_view_page.helpers({
 
 Template.Clothes_view_page.events({
   "click #location": function(event, template) {
-    swal({  
-      title: "Pour louer ce vêtement",
-      text: "Veuillez contacter son propriétaire.",
-    });
+    let datePicker = document.getElementById("multidatespicker");
+    datePicker.style.visibility = "visible";
+    /*swal({
+      title: "Choisir les dates",
+      text: '',
+      type: "warning",
+      confirmButtonColor: "#FF0000",
+      confirmButtonText: "Louer",
+      showCancelButton: true,
+      cancelButtonText: "Annuler",
+      closeOnConfirm: false,
+      html: true
+    });*/
   }
 });

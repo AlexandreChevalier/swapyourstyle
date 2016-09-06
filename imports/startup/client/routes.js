@@ -10,10 +10,8 @@ import '../../ui/pages/home-page.js';
 import '../../ui/pages/dressing-page.js';
 import '../../ui/pages/search-page.js';
 import '../../ui/pages/clothes-add-page.js';
-import '../../ui/pages/clothes-edit-page.js';
 import '../../ui/pages/clothes-view-page.js';
 import '../../ui/pages/profile-page.js';
-import '../../ui/pages/profile-edit-page.js';
 
 // Import to override accounts templates
 import '../../ui/accounts/accounts-templates.js';

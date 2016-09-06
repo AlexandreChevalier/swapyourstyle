@@ -6,6 +6,7 @@ import { Session } from 'meteor/session';
 import { encode } from 'node-base64-image';
 import { Images } from '../../api/images/images.js';
 import 'meteor/deanius:promise';
+import '../../../client/multidatespicker/jquery-ui.multidatespicker.js';
 
 import { Clothes } from '../../api/clothes/clothes.js';
 import './clothes-add-page.html';
@@ -33,6 +34,14 @@ Template.Clothes_add_page.onCreated(function () {
 });
 
 Template.Clothes_add_page.onRendered(function () {
+  $("#multidatespicker").multiDatesPicker({
+    dateFormat: "dd/mm/yy"
+  });
+  if(updating){
+    var item = Clothes.findOne({_id: FlowRouter.current().params._id});
+    var datesArray = item.notAvailable;
+    $("#multidatespicker").multiDatesPicker('addDates', datesArray);
+  }
 
   $( document ).ready(function(){
     $(window).scrollTop(0);
@@ -140,11 +149,24 @@ var hooks = {
   // A l'ajout d'un nouveau vetement, 
   // on le lie a son propriétaire et son dressing
     insert: function(doc){
-      console.log(doc);
+      var dates = $("#multidatespicker").multiDatesPicker('getDates');
+      if(dates.length > 0){
+        doc.notAvailable = dates;
+      }
       if(Session.get("image") != ""){
         doc.imageId = Session.get("image");
       }
       console.log("doc : ", doc);
+      return doc;
+    },
+    update: function(doc){
+      var dates = $("#multidatespicker").multiDatesPicker('getDates');
+      if(dates.length > 0){
+        doc.$set.notAvailable = dates;
+      }
+      if(Session.get("image") != ""){
+        doc.$set.imageId = Session.get("image");
+      }
       return doc;
     }
   },

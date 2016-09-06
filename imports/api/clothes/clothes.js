@@ -137,7 +137,7 @@ Clothes.schema = new SimpleSchema({
     type: String,
     optional: true,
     //defaultValue: null,
-    label: T9n.get("Cloth Description"),
+    label: T9n.get("Cloth Description")
   },
   "price": {
     type: Number,
@@ -158,8 +158,13 @@ Clothes.schema = new SimpleSchema({
       }
     },
     //defaultValue: null,
-    label: T9n.get("Cloth Price"),
+    label: T9n.get("Cloth Price")
   },
+  "notAvailable": {
+    type: [String],
+    optional: true,
+    label: T9n.get("Not Available")
+  }
 });
 
 Clothes.attachSchema(Clothes.schema);

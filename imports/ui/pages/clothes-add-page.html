@@ -32,25 +32,21 @@
                 <span class="white-text light">{{currentPrice}}€/j</span>
               </div>
             </div>
-            {{#if updating}}
-
-            {{else}}
               <div class="file-field">
                 <button class="btn grey darken-3">
                   <span>Image</span>
-                  {{> afFieldInput disabled=waitingForApiResponse 
-                  name='image' type='file' id='fileInput'}}
+                  <input type="file" name="image" id='fileInput' accept="image/*" disabled="{{waitingForApiResponse}}">
                 </button>
                 <div class="file-path-wrapper">
                   <input class="file-path validate" type="text" 
                   placeholder="(Ajoutez une image)">
                 </div>
               </div>
-            {{/if}}
-
             {{> afQuickField name="description" 
               placeholder="Exemple : Une robe parfaite pour les soirées !" 
               rows=6}}
+            Renseignez les dates auquelles le vêtement n'est <strong>pas</strong> disponible :<br/>
+            <div id="multidatespicker"></div>
             <div class="form-group form-buttons">
               <button type="submit" 
               class="btn add-btn green">
