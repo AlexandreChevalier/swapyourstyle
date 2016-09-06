@@ -2,9 +2,21 @@
   <div class="container search-results">
     <h3>Vêtements disponibles dans la région</h3>
     <div class="row">
-    {{#each item in clothes}}
+      {{> searchBox}}
+<!--     {{#each item in clothes}}
       {{> Clothes_item cloth=item}}
-    {{/each}}
+    {{/each}} -->
     </div>
   </div>
+</template>
+
+<template name="searchBox">
+  {{> EasySearch.Input index=clothesIndex }}
+
+  <ul>
+    {{#EasySearch.Each index=clothesIndex }}
+      {{> Clothes_item cloth=this}}
+    <!-- li>Vêtement : {{name}}</li> -->
+    {{/EasySearch.Each}}
+  </ul>
 </template>

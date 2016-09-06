@@ -29,3 +29,9 @@ Template.Search_page.helpers({
     if(clothes) { return clothes }
   }
 });
+
+Template.searchBox.helpers({
+  clothesIndex(){
+    return ClothesIndex;
+  }
+});

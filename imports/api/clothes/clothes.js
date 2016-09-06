@@ -9,6 +9,11 @@ import { clothes_properties }
  * Clothes collection definition.
  */
 export const Clothes = new Mongo.Collection('clothes');
+ClothesIndex = new EasySearch.Index({
+  collection: Clothes,
+  fields: ['name', 'type', 'theme'],
+  engine: new EasySearch.Minimongo()
+});
 
 if (Meteor.isServer) {
   Meteor.publish('clothes', function(){

@@ -2,10 +2,10 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { ReactiveVar } from 'meteor/reactive-var';
-//import { Session } from 'meteor/session';
-//import { encode } from 'node-base64-image';
-//import { Images } from '../../api/images/images.js';
-//import 'meteor/deanius:promise';
+import { Session } from 'meteor/session';
+import { encode } from 'node-base64-image';
+import { Images } from '../../api/images/images.js';
+import 'meteor/deanius:promise';
 
 import { Clothes } from '../../api/clothes/clothes.js';
 import './clothes-add-page.html';
@@ -26,9 +26,10 @@ Template.Clothes_add_page.onCreated(function () {
   this.priceValue = new ReactiveVar(defaultPrice);
   // Current size on the size slider 
   this.sizeValue = new ReactiveVar(defaultSize);
-  // Session.set("waitingForApiResponse", false);
-  // Session.set("imageCode", "");
-  // Session.set("image", []);
+  // For pictures upload
+  Session.set("waitingForApiResponse", false);
+  Session.set("imageCode", "");
+  Session.set("image", []);
 });
 
 Template.Clothes_add_page.onRendered(function () {
@@ -95,47 +96,58 @@ Template.Clothes_add_page.events({
     setSliderSize(defaultSize);
     // Reset switch to unchecked
     disableSize();
+  },
+  'change #fileInput': function (e, template) {
+    if (e.currentTarget.files && e.currentTarget.files[0]) {
+      Session.set('waitingForApiResponse', true);
+      loadImageFileAsURL(e.currentTarget.files[0], function(response){
+        if(response){
+          Imgur.upload({
+            image: Session.get("imageCode"),
+            apiKey: "49240428869e3b2" //TODO : get from environment variable
+          }, function (error, data) {
+            if(error){
+              console.log(error);
+            }
+            else {
+              Images.insert({
+                url: data.link,
+                deleteHash: data.deletehash
+              }, function(error, result) {
+                if(error){
+                  console.log(error);
+                }
+                else {
+                  console.log(result);
+                  Session.set("imageCode", "");
+                  Session.set("image", result);
+                  Session.set('waitingForApiResponse', false);
+                }
+              });
+            }
+          });
+        }
+        else {
+          sweetAlert("error");
+        }
+      });
+    }
   }
-
-  // 'change #fileInput': function (e, template) {
-  //   if (e.currentTarget.files && e.currentTarget.files[0]) {
-  //     Session.set('waitingForApiResponse', true);
-  //     loadImageFileAsURL(e.currentTarget.files[0], function(response){
-  //       if(response){
-  //         Imgur.upload({
-  //           image: Session.get("imageCode"),
-  //           apiKey: "49240428869e3b2" //TODO : get from environment variable
-  //         }, function (error, data) {
-  //           if(error){
-  //             console.log(error);
-  //           }
-  //           else {
-  //             Images.insert({
-  //               url: data.link,
-  //               deleteHash: data.deletehash
-  //             }, function(error, result) {
-  //               if(error){
-  //                 console.log(error);
-  //               }
-  //               else {
-  //                 console.log(result);
-  //                 Session.set("imageCode", "");
-  //                 Session.set("image", result);
-  //                 Session.set('waitingForApiResponse', false);
-  //               }
-  //             });
-  //           }
-  //         });
-  //       }
-  //       else {
-  //         sweetAlert("error");
-  //       }
-  //     });
-  //   }
-  // }
 });
 
 var hooks = {
+  before: {
+  // A l'ajout d'un nouveau vetement, 
+  // on le lie a son propriétaire et son dressing
+    insert: function(doc){
+      console.log(doc);
+      if(Session.get("image") != ""){
+        doc.imageId = Session.get("image");
+      }
+      console.log("doc : ", doc);
+      return doc;
+    }
+  },
   onSuccess: function(formType, result) {
     FlowRouter.go('/dressing');
   },
@@ -143,37 +155,17 @@ var hooks = {
 
 AutoForm.addHooks('insertClothForm', hooks);
 
-// var Clothes_add_pageHooks = {
-//   before: {
-//     // A l'ajout d'un nouveau vetement, 
-//     // on le lie a son propriétaire et son dressing
-//     insert: function(doc){
-//       // doc.ownerId = Meteor.userId();
-//       // if(Session.get("image") != ""){
-//       //   doc.clothImage = Session.get("image");
-//       // }
-//       // console.log("doc : ", doc);
-//       // return doc;
-//     }
-//   },
-//   onSuccess: function (doc) {
-//     FlowRouter.go('/dressing');
-//   }
-// }
-// AutoForm.addHooks('insertClothForm', Clothes_add_pageHooks);
+var loadImageFileAsURL = function(image, callback) {
+  var fileReader = new FileReader();
 
-// function loadImageFileAsURL(image, callback) {
-//   var fileReader = new FileReader();
+  fileReader.onload = function(fileLoadedEvent) 
+  {
+    Session.set('imageCode', fileLoadedEvent.target.result);
+    callback(true);
+  };
 
-//   fileReader.onload = function(fileLoadedEvent) 
-//   {
-//     Session.set('imageCode', fileLoadedEvent.target.result);
-//     callback(true);
-//   };
-
-//   fileReader.readAsDataURL(image);
-// }
-
+  fileReader.readAsDataURL(image);
+}
 
 /**
  * Utilities functions
@@ -196,7 +188,7 @@ var getSliderPrice = function() {
 }
 
 var setSliderSize = function(value) {
-  $('#sizeSlider .nouislider').val(value)
+  $('#sizeSlider .nouislider').val(value);
 }
 
 var getSliderSize = function() {
