@@ -35,15 +35,15 @@ Template.Clothes_add_page.onCreated(function () {
 
 Template.Clothes_add_page.onRendered(function () {
   $("#multidatespicker").multiDatesPicker({
-    dateFormat: "dd/mm/yy"
+    dateFormat: "dd/mm/yy",
+    minDate: 0
   });
   if(updating){
     var item = Clothes.findOne({_id: FlowRouter.current().params._id});
     var datesArray = item.notAvailable;
-    if(!datesArray){
-      datesArray = [];
+    if(datesArray){
+      $("#multidatespicker").multiDatesPicker('addDates', datesArray);
     }
-    $("#multidatespicker").multiDatesPicker('addDates', datesArray);
   }
 
   $( document ).ready(function(){
@@ -166,6 +166,9 @@ var hooks = {
       var dates = $("#multidatespicker").multiDatesPicker('getDates');
       if(dates.length > 0){
         doc.$set.notAvailable = dates;
+      }
+      else {
+        doc.$set.notAvailable = null;
       }
       if(Session.get("image") != ""){
         doc.$set.imageId = Session.get("image");

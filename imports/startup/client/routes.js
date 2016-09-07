@@ -11,6 +11,7 @@ import '../../ui/pages/dressing-page.js';
 import '../../ui/pages/search-page.js';
 import '../../ui/pages/clothes-add-page.js';
 import '../../ui/pages/clothes-view-page.js';
+import '../../ui/pages/clothes-booking-page.js';
 import '../../ui/pages/profile-page.js';
 
 // Import to override accounts templates
@@ -51,6 +52,14 @@ exposed.route('/:_id/view', {
   name: 'view-clothes',
   action: function() { 
     BlazeLayout.render("App_body", {main: "Clothes_view_page"});
+  }
+});
+
+// Route to view clothes form page
+exposed.route('/:_id/book', {
+  name: 'book-clothes',
+  action: function() { 
+    BlazeLayout.render("App_body", {main: "Clothes_booking_page"});
   }
 });
 

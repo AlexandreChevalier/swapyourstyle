@@ -1,0 +1,24 @@
+<template name="Clothes_booking_page">
+  <div class="row">
+    <div class="col s12">
+      <div class="container book-cloth-form">
+        <h3 class="header">{{cloth.name}}</h3>
+        <div class="card">
+            <div class="row book-cloth-content">
+              <div class="col s12 m6 l6">
+                <div class="card card-image waves-effect waves-block waves-light white-popup mfp-hide">
+                  <img class="image-popup" href="/images/clothes.jpg" src="{{getIllustration(cloth.imageId)}}">
+                </div>
+              </div>
+              <div class="price green btn-large">
+                <span class="white-text">{{cloth.price}}€/j</span>
+              </div>
+
+              Choisir la période désirée (date de début et date de fin)
+              <div id="multidatespicker"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

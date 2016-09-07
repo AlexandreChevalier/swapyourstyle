@@ -5,14 +5,22 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Images } from '../../api/images/images.js';
 
 import { Clothes } from '../../api/clothes/clothes.js';
-import './clothes-view-page.html';
+import './clothes-booking-page.html';
 
-Template.Clothes_view_page.onCreated(function () {
+Template.Clothes_booking_page.onCreated(function () {
 
 });
 
-Template.Clothes_view_page.onRendered(function () {
+Template.Clothes_booking_page.onRendered(function () {
   $( document ).ready(function(){
+    var item = Clothes.findOne({_id: FlowRouter.current().params._id});
+    var datesArray = item.notAvailable;
+    $("#multidatespicker").multiDatesPicker({
+      dateFormat: "dd/mm/yy",
+      addDisabledDates: datesArray,
+      maxPicks: 2,
+      minDate: 0
+    });
     $(window).scrollTop(0);
     // Loading material selects
     $('select').material_select();
@@ -23,7 +31,7 @@ Template.Clothes_view_page.onRendered(function () {
   });
 });
 
-Template.Clothes_view_page.helpers({
+Template.Clothes_booking_page.helpers({
   cloth() {
     let itemId = FlowRouter.getParam("_id");
     let cloth = Clothes.findOne({ "_id":itemId });
@@ -40,9 +48,13 @@ Template.Clothes_view_page.helpers({
   }
 });
 
-Template.Clothes_view_page.events({
-  "click #location": function(event, template) {
-    let itemId = FlowRouter.getParam("_id");
-    FlowRouter.go('/' + itemId + '/book');
+Template.Clothes_booking_page.events({
+  "click #multidatespicker": function (event, template) {
+    var dates = $("#multidatespicker").multiDatesPicker('getDates');
+    var result = "";
+    for (var i = 0; i < dates.length; i++) {
+      result += dates[i];
+    }
+    swal(result);
   }
 });
