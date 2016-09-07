@@ -7,6 +7,7 @@ import { Images } from '../../api/images/images.js';
 
 import { Clothes } from '../../api/clothes/clothes.js';
 import { Profiles } from '../../api/profiles/profiles.js';
+import { Notifications } from '../../api/notifications/notifications.js';
 import './clothes-booking-page.html';
 
 Template.Clothes_booking_page.onCreated(function () {
@@ -58,16 +59,20 @@ Template.Clothes_booking_page.helpers({
 Template.Clothes_booking_page.events({
   "click #validate": function(event, template) {
     if(addedDates.length > 0){
+      var stringDates = [];
+      for (var i = 0; i < addedDates.length; i++) {
+        stringDates.push(formattedDate(addedDates[i]));
+      }
       let itemId = FlowRouter.getParam("_id");
       let cloth = Clothes.findOne({ "_id":itemId });
       let ownerProfile = Profiles.findOne({ "userId":cloth.ownerId });
       let swalText = "Voulez-vous envoyer ce message au propriétaire de l'objet \"<b>" + cloth.name + "</b>\" ?<br/><br/>"
       let messageText = "Bonjour,<br/>Je souhaiterais effectuer une réservation sur votre objet \"<b>" + cloth.name + "</b>\"";
       if(addedDates.length === 1){
-        messageText += " le " + formattedDate(addedDates[0]);
+        messageText += " le " + stringDates[0];
       }
       else {
-        messageText += " du " + formattedDate(addedDates[0]) + " au " + formattedDate(addedDates[addedDates.length - 1]);
+        messageText += " du " + stringDates[0] + " au " + stringDates[stringDates.length - 1];
       }
       messageText += " pour la somme totale de " + Session.get("totalPrice") + " €.";
       swal({
@@ -79,6 +84,13 @@ Template.Clothes_booking_page.events({
         closeOnConfirm: false,
         html: true
       }, function(){
+        Notifications.insert({
+          sender: Meteor.userId(),
+          recipient: cloth.ownerId,
+          requestedDates: stringDates,
+          targetedItemId: itemId,
+          status: "pending"
+        });
         Meteor.call('sendEmail', ownerProfile.email, Meteor.user().emails[0].address, "Demande de location", messageText);
         swal("Succès !",
           "Le mail a bien été envoyé. Vous recevrez la réponse du propriétaire par mail.",

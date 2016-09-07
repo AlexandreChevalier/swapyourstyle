@@ -46,7 +46,7 @@ Notifications.attachSchema(Notifications.schema);
 Notifications.allow({
   insert: function(userId, doc) {
     // only allow inserting if you are logged in
-    return !! userId;
+    return true;
   },
   update: function(userId, doc) {
     // only allow updating if you are logged in
