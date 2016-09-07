@@ -1,25 +1,29 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { Email } from 'meteor/email';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Images } from '../../api/images/images.js';
 
 import { Clothes } from '../../api/clothes/clothes.js';
+import { Profiles } from '../../api/profiles/profiles.js';
 import './clothes-booking-page.html';
 
 Template.Clothes_booking_page.onCreated(function () {
-
+  Session.set("totalPrice", 0);
 });
+
+var addedDates = [];
 
 Template.Clothes_booking_page.onRendered(function () {
   $( document ).ready(function(){
     var item = Clothes.findOne({_id: FlowRouter.current().params._id});
     var datesArray = item.notAvailable;
     $("#multidatespicker").multiDatesPicker({
-      dateFormat: "dd/mm/yy",
       addDisabledDates: datesArray,
       maxPicks: 2,
-      minDate: 0
+      minDate: 0,
+      onSelect: dateSelected
     });
     $(window).scrollTop(0);
     // Loading material selects
@@ -45,16 +49,93 @@ Template.Clothes_booking_page.helpers({
     } else {
       return "/images/clothes.jpg";
     }
+  },
+  getPrice(){
+    return Session.get("totalPrice");
   }
 });
 
 Template.Clothes_booking_page.events({
-  "click #multidatespicker": function (event, template) {
-    var dates = $("#multidatespicker").multiDatesPicker('getDates');
-    var result = "";
-    for (var i = 0; i < dates.length; i++) {
-      result += dates[i];
+  "click #validate": function(event, template) {
+    if(addedDates.length > 0){
+      let itemId = FlowRouter.getParam("_id");
+      let cloth = Clothes.findOne({ "_id":itemId });
+      let ownerProfile = Profiles.findOne({ "userId":cloth.ownerId });
+      let swalText = "Voulez-vous envoyer ce message au propriétaire de l'objet \"<b>" + cloth.name + "</b>\" ?<br/><br/>"
+      let messageText = "Bonjour,<br/>Je souhaiterais effectuer une réservation sur votre objet \"<b>" + cloth.name + "</b>\"";
+      if(addedDates.length === 1){
+        messageText += " le " + formattedDate(addedDates[0]);
+      }
+      else {
+        messageText += " du " + formattedDate(addedDates[0]) + " au " + formattedDate(addedDates[addedDates.length - 1]);
+      }
+      messageText += " pour la somme totale de " + Session.get("totalPrice") + " €.";
+      swal({
+        title: "Confirmation la demande",
+        text: swalText + messageText,
+        confirmButtonText: "Oui",
+        showCancelButton: true,
+        cancelButtonText: "Non",
+        closeOnConfirm: false,
+        html: true
+      }, function(){
+        Meteor.call('sendEmail', ownerProfile.email, Meteor.user().emails[0].address, "Demande de location", messageText);
+        swal("Succès !",
+          "Le mail a bien été envoyé. Vous recevrez la réponse du propriétaire par mail.",
+          "success");
+      });
     }
-    swal(result);
   }
 });
+
+var dateSelected = function() {
+  var dates = $("#multidatespicker").multiDatesPicker('getDates');
+  let itemId = FlowRouter.getParam("_id");
+  let cloth = Clothes.findOne({ "_id":itemId });
+  if(dates.length === 2 && addedDates.length < 2){
+    var currentDate = new Date(dates[0]);
+    var endDate = new Date(dates[1]);
+    currentDate.setDate(currentDate.getDate() + 1);
+    while(currentDate.getTime() != endDate.getTime()){
+      var isDisabledDate = $("#multidatespicker").multiDatesPicker('gotDate', currentDate, 'disabled') !== false;
+      if(isDisabledDate){
+        addedDates = [];
+        swal({
+          title: "Période invalide",
+          text: "Une des dates de la période choisie a été marquée comme indisponible par le propriétaire.",
+          type: "error",
+          confirmButtonText: "OK"
+        });
+        $('#multidatespicker').multiDatesPicker('removeDates', dates);
+        break;
+      }
+      else {
+        addedDates.push(new Date(currentDate));
+      }
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    if(addedDates.length > 0){
+      $('#multidatespicker').multiDatesPicker('addDates', addedDates);
+      addedDates.push(new Date(dates[1]));
+    }
+  }
+  else if(addedDates.length > 0){
+    $('#multidatespicker').multiDatesPicker('removeDates', addedDates);
+    addedDates = [];
+  }
+  else {
+    addedDates.push(new Date(dates[0]));
+  }
+  Session.set("totalPrice", addedDates.length*cloth.price);
+  if(addedDates.length > 0){
+    $('#validate').removeClass('disabled');
+  }
+  else {
+    $('#validate').addClass('disabled');
+  }
+}
+
+function formattedDate(theDate) {
+  function pad(s) { return (s < 10) ? '0' + s : s; }
+  return [pad(theDate.getDate()), pad(theDate.getMonth()+1), theDate.getFullYear()].join('/');
+}

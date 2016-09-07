@@ -35,7 +35,6 @@ Template.Clothes_add_page.onCreated(function () {
 
 Template.Clothes_add_page.onRendered(function () {
   $("#multidatespicker").multiDatesPicker({
-    dateFormat: "dd/mm/yy",
     minDate: 0
   });
   if(updating){

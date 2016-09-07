@@ -49,6 +49,10 @@ Profiles.schema = new SimpleSchema({
   "userId": {
     type: String
   },
+  "email": {
+    type: String,
+    optional: true
+  },
   "firstName": {
     type: String,
     optional: true,

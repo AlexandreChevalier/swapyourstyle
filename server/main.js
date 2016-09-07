@@ -14,11 +14,9 @@ import { Profiles } from '../imports/api/profiles/profiles.js';
 // 	}
 // });
 
-/*Meteor.startup(function () {
-    process.env.MAIL_URL = 'smtp://swapmysuitnoreply%40gmail.com:Swap2016suit@smtp.gmail.com:587';
-    process.env.imgurKey = "49240428869e3b2";
-    SimpleSchema.debug = true;
-});*/
+Meteor.startup(function () {
+    process.env.MAIL_URL = Meteor.settings.MAIL_URL;
+});
 
 Meteor.users.allow({
     update: function() {
@@ -36,6 +34,7 @@ Accounts.onCreateUser(function(options, user) {
     }
 	Profiles.insert({
 		userId: user._id,
+        email: user.emails[0].address,
     	dressingName: "Dressing de " + user.username
 	}, function(error, result) {
 	  if(error){
@@ -46,4 +45,18 @@ Accounts.onCreateUser(function(options, user) {
       }
 	});
 	return user;
+});
+
+Meteor.methods({
+  sendEmail: function (to, from, subject, text) {
+    // Let other method calls from the same client start running,
+    // without waiting for the email sending to complete.
+    this.unblock();
+    Email.send({
+      to: to,
+      from: from,
+      subject: subject,
+      html: text
+    });
+  }
 });
