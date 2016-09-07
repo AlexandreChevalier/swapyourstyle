@@ -40,6 +40,9 @@ Template.Clothes_add_page.onRendered(function () {
   if(updating){
     var item = Clothes.findOne({_id: FlowRouter.current().params._id});
     var datesArray = item.notAvailable;
+    if(!datesArray){
+      datesArray = [];
+    }
     $("#multidatespicker").multiDatesPicker('addDates', datesArray);
   }
 

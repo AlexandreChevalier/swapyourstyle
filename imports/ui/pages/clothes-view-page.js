@@ -63,5 +63,8 @@ Template.Clothes_view_page.events({
       closeOnConfirm: false,
       html: true
     });*/
+  },
+  "click #multidatespicker": function (event, template) {
+    swal("test");
   }
 });
