@@ -45,8 +45,12 @@
             {{> afQuickField name="description" 
               placeholder="Exemple : Une robe parfaite pour les soirées !" 
               rows=6}}
-            Renseignez les dates auquelles le vêtement n'est <strong>pas</strong> disponible :<br/>
-            <div id="multidatespicker"></div>
+            
+            <div class="dispo-datepicker">
+              <label class="control-label">Dates d'<b>indisponibilité</b> de l'offre</label>
+              <div id="multidatespicker"></div>
+            </div>
+            
             <div class="form-group form-buttons">
               <button type="submit" 
               class="btn add-btn green">

@@ -1,19 +1,21 @@
 <template name="Header">
-  <nav class="top-menu">
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo">{{title}}</a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        {{> links}}
-      </ul>
-      <a href="/dressing" class="right hide-on-large-only dressing-shortcut">
-         <i class="large material-icons">loyalty</i>
-      </a>
-      <ul class="side-nav" id="mobile-demo">
-        {{> links}}
-      </ul>
-    </div>
-  </nav>
+  <div class="navbar-fixed">
+    <nav class="top-menu">
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo">{{title}}</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          {{> links}}
+        </ul>
+        <a href="/dressing" class="right hide-on-large-only dressing-shortcut">
+           <i class="large material-icons">loyalty</i>
+        </a>
+        <ul class="side-nav" id="mobile-demo">
+          {{> links}}
+        </ul>
+      </div>
+    </nav>
+  </div>
 </template>
 
 <template name="links">

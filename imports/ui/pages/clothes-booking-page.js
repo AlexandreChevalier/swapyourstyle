@@ -8,6 +8,7 @@ import { Images } from '../../api/images/images.js';
 import { Clothes } from '../../api/clothes/clothes.js';
 import { Profiles } from '../../api/profiles/profiles.js';
 import { Notifications } from '../../api/notifications/notifications.js';
+
 import './clothes-booking-page.html';
 
 Template.Clothes_booking_page.onCreated(function () {
