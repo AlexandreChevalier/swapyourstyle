@@ -112,6 +112,12 @@ Template.Clothes_add_page.events({
     // Reset switch to unchecked
     disableSize();
   },
+  "click .delete-btn": function(event, template) {
+    if (updating) {
+      var id = FlowRouter.current().params;
+      Clothes.remove(id);
+    } 
+  },
   'change #fileInput': function (e, template) {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
       Session.set('waitingForApiResponse', true);

@@ -4,31 +4,36 @@
       <div class="container book-cloth-form">
         <h3 class="header">{{cloth.name}}</h3>
         <div class="card">
-          <div class="row book-cloth-content">
-            <div class="col s12 m6 l6">
-              <div class="card card-image waves-effect waves-block waves-light white-popup mfp-hide">
-                <img class="image-popup" href="/images/clothes.jpg" src="{{getIllustration(cloth.imageId)}}">
+
+            <div class="row book-cloth-content">
+
+              <div class="col s12 m6 l6">
+                <div class="card card-image waves-effect waves-block waves-light white-popup mfp-hide">
+                  <img class="image-popup" href="/images/clothes.jpg" src="{{getIllustration(cloth.imageId)}}">
+                </div>
+                <div class="price">
+                  <span class="black-text">{{cloth.price}}€/j</span>
+                </div>
+              </div>
+
+              <div class="col s12 m6 l6 view-cloth-attributes">
+                <div class="dispo-datepicker">
+                  <label class="control-label">
+                    Période désirée (date de début & date de fin) :
+                  </label>
+                  <div id="multidatespicker"></div>
+                </div>
+              </div>
+
+            <div class="form-group form-buttons">
+              <div class="total-price btn-flat">
+                <span class="green-text">Prix total : {{getPrice}} €</span>
+              </div>
+              <div id="validate" class="blue btn-large disabled">
+                <span class="white-text medium">Valider</span>
               </div>
             </div>
-            <div class="price green btn-large">
-              <span class="white-text">{{cloth.price}}€/j</span>
-            </div>
-          </div>
 
-          <div class="dispo-datepicker">
-            <label class="control-label">
-              Période désirée (date de début & date de fin) :
-            </label>
-            <div id="multidatespicker"></div>
-          </div>
-
-          <div class="form-group form-buttons">
-            <div class="price green btn-large">
-              <span class="white-text">Prix total : {{getPrice}} €</span>
-            </div>
-            <div id="validate" class="blue btn-large disabled">
-              <span class="white-text medium">Valider</span>
-            </div>
           </div>
         </div>
       </div>

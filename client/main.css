@@ -108,6 +108,11 @@ nav .notification-btn a i {
   margin-bottom: 0;
 }
 
+.theme-block .card-image {
+  padding: 2px;
+  background: rgba(0,0,0,.3);
+}
+
 .theme-block img {
   max-height: 405px;
 }
@@ -275,6 +280,7 @@ footer.page-footer {
 /* end cloth item style */
 /*----------------------*/
 
+.book-cloth-form .card,
 .view-cloth-form .card {
   border: 1px solid #c0c0c0;
   padding: 1.6rem;
@@ -286,20 +292,24 @@ footer.page-footer {
   margin-bottom: 0;
 }
 
+.book-cloth-content .col,
 .view-cloth-content .col {
   text-align: center;
 }
 
+.book-cloth-content .price span,
 .view-cloth-content .price span {
   font-size: 3rem;
   font-weight: 300;
 }
 
+.book-cloth-content .form-buttons,
 .view-cloth-content .form-buttons {
   font-size: 1.4rem;
   text-align: center;
 }
 
+.book-cloth-form .card-image,
 .view-cloth-form .card-image {
   align-items: center;
   border: 1px solid beige;

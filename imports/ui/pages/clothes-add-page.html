@@ -52,16 +52,15 @@
             </div>
             
             <div class="form-group form-buttons">
-              <button type="submit" 
-              class="btn add-btn green">
-                {{#if updating}}Sauvegarder{{else}}Ajouter{{/if}}
-              </button>
               {{#if updating}}
-                <!-- Another button ? -->
+                <button class="btn delete-btn red lighten-1">Supprimer</button>
               {{else}}
                 <button type="reset" 
                 class="btn reset-btn red lighten-1">Réinitialiser</button>
               {{/if}}
+              <button type="submit" class="btn add-btn green">
+                {{#if updating}}Sauvegarder{{else}}Ajouter{{/if}}
+              </button>
             </div>
           </fieldset>
           {{/autoForm}}
