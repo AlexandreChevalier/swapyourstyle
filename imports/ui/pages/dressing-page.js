@@ -6,6 +6,7 @@ import { Template } from 'meteor/templating';
 import { Profiles } from '../../api/profiles/profiles.js';
 import { Clothes } from '../../api/clothes/clothes.js';
 import { Images } from '../../api/images/images.js';
+import { Dressings } from '../../api/dressings/dressings.js';
 
 import './dressing-page.html';
 import '../components/clothes-item.js';
@@ -33,5 +34,9 @@ Template.Dressing_page.helpers({
       { sort: { createdAt: -1 } }
     );
     if(clothes) { return clothes }
+  },
+  dressingName() {
+    var dressing = Dressings.findOne({ownerId:Meteor.userId()});
+    return dressing.name;
   }
 });

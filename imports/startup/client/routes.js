@@ -11,6 +11,7 @@ import '../../ui/pages/dressing-page.js';
 import '../../ui/pages/search-page.js';
 import '../../ui/pages/clothes-add-page.js';
 import '../../ui/pages/clothes-view-page.js';
+import '../../ui/pages/dressing-view-page.js';
 import '../../ui/pages/clothes-booking-page.js';
 import '../../ui/pages/profile-page.js';
 import '../../ui/pages/notifications-page.js';
@@ -56,11 +57,20 @@ exposed.route('/:_id/view', {
   }
 });
 
-// Route to view clothes form page
+// Route to book clothes form page
 exposed.route('/:_id/book', {
   name: 'book-clothes',
   action: function() { 
     BlazeLayout.render("App_body", {main: "Clothes_booking_page"});
+  }
+});
+
+
+// Route to view profile form page
+exposed.route('/:_id/dressingview', {
+  name: 'view-dressing',
+  action: function() { 
+    BlazeLayout.render("App_body", {main: "Dressing_view_page"});
   }
 });
 

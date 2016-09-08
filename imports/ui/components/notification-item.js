@@ -19,17 +19,22 @@ Template.Notification_item.helpers({
     var sender = Profiles.findOne({userId:senderId});
     return sender.userName;
   },
-  getMessageText: function(notif) {
-    var cloth = Cloth.findOne({_id:notif.targetedItemId});
-    var addedDates = notif.requestedDates;
-    var messageText = "Bonjour,<br/>Je souhaiterais effectuer une réservation sur votre objet \"<b>" + cloth.name + "</b>\"";
-      if(addedDates.length === 1){
-        messageText += " le " + stringDates[0];
-      }
-      else {
-        messageText += " du " + stringDates[0] + " au " + stringDates[stringDates.length - 1];
-      }
-      messageText += " pour la somme totale de " + addedDates.length*cloth.price + " €.";
+  getClothName: function(targetedItemId) {
+    var cloth = Clothes.findOne({_id:targetedItemId});
+    return cloth.name;
+  },
+  getDates: function(requestedDates) {
+    if(requestedDates.length === 1){
+      var messageText = "Le " + requestedDates[0];
+    }
+    else {
+      var messageText = "Du " + requestedDates[0] + " au " + requestedDates[requestedDates.length - 1];
+    }
     return messageText;
+  },
+  getPrice: function(notif) {
+    var cloth = Clothes.findOne({_id:notif.targetedItemId});
+    var timePeriod = notif.requestedDates.length;
+    return timePeriod*cloth.price;
   }
 });

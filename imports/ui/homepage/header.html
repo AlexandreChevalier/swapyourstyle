@@ -24,7 +24,7 @@
   <li><a href="/dressing">{{dressing_label}}</a></li>
   <li><a href="/blog">Blog</a></li>
   {{#if currentUser}}
-    <li class="notification-btn"><a href="/notifications"><i class="large material-icons">email</i><span class="badge">{{getNotifs}}</span></a></li>
+    <li class="notification-btn"><a href="/notifications"><i class="large material-icons">email</i><span class="badge">{{getNotifCount}}</span></a></li>
     <li><a href="/profile">{{profile_label}}</a></li>
   {{else}}
     <!-- Reactive useraccounts sign-in/logout button -->
