@@ -14,7 +14,6 @@ Template.Dressing_view_page.onCreated(function () {
 
 Template.Dressing_view_page.onRendered(function () {
   $( document ).ready(function(){
-    $(window).scrollTop(0);
     // Loading material selects
     $('select').material_select();
     // Animations

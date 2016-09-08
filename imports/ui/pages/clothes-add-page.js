@@ -46,8 +46,6 @@ Template.Clothes_add_page.onRendered(function () {
   }
 
   $( document ).ready(function(){
-    $(window).scrollTop(0);
-
     if (updating) { enableSize() }
     else { disableSize() }
     
