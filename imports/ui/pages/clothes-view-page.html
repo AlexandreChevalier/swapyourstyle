@@ -12,21 +12,20 @@
                 <div class="card card-image waves-effect waves-block waves-light white-popup mfp-hide">
                   <img class="image-popup" href="/images/clothes.jpg" src="{{getIllustration(cloth.imageId)}}">
                 </div>
-
+                <div class="price">
+                  <span class="black-text">{{cloth.price}}€/j</span>
+                </div>
               </div>
 
               <p class="col s12 m6 l6 view-cloth-attributes flow-text">
-                Taille : <b>{{cloth.size}}</b><br>
-                Genre : <b>{{cloth.gender}}</b><br>
-                Couleur : <b>{{cloth.color}}</b><br>
-                Theme : <b>{{cloth.theme}}</b><br>
-                Type : <b>{{cloth.type}}</b><br>
-                Description : <b>{{cloth.description}}</b><br>
+                Type : {{cloth.type}}<br>
+                Genre : {{cloth.gender}}<br>
+                Theme : {{cloth.theme}}<br>
+                Couleur : {{cloth.color}}<br>
+                Taille {{cloth.size}}<br>
+                Description : {{cloth.description}}<br>
               </p>
               <div class="form-group form-buttons">
-                <div class="price green btn-large">
-                  <span class="white-text">{{cloth.price}}€/j</span>
-                </div>
                 <div id="location" class="blue btn-large">
                   <span class="white-text medium">Louer</span>
                 </div>
