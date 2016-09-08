@@ -28,7 +28,6 @@ Template.Clothes_booking_page.onRendered(function () {
       minDate: 0,
       onSelect: dateSelected
     });
-    $(window).scrollTop(0);
     // Loading material selects
     $('select').material_select();
     // Animations

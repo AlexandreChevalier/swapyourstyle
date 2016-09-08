@@ -20,9 +20,9 @@ import '../../ui/pages/notifications-page.js';
 import '../../ui/accounts/accounts-templates.js';
 
 // Public routes group
-var exposed = FlowRouter.group({});
+var exposed = FlowRouter.group({triggersEnter: [scrollTop]});
 // Users routes group
-var loggedIn = FlowRouter.group({triggersEnter: [checkLogin]});
+var loggedIn = FlowRouter.group({triggersEnter: [checkLogin, scrollTop]});
 // Admin routes group
 var admin = FlowRouter.group({});
 
@@ -34,6 +34,10 @@ function checkLogin(context) {
   if(!(Meteor.loggingIn() || Meteor.userId())) {
     FlowRouter.go('join');
   }
+}
+
+function scrollTop() {
+  window.scrollTo(0, 0);
 }
 
 /**
