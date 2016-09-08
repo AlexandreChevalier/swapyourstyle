@@ -182,9 +182,21 @@ footer.page-footer {
 /* cloth item style */
 /*------------------*/
 
+.cloth-item .card {
+  background-color: red;
+}
+
 .cloth-item .card .card-content {
+  background-color: rgba(0,0,0,.8);
   padding-top: 30px;
   height: 180px;
+}
+
+.cloth-item .card-content {
+  padding-top: 0;
+  height: 150px;
+  overflow: hidden;
+  background-color: black;
 }
 
 .cloth-item .card .card-content .card-title {
@@ -241,15 +253,8 @@ footer.page-footer {
   overflow: hidden;
 }
 
-.cloth-item .card-content {
-  padding-top: 0;
-  height: 150px;
-  overflow: hidden;
-  background-color: black;
-}
-
 .cloth-item .card-action {
-  background-color: #000;
+  background-color: rgba(0,0,0,.5);
 }
 
 .cloth-item .card-action a {
@@ -260,6 +265,7 @@ footer.page-footer {
 /*----------------------*/
 
 .view-cloth-form .card {
+  border: 1px solid #c0c0c0;
   padding: 1.6rem;
   padding-top: 1.6rem;
   width: 100%;
@@ -269,19 +275,30 @@ footer.page-footer {
   margin-bottom: 0;
 }
 
+.view-cloth-content .col {
+  text-align: center;
+}
+
+.view-cloth-content .price span {
+  font-size: 3rem;
+  font-weight: 300;
+}
+
 .view-cloth-content .form-buttons {
   font-size: 1.4rem;
-  text-align: right;
+  text-align: center;
 }
 
 .view-cloth-form .card-image {
   align-items: center;
-  border: 1px solid;
-  border-radius: 5px;
-  display: flex;
-  height: 300px;
+  border: 1px solid beige;
+  border-radius: 250px;
+  display: inline-block;
+  height: 70%;
   justify-content: center;
+  margin: 0;
   padding: 0;
+  width: 70%;
 }
 
 .view-cloth-attributes {
@@ -456,7 +473,7 @@ input[type=text]:focus:not([readonly]) + label {
 }
 
 .notification-item .notification-title {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   text-align: center;
   margin-bottom: 10px;
@@ -464,10 +481,13 @@ input[type=text]:focus:not([readonly]) + label {
 
 .notification-item .card {
   background: rgba(100,152,254,0);
-  padding: 10px;
+  border: 1px solid #c0c0c0;
+  padding: 15px;
+  text-align: center;
 }
 
 .notification-item .form-buttons {
+  margin-top: 10px;
   text-align: center;
 }
 
