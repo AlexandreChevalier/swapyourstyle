@@ -1,10 +1,14 @@
 <template name="Notifications_page">
   <div class="row">
     <div class="col s12">
-    {{#each item in userNotifications}}
-		{{> Notification_item notification=item}}
-    {{/each}}
+      <div class="container">
+        <h3 class="header">Notifications de location</h3>
+
+        {{#each item in userNotifications}}
+          {{> Notification_item notification=item}}
+        {{/each}}
+
+      </div>
     </div>
   </div>
 </template>
-

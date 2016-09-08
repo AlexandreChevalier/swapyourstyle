@@ -49,8 +49,8 @@ Template.Notification_item.events({
   "click #accept": function(event, template) {
     var notif = template.data.notification;
     swal({
-      title: "Confirmer l'aceptation'",
-      text: swalText + "Êtes-vous sûr de vouloir accepter ?",
+      title: "Confirmation",
+      text: swalText + "Accepter la demande ?",
       confirmButtonText: "Oui",
       showCancelButton: true,
       cancelButtonText: "Non",

@@ -4,7 +4,7 @@ import '/imports/startup/server';
 // import { GeoCoder } from 'meteor/aldeed:geocoder';
 import { Profiles } from '../imports/api/profiles/profiles.js';
 import { Notifications } from '../imports/api/notifications/notifications.js';
-import { Dressing } from '../imports/api/dressings/dressings.js';
+import { Dressings } from '../imports/api/dressings/dressings.js';
 // import { Images } from '../imports/api/images/images.js';
 
 // Meteor.methods({
@@ -62,7 +62,7 @@ Accounts.onCreateUser(function(options, user) {
     userName: user.username,
     email: mail,
 	});
-  Dressing.insert({
+  Dressings.insert({
     ownerId: user._id,
     name: "Dressing de " + user.username
   });
