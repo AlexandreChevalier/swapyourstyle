@@ -50,6 +50,29 @@ footer {
   font-size: 5rem;
 }
 
+nav .notification-btn a {
+  height: 65px;
+}
+
+nav .notification-btn .badge {
+  background: red;
+  border-radius: 20px;
+  color: white;
+  margin: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+nav .notification-btn a i {
+  color: white;
+  display: inline-block;
+  font-size: 1.6rem;
+}
+
+.side-nav .notification-btn a i {
+  color: #444;
+}
+
 .dressing-shortcut {
 	margin-right: 10px;
 }

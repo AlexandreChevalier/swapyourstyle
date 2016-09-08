@@ -22,9 +22,9 @@
   <li><a href="/women">Femme</a></li>
   <li><a href="/men">Homme</a></li>
   <li><a href="/dressing">{{dressing_label}}</a></li>
-  <li><a href="/blog">Blog</a></li></li>
+  <li><a href="/blog">Blog</a></li>
   {{#if currentUser}}
-    <li><a href="/notifications"><span class="new badge"><i class="large material-icons">email</i>{{getNotifs}}</span></a>
+    <li class="notification-btn"><a href="/notifications"><i class="large material-icons">email</i><span class="badge">{{getNotifs}}</span></a></li>
     <li><a href="/profile">{{profile_label}}</a></li>
   {{else}}
     <!-- Reactive useraccounts sign-in/logout button -->
