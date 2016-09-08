@@ -3,9 +3,6 @@
     <h3>Vêtements disponibles dans la région</h3>
     <div class="row">
       {{> searchBox}}
-<!--     {{#each item in clothes}}
-      {{> Clothes_item cloth=item}}
-    {{/each}} -->
     </div>
   </div>
 </template>
@@ -16,9 +13,25 @@
     <label for="inputSearch">Rechercher...</label>
   </div>
   <ul>
-    {{#EasySearch.Each index=clothesIndex }}
-      {{> Clothes_item cloth=this}}
-    <!-- li>Vêtement : {{name}}</li> -->
-    {{/EasySearch.Each}}
+    <div class="search-results">
+      {{#EasySearch.Each index=clothesIndex }}
+        {{> Clothes_item cloth=this}}
+      {{/EasySearch.Each}}
+    </div>
   </ul>
+  
+  <div class="search-loading">
+    {{#EasySearch.IfSearching index=clothesIndex }}
+      <div>Recherche en cours...</div>
+    {{/EasySearch.IfSearching }}
+  </div>
+  
+  <div class="search-no-results">
+    {{#EasySearch.IfNoResults index=clothesIndex }}
+      <div class="no-results">
+        <div class="white-space"></div>
+        Aucun résultat !
+      </div>
+    {{/EasySearch.IfNoResults }}
+  </div>
 </template>
