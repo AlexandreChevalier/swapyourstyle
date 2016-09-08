@@ -70,13 +70,12 @@ Accounts.onCreateUser(function(options, user) {
 });
 
 Meteor.methods({
-  sendEmail: function (to, from, subject, text) {
+  sendEmail: function (to, subject, text) {
     // Let other method calls from the same client start running,
     // without waiting for the email sending to complete.
     this.unblock();
     Email.send({
       to: to,
-      from: from,
       subject: subject,
       html: text
     });
