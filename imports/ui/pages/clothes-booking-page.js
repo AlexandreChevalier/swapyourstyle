@@ -21,21 +21,31 @@ Template.Clothes_booking_page.onRendered(function () {
   $( document ).ready(function(){
     addedDates = [];
     var item = Clothes.findOne({_id: FlowRouter.current().params._id});
-    var datesArray = item.notAvailable;
-    if(!datesArray){
-      datesArray = [];
-    }
-    var bookedArray = item.bookedPeriod;
-    if(!bookedArray){
-      bookedArray = [];
-    }
+    
+    var datesArray = [];
+    var bookedArray = [];
+    
+    if(item.notAvailable){ datesArray = item.notAvailable; }
+    if(!datesArray){ datesArray = []; }
+
+    if(item.bookedPeriod){ bookedArray = item.bookedPeriod; }
+    if(!bookedArray){ bookedArray = []; }
+
     var disabledDates = appendArrays(datesArray, bookedArray);
-    $("#multidatespicker").multiDatesPicker({
-      addDisabledDates: disabledDates,
-      maxPicks: 2,
-      minDate: 0,
-      onSelect: dateSelected
-    });
+    if(disabledDates.length){
+      $("#multidatespicker").multiDatesPicker({
+        addDisabledDates: disabledDates,
+        maxPicks: 2,
+        minDate: 0,
+        onSelect: dateSelected
+      });
+    } else {
+      $("#multidatespicker").multiDatesPicker({
+        maxPicks: 2,
+        minDate: 0,
+        onSelect: dateSelected
+      });
+    }
     // Loading material selects
     $('select').material_select();
     // Animations
