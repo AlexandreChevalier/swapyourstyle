@@ -29,13 +29,38 @@ Meteor.users.allow({
 });
 
 Accounts.onCreateUser(function(options, user) {
+  
+  var mail = "";
+
+  if(user.services.facebook){
+
+    if(user.services.facebook.email){
+      mail = user.services.facebook.email;
+    }
+
+  } else if (user.services.twitter){
+
+    if(user.services.twitter.email){
+      mail = user.services.twitter.email;
+    }
+
+  } else if (user.services.google){
+
+    if(user.services.google.email){
+      mail = user.services.google.email;
+    }
+
+  } else {
+    mail = user.emails[0].address;
+  }
+
   if(!user.username){
       user.username = "Anonyme";
   }
 	Profiles.insert({
 		userId: user._id,
     userName: user.username,
-    email: user.emails[0].address
+    email: mail,
 	});
   Dressing.insert({
     ownerId: user._id,
