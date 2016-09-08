@@ -22,8 +22,16 @@ Template.Clothes_booking_page.onRendered(function () {
     addedDates = [];
     var item = Clothes.findOne({_id: FlowRouter.current().params._id});
     var datesArray = item.notAvailable;
+    if(!datesArray){
+      datesArray = [];
+    }
+    var bookedArray = item.bookedPeriod;
+    if(!bookedArray){
+      bookedArray = [];
+    }
+    var disabledDates = appendArrays(datesArray, bookedArray);
     $("#multidatespicker").multiDatesPicker({
-      addDisabledDates: datesArray,
+      addDisabledDates: disabledDates,
       maxPicks: 2,
       minDate: 0,
       onSelect: dateSelected
@@ -94,7 +102,7 @@ Template.Clothes_booking_page.events({
           status: "En attente"
         });
         messageText += "<br/><br/>L'équipe de SwapYourStyle vous invite à vous rendre sur <a href='http://swapyourstyle.fr/notifications'>SwapYourStyle.fr</a> pour répondre à cette demande.<br/><br/>Merci et bonne journée !";
-        Meteor.call('sendEmail', ownerProfile.email, selfProfile.email, "Demande de location", messageText);
+        Meteor.call('sendEmail', ownerProfile.email, "Demande de location", messageText);
         swal({
           title: "Succès !",
           text: "Le mail a bien été envoyé. Vous recevrez la réponse du propriétaire par mail.",
@@ -158,4 +166,11 @@ var dateSelected = function() {
 function formattedDate(theDate) {
   function pad(s) { return (s < 10) ? '0' + s : s; }
   return [pad(theDate.getDate()), pad(theDate.getMonth()+1), theDate.getFullYear()].join('/');
+}
+
+function appendArrays(arr1, arr2) {
+  for (var i = arr2.length - 1; i >= 0; i--) {
+    arr1.push(arr2[i]);
+  }
+  return arr1;
 }
