@@ -24,7 +24,7 @@ if (Meteor.isClient) {
 
 /* Profiles schema definition */
 Dressings.schema = new SimpleSchema({
-  "owner": {
+  "ownerId": {
     type: String
   },
   "name": {

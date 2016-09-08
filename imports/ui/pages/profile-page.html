@@ -7,6 +7,8 @@
           doc=profile
           id="updateProfileForm" type="update"}}
             <legend>{{ getUpdateLegend }}</legend>
+            {{> afQuickField name='userName'}}
+            {{> afQuickField name='email'}}
             {{> afQuickField name='firstName'}}
             {{> afQuickField name='lastName'}}
             {{> afQuickField name='birthdate'}}

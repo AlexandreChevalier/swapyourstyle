@@ -13,6 +13,7 @@ import '../../ui/pages/clothes-add-page.js';
 import '../../ui/pages/clothes-view-page.js';
 import '../../ui/pages/clothes-booking-page.js';
 import '../../ui/pages/profile-page.js';
+import '../../ui/pages/notifications-page.js';
 
 // Import to override accounts templates
 import '../../ui/accounts/accounts-templates.js';
@@ -105,6 +106,14 @@ loggedIn.route('/new', {
   name: 'new-clothes',
   action: function() { 
     BlazeLayout.render("App_body", {main: "Clothes_add_page"});
+  }
+});
+
+// Route to new clothes form page
+loggedIn.route('/notifications', {
+  name: 'notifications',
+  action: function() { 
+    BlazeLayout.render("App_body", {main: "Notifications_page"});
   }
 });
 

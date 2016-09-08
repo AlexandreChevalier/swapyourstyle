@@ -49,6 +49,10 @@ Profiles.schema = new SimpleSchema({
   "userId": {
     type: String
   },
+  "userName": {
+    type: String,
+    optional: true
+  },
   "email": {
     type: String,
     optional: true
@@ -109,11 +113,6 @@ Profiles.schema = new SimpleSchema({
     type: addressSchema,
     optional: true,
     label: T9n.get("Address")
-  },
-  "dressingName": {
-    type:String,
-    optional: true,
-    label: T9n.get("Dressing Name")
   }
 });
 

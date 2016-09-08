@@ -1,6 +1,7 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { AccountsTemplates } from 'meteor/useraccounts:core';
+import { Notifications } from '../../api/notifications/notifications.js';
 
 import './header.html';
 
@@ -38,7 +39,13 @@ Template.links.helpers({
     }
     else { return "@Déconnecté" }
   },
-  getNotifs: function() {
-    return 1;
+  getNotifCount: function() {
+    let numNotif = Notifications.find({recipient:Meteor.userId(), read:false}).count();
+    if(numNotif){
+      return numNotif;
+    }
+    else {
+      return 0;
+    }
   }
 });

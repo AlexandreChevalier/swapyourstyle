@@ -4,7 +4,7 @@ import '/imports/startup/server';
 // import { GeoCoder } from 'meteor/aldeed:geocoder';
 import { Profiles } from '../imports/api/profiles/profiles.js';
 import { Notifications } from '../imports/api/notifications/notifications.js';
-// import { Clothes } from '../imports/api/clothes/clothes.js';
+import { Dressing } from '../imports/api/dressings/dressings.js';
 // import { Images } from '../imports/api/images/images.js';
 
 // Meteor.methods({
@@ -29,22 +29,18 @@ Meteor.users.allow({
 });
 
 Accounts.onCreateUser(function(options, user) {
-  console.log("creation : ", user);
   if(!user.username){
       user.username = "Anonyme";
   }
 	Profiles.insert({
 		userId: user._id,
-    email: user.emails[0].address,
-    dressingName: "Dressing de " + user.username
-	}, function(error, result) {
-	  if(error){
-	  	console.log(error.invalidKeys);
-	  }
-      else {
-        console.log("result : ", result);
-      }
+    userName: user.username,
+    email: user.emails[0].address
 	});
+  Dressing.insert({
+    ownerId: user._id,
+    name: "Dressing de " + user.username
+  });
 	return user;
 });
 
