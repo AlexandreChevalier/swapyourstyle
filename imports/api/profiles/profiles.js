@@ -51,10 +51,12 @@ Profiles.schema = new SimpleSchema({
   },
   "userName": {
     type: String,
+    label: "Pseudo",
     optional: true
   },
   "email": {
     type: String,
+    label: "Adresse mail",
     optional: true
   },
   "firstName": {

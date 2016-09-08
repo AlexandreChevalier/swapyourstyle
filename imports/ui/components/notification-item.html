@@ -1,22 +1,26 @@
 <template name="Notification_item">
-  <div class="col s12 m6 l4 notification-item">
+  <div class="col s12 m6 l6 notification-item">
     <div class="card">
       {{#if isSender notification.sender}}
-        Objet demandé : <a href="/{{notification.targetedItemId}}/view">{{getClothName(notification.targetedItemId)}}</a><br/>
-        Propriétaire : <a href="/{{notification.recipient}}/dressingview">{{getSenderUserName(notification.recipient)}}</a><br/>
+        <div class="notification-title">
+          Vêtement désiré : <a href="/{{notification.targetedItemId}}/view">{{getClothName(notification.targetedItemId)}}</a>
+        </div>
+        appartenant à <a href="/{{notification.recipient}}/dressingview">{{getSenderUserName(notification.recipient)}}</a><br/>
         Statut : {{notification.status}}
       {{else}}
+        <div class="notification-title">
+          Vêtement demandé : <a href="/{{notification.targetedItemId}}/view">{{getClothName(notification.targetedItemId)}}</a>
+        </div>
         Expéditeur : <a href="/{{notification.sender}}/dressingview">{{getSenderUserName(notification.sender)}}</a><br/>
-        Objet demandé : <a href="/{{notification.targetedItemId}}/view">{{getClothName(notification.targetedItemId)}}</a><br/>
         Période demandée : {{getDates(notification.requestedDates)}}<br/>
         Prix total : {{getPrice(notification)}} €<br/>
         {{#if statusWaiting notification.status}}
           <div class="form-group form-buttons">
-            <div id="accept" class="green btn-large">
-              <span class="white-text">Accepter</span>
+            <div id="deny" class="waves-effect waves-red btn-flat">
+              <span class="red-text medium">Refuser</span>
             </div>
-            <div id="deny" class="red btn-large">
-              <span class="white-text medium">Refuser</span>
+            <div id="accept" class="waves-effect waves-green btn-flat">
+              <span class="green-text medium">Accepter</span>
             </div>
           </div>
         {{else}}

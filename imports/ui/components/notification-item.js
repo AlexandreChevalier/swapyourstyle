@@ -51,8 +51,8 @@ Template.Notification_item.events({
     var askerProfile = Profiles.findOne({ "userId":notif.sender });
     var selfProfile = Profiles.findOne({ "userId":Meteor.userId() });
     swal({
-      title: "Confirmer",
-      text: "Êtes-vous sûr de vouloir accepter ? Nous enverrons vos coordonnées au demandeur par mail.",
+      title: "Confirmation",
+      text: swalText + "Accepter la demande ?",
       confirmButtonText: "Oui",
       showCancelButton: true,
       cancelButtonText: "Non",
