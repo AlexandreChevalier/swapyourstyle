@@ -102,7 +102,7 @@ Template.Clothes_booking_page.events({
           closeOnConfirm: true
           }, function(){
             FlowRouter.go("/");
-          });
+        });
       });
     }
   }
