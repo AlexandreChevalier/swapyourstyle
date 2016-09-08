@@ -12,6 +12,8 @@ export const Clothes = new Mongo.Collection('clothes');
 ClothesIndex = new EasySearch.Index({
   collection: Clothes,
   fields: ['name', 'type', 'theme', 'gender', 'color', 'size'],
+  convertNumbers: true,
+  useTextIndexes: true,
   engine: new EasySearch.Minimongo()
 });
 

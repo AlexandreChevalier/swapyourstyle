@@ -31,7 +31,7 @@ Template.Search_page.helpers({
 });
 
 Template.searchBox.helpers({
-  clothesIndex(){
+  clothesIndex() {
     return ClothesIndex;
   }
 });
