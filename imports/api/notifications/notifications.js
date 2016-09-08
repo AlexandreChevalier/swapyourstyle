@@ -38,6 +38,10 @@ Notifications.schema = new SimpleSchema({
     },
     "status": {
         type: String //pending/accepted/rejected/over  (par exemple)
+    },
+    "read": {
+        type: Boolean,
+        defaultValue: false
     }
 });
 

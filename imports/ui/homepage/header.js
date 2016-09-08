@@ -38,4 +38,7 @@ Template.links.helpers({
     }
     else { return "@Déconnecté" }
   },
+  getNotifs: function() {
+    return 1;
+  }
 });
