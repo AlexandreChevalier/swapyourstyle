@@ -2,10 +2,10 @@
   <div class="container dressing">
     <div class="dressing-header">
       <!-- TODO : possibility to display a reactive input here for renaming -->
-      <div id="dressingNameEdit">
+      <div class="dressing-title">
         {{#if editing}}
-          {{# autoForm collection=Dressings doc=dressing id="updateDressingForm" type="update"}}
-              {{> afQuickField name='name' label=false}}
+          {{#autoForm collection=dressings doc=dressing id="updateDressingForm" type="update" autosave=true }}
+            {{> afQuickField name="name" label=false autofocus="true" }}
           {{/autoForm}}
         {{else}}
         <h3>
@@ -17,7 +17,7 @@
           <i class="material-icons">mode_edit</i>
         </h3>
         {{/if}}
-        </div>
+      </div>
       <a class="btn new-cloth-btn" href="/new">Nouveau vêtement</a>
     </div>
     <br>

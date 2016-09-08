@@ -36,20 +36,28 @@ Template.Dressing_page.helpers({
     );
     if(clothes) { return clothes }
   },
-  Dressings() { return Dressings },
+  dressings() { return Dressings },
   dressing() {
     return Dressings.findOne({ownerId:Meteor.userId()});
   },
   dressingName() {
     var dressing = Dressings.findOne({ownerId:Meteor.userId()});
+    if(!dressing.name){
+      dressing.name = "Mon dressing";
+    }
     return dressing.name;
   },
   editing() { return Session.get("editing") }
 });
 
 Template.Dressing_page.events({
-  "click #dressingNameEdit": function(event, template) {
+  "click .dressing-title": function(event, template) {
     Session.set("editing", true);
+    template.$('.dressing-title input').focus();
+    template.$('.dressing-title input').click();
+  },
+  "click": function(){
+    Session.set("editing", false);
   }
 });
 
