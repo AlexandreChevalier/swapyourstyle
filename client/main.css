@@ -182,9 +182,21 @@ footer.page-footer {
 /* cloth item style */
 /*------------------*/
 
+.cloth-item .card {
+  background-color: red;
+}
+
 .cloth-item .card .card-content {
+  background-color: rgba(0,0,0,.8);
   padding-top: 30px;
   height: 180px;
+}
+
+.cloth-item .card-content {
+  padding-top: 0;
+  height: 150px;
+  overflow: hidden;
+  background-color: black;
 }
 
 .cloth-item .card .card-content .card-title {
@@ -241,15 +253,8 @@ footer.page-footer {
   overflow: hidden;
 }
 
-.cloth-item .card-content {
-  padding-top: 0;
-  height: 150px;
-  overflow: hidden;
-  background-color: black;
-}
-
 .cloth-item .card-action {
-  background-color: #000;
+  background-color: rgba(0,0,0,.5);
 }
 
 .cloth-item .card-action a {

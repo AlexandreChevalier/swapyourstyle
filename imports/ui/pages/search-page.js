@@ -7,19 +7,17 @@ import { clothes_properties }
 
 import './search-page.html';
 
-Template.Search_page.onRendered(function(){
+Template.Search_page.onCreated(function(){
 	Meteor.subscribe('clothes');
 	console.log("Subscribing to clothes");
 });
 
 Template.Search_page.onRendered(function(){
   $( document ).ready(function(){
-    // Loading material selects
-    $('select').material_select();
-	// Animations
-	$('#main')
-		.velocity("fadeIn", { duration: 500 })
-		.velocity({ opacity: 1 });
+    // Animations
+  	$('#main')
+  		.velocity("fadeIn", { duration: 500 })
+  		.velocity({ opacity: 1 });
   });
 });
 
