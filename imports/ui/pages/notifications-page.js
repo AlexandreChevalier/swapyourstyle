@@ -20,7 +20,7 @@ Template.Notifications_page.onRendered(function () {
 Template.Notifications_page.helpers({
   userNotifications() {
     let notifications = Notifications.find(
-      { recipient: Meteor.userId() }, 
+      {$or:[{ recipient: Meteor.userId() },{ sender: Meteor.userId() }]}, 
       { sort: { read:false, createdAt: -1 } }
     );
     if(notifications) { return notifications }

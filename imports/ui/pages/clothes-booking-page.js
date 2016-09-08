@@ -19,6 +19,7 @@ var addedDates = [];
 
 Template.Clothes_booking_page.onRendered(function () {
   $( document ).ready(function(){
+    addedDates = [];
     var item = Clothes.findOne({_id: FlowRouter.current().params._id});
     var datesArray = item.notAvailable;
     $("#multidatespicker").multiDatesPicker({
@@ -67,6 +68,7 @@ Template.Clothes_booking_page.events({
       let itemId = FlowRouter.getParam("_id");
       let cloth = Clothes.findOne({ "_id":itemId });
       let ownerProfile = Profiles.findOne({ "userId":cloth.ownerId });
+      let selfProfile = Profiles.findOne({ "userId":Meteor.userId() });
       let swalText = "Voulez-vous envoyer ce message au propriétaire de l'objet \"<b>" + cloth.name + "</b>\" ?<br/><br/>"
       let messageText = "Bonjour,<br/>Je souhaiterais effectuer une réservation sur votre objet \"<b>" + cloth.name + "</b>\"";
       if(addedDates.length === 1){
@@ -77,7 +79,7 @@ Template.Clothes_booking_page.events({
       }
       messageText += " pour la somme totale de " + Session.get("totalPrice") + " €.";
       swal({
-        title: "Confirmation la demande",
+        title: "Confirmer la demande",
         text: swalText + messageText,
         confirmButtonText: "Oui",
         showCancelButton: true,
@@ -90,12 +92,18 @@ Template.Clothes_booking_page.events({
           recipient: cloth.ownerId,
           requestedDates: stringDates,
           targetedItemId: itemId,
-          status: "pending"
+          status: "En attente"
         });
-        Meteor.call('sendEmail', ownerProfile.email, Meteor.user().emails[0].address, "Demande de location", messageText);
-        swal("Succès !",
-          "Le mail a bien été envoyé. Vous recevrez la réponse du propriétaire par mail.",
-          "success");
+        messageText += "<br/><br/>L'équipe de SwapYourStyle vous invite à vous rendre sur <a href='http://swapyourstyle.fr/notifications'>SwapYourStyle.fr</a> pour répondre à cette demande.<br/><br/>Merci et bonne journée !";
+        Meteor.call('sendEmail', ownerProfile.email, selfProfile.email, "Demande de location", messageText);
+        swal({
+          title: "Succès !",
+          text: "Le mail a bien été envoyé. Vous recevrez la réponse du propriétaire par mail.",
+          type: "success",
+          closeOnConfirm: true
+          }, function(){
+            FlowRouter.go("/");
+          });
       });
     }
   }

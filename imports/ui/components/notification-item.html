@@ -1,18 +1,28 @@
 <template name="Notification_item">
   <div class="col s12 m6 l4 notification-item">
     <div class="card">
-      Expéditeur : <a href="/{{notification.sender}}/dressingview">{{getSenderUserName(notification.sender)}}</a><br/>
-      Objet demandé : <a href="/{{notification.targetedItemId}}/view">{{getClothName(notification.targetedItemId)}}</a><br/>
-      Période demandée : {{getDates(notification.requestedDates)}}<br/>
-      Prix total : {{getPrice(notification)}} €<br/>
-      <div class="form-group form-buttons">
-        <div id="accept" class="green btn-large">
-          <span class="white-text">Accepter</span>
-        </div>
-        <div id="deny" class="red btn-large">
-          <span class="white-text medium">Refuser</span>
-        </div>
-      </div>
+      {{#if isSender notification.sender}}
+        Objet demandé : <a href="/{{notification.targetedItemId}}/view">{{getClothName(notification.targetedItemId)}}</a><br/>
+        Propriétaire : <a href="/{{notification.recipient}}/dressingview">{{getSenderUserName(notification.recipient)}}</a><br/>
+        Statut : {{notification.status}}
+      {{else}}
+        Expéditeur : <a href="/{{notification.sender}}/dressingview">{{getSenderUserName(notification.sender)}}</a><br/>
+        Objet demandé : <a href="/{{notification.targetedItemId}}/view">{{getClothName(notification.targetedItemId)}}</a><br/>
+        Période demandée : {{getDates(notification.requestedDates)}}<br/>
+        Prix total : {{getPrice(notification)}} €<br/>
+        {{#if statusWaiting notification.status}}
+          <div class="form-group form-buttons">
+            <div id="accept" class="green btn-large">
+              <span class="white-text">Accepter</span>
+            </div>
+            <div id="deny" class="red btn-large">
+              <span class="white-text medium">Refuser</span>
+            </div>
+          </div>
+        {{else}}
+          Statut : {{notification.status}}
+        {{/if}}
+      {{/if}}
     </div>
   </div>
 </template>

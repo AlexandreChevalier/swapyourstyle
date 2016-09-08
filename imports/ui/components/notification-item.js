@@ -15,6 +15,9 @@ Template.Notification_item.onRendered(function () {
 });
 
 Template.Notification_item.helpers({
+  isSender: function(senderId) {
+    return senderId === Meteor.userId();
+  },
   getSenderUserName: function(senderId) {
     var sender = Profiles.findOne({userId:senderId});
     return sender.userName;
@@ -36,5 +39,37 @@ Template.Notification_item.helpers({
     var cloth = Clothes.findOne({_id:notif.targetedItemId});
     var timePeriod = notif.requestedDates.length;
     return timePeriod*cloth.price;
+  },
+  statusWaiting: function(status) {
+    return status === "En attente";
+  }
+});
+
+Template.Notification_item.events({
+  "click #accept": function(event, template) {
+    var notif = template.data.notification;
+    swal({
+      title: "Confirmer l'aceptation'",
+      text: swalText + "Êtes-vous sûr de vouloir accepter ?",
+      confirmButtonText: "Oui",
+      showCancelButton: true,
+      cancelButtonText: "Non",
+      closeOnConfirm: false,
+    }, function(){
+      Notifications.update(notif._id, {
+        $set: {
+          status: "Accepté"
+        }
+      });
+      swal(
+        "Succès !",
+        "Le mail a bien été envoyé. Vous recevrez la réponse du propriétaire par mail.",
+        "success"
+      );
+      FlowRouter.go("/");
+    });
+  },
+  "click #deny": function(event, template) {
+    var notif = template.data.notification;
   }
 });
