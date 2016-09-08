@@ -32,16 +32,16 @@
                 <span class="white-text light">{{currentPrice}}€/j</span>
               </div>
             </div>
-              <div class="file-field">
-                <button class="btn grey darken-3">
-                  <span>Image</span>
-                  <input type="file" name="image" id='fileInput' accept="image/*" disabled="{{waitingForApiResponse}}">
-                </button>
-                <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text" 
-                  placeholder="(Ajoutez une image)">
-                </div>
+            <div class="file-field">
+              <button class="btn grey darken-3">
+                <span>Image</span>
+                <input type="file" name="image" id='fileInput' accept="image/*" disabled="{{waitingForApiResponse}}">
+              </button>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" 
+                placeholder="(Ajoutez une image)">
               </div>
+            </div>
             {{> afQuickField name="description" 
               placeholder="Exemple : Une robe parfaite pour les soirées !" 
               rows=6}}

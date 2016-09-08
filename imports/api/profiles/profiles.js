@@ -59,6 +59,11 @@ Profiles.schema = new SimpleSchema({
     label: "Adresse mail",
     optional: true
   },
+  "avatarId": {
+    type: String,
+    optional: true,
+    label: "Avatar"
+  },
   "firstName": {
     type: String,
     optional: true,
