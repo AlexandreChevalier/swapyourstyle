@@ -470,3 +470,15 @@ input[type=text]:focus:not([readonly]) + label {
 .notification-item .form-buttons {
   text-align: center;
 }
+
+#dressingNameEdit {
+  display: inline-block;
+}
+
+#dressingNameEdit i {
+  display: none;
+}
+
+#dressingNameEdit:hover i {
+  display: inline-block;
+}

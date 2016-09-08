@@ -10,7 +10,6 @@ if (Meteor.isServer) {
   Meteor.publish('dressings', function(){
     var data = Dressings.find();
     if(data){
-      console.log("Publishing Dressings");
       return data;
     }
     return this.ready();
@@ -19,7 +18,6 @@ if (Meteor.isServer) {
 
 if (Meteor.isClient) {
   Meteor.subscribe('dressings');
-  console.log("Subscribing to Dressings");
 }
 
 /* Profiles schema definition */

@@ -21,7 +21,6 @@ if (Meteor.isServer) {
   Meteor.publish('clothes', function(){
     var data = Clothes.find();
     if(data){
-      console.log("Publishing Clothes");
       return data;
     }
     return this.ready();
@@ -29,7 +28,6 @@ if (Meteor.isServer) {
   Meteor.publish('personal_clothes', function(){
     var data = Clothes.find({"ownerId":this.userId});
     if(data){
-      console.log("Publishing personal Clothes");
       return data;
     }
     return this.ready();
@@ -40,7 +38,6 @@ if (Meteor.isServer) {
 
 if (Meteor.isClient) {
   Meteor.subscribe('clothes');
-  console.log("Subscribing to Clothes from import");
 }
 
 /* Clothes schema definition */

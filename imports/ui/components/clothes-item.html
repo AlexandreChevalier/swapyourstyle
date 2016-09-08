@@ -23,7 +23,7 @@
           <br>
           Prix : {{cloth.price}}€ / jour de location
           <br>
-          Propriétaire : {{getOwnerUserName(cloth.ownerId)}} (voir son dressing)
+          Propriétaire : {{getOwnerUserName(cloth.ownerId)}} <a href="/{{cloth.ownerId}}/dressingview">(voir son dressing)</a>
           <br>
           Emplacement : {{getCity(cloth.ownerId)}}
         </p>

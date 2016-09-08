@@ -2,6 +2,7 @@
  * Created by Marc on 27/04/2016.
  */
 import { Template } from 'meteor/templating';
+import { Session } from 'meteor/session';
 
 import { Profiles } from '../../api/profiles/profiles.js';
 import { Clothes } from '../../api/clothes/clothes.js';
@@ -13,7 +14,7 @@ import '../components/clothes-item.js';
 
 Template.Dressing_page.onCreated(function(){
   Meteor.subscribe('personal_clothes');
-  console.log("Subscribing to personal clothes");
+  Session.set("editing", false);
 });
 
 var delay = 100;
@@ -35,8 +36,27 @@ Template.Dressing_page.helpers({
     );
     if(clothes) { return clothes }
   },
+  Dressings() { return Dressings },
+  dressing() {
+    return Dressings.findOne({ownerId:Meteor.userId()});
+  },
   dressingName() {
     var dressing = Dressings.findOne({ownerId:Meteor.userId()});
     return dressing.name;
+  },
+  editing() { return Session.get("editing") }
+});
+
+Template.Dressing_page.events({
+  "click #dressingNameEdit": function(event, template) {
+    Session.set("editing", true);
   }
 });
+
+var hooks = {
+  onSuccess: function(formType, result) {
+    Session.set("editing", false);
+  }
+};
+
+AutoForm.addHooks('updateDressingForm', hooks);

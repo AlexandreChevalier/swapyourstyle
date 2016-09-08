@@ -2,15 +2,23 @@
   <div class="container dressing">
     <div class="dressing-header">
       <!-- TODO : possibility to display a reactive input here for renaming -->
-      <h3>
-        {{#if dressingName}}
-          {{dressingName}}
+      <div id="dressingNameEdit">
+        {{#if editing}}
+          {{# autoForm collection=Dressings doc=dressing id="updateDressingForm" type="update"}}
+              {{> afQuickField name='name' label=false}}
+          {{/autoForm}}
         {{else}}
-          Mon dressing
+        <h3>
+          {{#if dressingName}}
+            {{dressingName}}
+          {{else}}
+            Mon dressing
+          {{/if}}
+          <i class="material-icons">mode_edit</i>
+        </h3>
         {{/if}}
-      </h3>
+        </div>
       <a class="btn new-cloth-btn" href="/new">Nouveau vêtement</a>
-<!--       <a class="btn edit-dressing-btn" href="/updateDressing">Modifier le Dressing</a> -->
     </div>
     <br>
     <div class="row">

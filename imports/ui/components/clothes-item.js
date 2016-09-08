@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { Images } from '../../api/images/images.js';
 import { Profiles } from '../../api/profiles/profiles.js';
 import { Clothes } from '../../api/clothes/clothes.js';
+import { Dressings } from '../../api/dressings/dressings.js';
 
 import './clothes-item.html';
 
@@ -24,8 +25,8 @@ Template.Clothes_item.helpers({
     }
   },
   getOwnerUserName(userId){
-  	var owner = Meteor.users.findOne({_id: userId});
-  	return owner.username;
+  	var owner = Profiles.findOne({userId: userId});
+    if(owner){ if(owner.userName){ return owner.userName; }}
   },
   getCity(userId){
   	return "Inconnu";
@@ -42,6 +43,10 @@ Template.Clothes_item.helpers({
     var owner = Meteor.users.findOne({_id: cloth.ownerId});
     if(owner){ return cloth._id + "/edit" }
     else { return cloth._id + "/view" }
+  },
+  getDressingId(userId){
+    var dressing = Dressings.findOne({ownerId: userId});
+    if(dressing){ return dressing._id; }
   }
 });
 
