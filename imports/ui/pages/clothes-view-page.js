@@ -41,7 +41,16 @@ Template.Clothes_view_page.helpers({
 
 Template.Clothes_view_page.events({
   "click #location": function(event, template) {
-    let itemId = FlowRouter.getParam("_id");
-    FlowRouter.go('/' + itemId + '/book');
+    if(Meteor.user()){
+      let itemId = FlowRouter.getParam("_id");
+      FlowRouter.go('/' + itemId + '/book');
+    }
+    else {
+      swal({
+        title: "Déconnecté",
+        text: "Vous devez être connecté pour louer un vêtement.",
+        type: "warning"
+      });
+    }
   }
 });

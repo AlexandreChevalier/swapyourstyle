@@ -163,6 +163,10 @@ Clothes.schema = new SimpleSchema({
     type: [String],
     optional: true,
     label: T9n.get("Not Available")
+  },
+  "bookedPeriod": {
+    type: [String],
+    optional: true
   }
 });
 

@@ -20,9 +20,20 @@
             {{> afQuickField name='address.city'}}
             {{> afQuickField name='address.country'}}
             {{> afQuickField name='bio' rows=6}}
+            <br/><!--Désolé-->
+            <div class="file-field">
+              <button class="btn grey darken-3">
+                <span>Avatar</span>
+                <input type="file" name="image" id='fileInput' accept="image/*" disabled="{{waitingForApiResponse}}">
+              </button>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" 
+                placeholder="(Ajoutez une image)">
+              </div>
+            </div>
             <div class="form-group form-buttons">
               <button type="reset" class="white-text btn-flat red">Réinitialiser</button>
-              <button type="submit" class="white-text btn-flat green">Mettre à jour</button>
+              <button type="submit" class="white-text btn-flat green" disabled="{{waitingForApiResponse}}">Mettre à jour</button>
             </div>
         {{/autoForm}}
 

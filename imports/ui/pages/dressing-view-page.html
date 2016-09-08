@@ -3,7 +3,11 @@
     <div class="col s12">
       <div class="container view-cloth-form">
         <h3 class="header">{{dressing.name}}</h3>
-        
+        Propriétaire : {{getOwnerUserName}}
+        <div class="img-wrapper">
+          <img class="activator" src="{{getIllustration}}">
+        </div>
+        A propos de moi : {{getUserBio}}
         <div class="row">
         {{#each item in clothes}}
           {{> Clothes_item cloth=item}}

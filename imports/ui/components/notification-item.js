@@ -50,6 +50,7 @@ Template.Notification_item.events({
     var notif = template.data.notification;
     var askerProfile = Profiles.findOne({ "userId":notif.sender });
     var selfProfile = Profiles.findOne({ "userId":Meteor.userId() });
+    var cloth = Clothes.findOne({_id:notif.targetedItemId});
     swal({
       title: "Confirmation",
       text: "Accepter la demande ?",
@@ -62,6 +63,16 @@ Template.Notification_item.events({
         $set: {
           status: "Accepté",
           read: true
+        }
+      });
+      var arrayDates = cloth.bookedPeriod;
+      if(!arrayDates){
+        arrayDates = [];
+      }
+      var newArray = appendArrays(arrayDates, toUSFormat(notif.requestedDates));
+      Clothes.update(notif.targetedItemId, {
+        $set: {
+          bookedPeriod: newArray
         }
       });
       var messageText = "Bonjour !<br/><br/>Votre demande a été acceptée par " + selfProfile.userName + ".<br/><br/>";
@@ -119,3 +130,21 @@ Template.Notification_item.events({
     });
   }
 });
+
+function appendArrays(arr1, arr2) {
+  for (var i = arr2.length - 1; i >= 0; i--) {
+    arr1.push(arr2[i]);
+  }
+  return arr1;
+}
+
+function toUSFormat(dateArray){
+  var newArray = [];
+  for (var i = dateArray.length - 1; i >= 0; i--) {
+    let tmpString = dateArray[i];
+    let tmpArray = tmpString.split("/");
+    tmpString = tmpArray[1] + "/" + tmpArray[0] + "/" + tmpArray[2];
+    newArray.push(tmpString);
+  }
+  return newArray;
+}

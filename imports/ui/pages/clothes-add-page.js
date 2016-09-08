@@ -34,15 +34,21 @@ Template.Clothes_add_page.onCreated(function () {
 });
 
 Template.Clothes_add_page.onRendered(function () {
-  $("#multidatespicker").multiDatesPicker({
-    minDate: 0
-  });
+  var bookedArray = null;
+  var datesArray = [];
   if(updating){
     var item = Clothes.findOne({_id: FlowRouter.current().params._id});
     var datesArray = item.notAvailable;
-    if(datesArray){
-      $("#multidatespicker").multiDatesPicker('addDates', datesArray);
+    if(item.bookedPeriod){
+      bookedArray = item.bookedPeriod;
     }
+  }
+  $("#multidatespicker").multiDatesPicker({
+    minDate: 0,
+    addDisabledDates: bookedArray
+  });
+  if(updating && datesArray){
+    $("#multidatespicker").multiDatesPicker('addDates', datesArray);
   }
 
   $( document ).ready(function(){
