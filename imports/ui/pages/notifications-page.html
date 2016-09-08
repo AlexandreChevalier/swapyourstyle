@@ -4,9 +4,13 @@
       <div class="container">
         <h3 class="header">Notifications de location</h3>
 
-        {{#each item in userNotifications}}
-          {{> Notification_item notification=item}}
-        {{/each}}
+        {{#if userNotifications.count}}
+          {{#each item in userNotifications}}
+            {{> Notification_item notification=item}}
+          {{/each}}
+        {{else}}
+          <div class="empty-notification">Aucune notification</div>
+        {{/if}}
 
       </div>
     </div>

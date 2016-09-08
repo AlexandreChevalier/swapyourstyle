@@ -22,9 +22,17 @@
     </div>
     <br>
     <div class="row">
-    {{#each item in clothes}}
-      {{> Clothes_item cloth=item}}
-    {{/each}}
+    {{#if clothes.count}}
+      {{#each item in clothes}}
+        {{> Clothes_item cloth=item}}
+      {{/each}}
+    {{else}}
+      <div class="col s12 m6 l4 fake-cloth-item">
+        <div class="placeholder">
+          <div class="dressing-empty">C'est bien vide ici...<br>Ajoutez donc un vêtement !</div>
+        </div>
+      </div>
+    {{/if}}
     </div>
   </div>
 </template>

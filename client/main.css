@@ -73,7 +73,7 @@ nav .notification-btn a i {
 }
 
 .dressing-shortcut {
-	margin-right: 10px;
+	margin-right: 15px;
 }
 
 #at-nav-button { 
@@ -101,7 +101,7 @@ nav .notification-btn a i {
 }
 
 .parallax-container {
-  height: 405px;
+  height: 512px !important;
 }
 
 .info-block {
@@ -177,8 +177,24 @@ footer.page-footer {
 /* cloth item style */
 /*------------------*/
 
+.fake-cloth-item .placeholder {
+  background: transparent;
+  border: 5px dashed #c0c0c0;
+  border-radius: 10px;
+  display: table-cell;
+  height: 464px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.fake-cloth-item .dressing-empty {
+  color: #c0c0c0;
+  font-size: 24px;
+  padding: 10px;
+}
+
 .cloth-item .card {
-  background-color: red;
+  background-color: #c0c0c0;
 }
 
 .cloth-item .card .card-content {
@@ -512,4 +528,25 @@ input[type=text]:focus:not([readonly]) + label {
   margin: 1.46rem 0 1.168rem 0;
   margin-top: 15px;
   display: inline-block;
+}
+
+.info-block .icon-block {
+  text-align: center;
+}
+
+.info-block .number {
+  border: 1px solid black;
+  border-radius: 30px;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+}
+
+.empty-notification {
+  color: black;
+  font-size: 24px;
+  margin-top: 40px;
+  opacity: .5;
+  text-align: center;
 }
